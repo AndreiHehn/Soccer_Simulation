@@ -13,20 +13,18 @@ interface AppContextProviderProps {
   children: ReactNode;
 }
 interface AppContextProps {
-  userName: string;
-  setUserName: Dispatch<SetStateAction<string>>;
+  isSideBarOpen: boolean;
+  setIsSideBarOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
-  const [userName, setUserName] = useState(() => {
-    return localStorage.getItem("[app_name]_username") || "Player 001";
-  });
+  const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
       value={{
-        userName,
-        setUserName,
+        isSideBarOpen,
+        setIsSideBarOpen,
       }}
     >
       {children}
