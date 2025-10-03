@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const Container = styled.aside<Props>`
-  width: 275px;
+  width: ${(props) => (props.isOpen ? "275px" : "58px")};
   height: 100dvh;
   position: absolute;
   padding: 4px;

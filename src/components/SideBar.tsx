@@ -10,7 +10,7 @@ export default function SideBar() {
     <Container
       isOpen={isSideBarOpen}
       onMouseEnter={() => setIsSideBarOpen(true)}
-      // onMouseLeave={() => setIsSideBarOpen(false)}
+      onMouseLeave={() => setIsSideBarOpen(false)}
     >
       <div className="logo">
         <Logo></Logo>
