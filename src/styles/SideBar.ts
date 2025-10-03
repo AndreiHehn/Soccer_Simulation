@@ -20,6 +20,7 @@ export const Container = styled.aside<Props>`
     display: flex;
     align-items: center;
     gap: 10px;
+    user-select: none;
     svg {
       width: ${(props) => (props.isOpen ? "120px" : "50px")};
       height: ${(props) => (props.isOpen ? "80px" : "50px")};
@@ -34,5 +35,14 @@ export const Container = styled.aside<Props>`
       font-size: 18px;
       color: white;
     }
+  }
+
+  .tournaments-buttons {
+    margin-top: ${(props) => !props.isOpen && "30px"};
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 `;

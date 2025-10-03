@@ -1,21 +1,22 @@
 import { useContext } from "react";
 import { Container } from "../styles/SideBarButton";
 import { AppContext } from "../lib/context";
-import Bundesliga_logo from "../assets/icons/Bundesliga_logo.png";
-import LaLiga_logo from "../assets/icons/LaLiga_logo.png";
-import PremierLeague_logo from "../assets/icons/Premier_League_logo.png";
-import SerieA_logo from "../assets/icons/SerieA_logo.png";
-import Ligue1_logo from "../assets/icons/Ligue1_logo.png";
 
-export default function SideBarButton() {
+interface Props {
+  name: string;
+  logo: string;
+  color: string;
+}
+
+export default function SideBarButton({ name, logo, color }: Props) {
   const { isSideBarOpen } = useContext(AppContext);
 
   return (
-    <Container isSideBarOpen={isSideBarOpen}>
+    <Container isSideBarOpen={isSideBarOpen} primaryColor={color}>
       <div className="internal">
         <div className="tournament-info">
-          <img className="tournament-logo" src={Bundesliga_logo} alt="logo" />
-          <h2 className="tournament-name">Bundesliga</h2>
+          <img className="tournament-logo" src={logo} alt="logo" />
+          <h2 className="tournament-name">{name}</h2>
         </div>
       </div>
     </Container>

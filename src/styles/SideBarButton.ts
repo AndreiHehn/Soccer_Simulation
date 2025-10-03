@@ -2,16 +2,20 @@ import styled from "styled-components";
 
 interface Props {
   isSideBarOpen: boolean;
+  primaryColor: string;
 }
 export const Container = styled.div<Props>`
-  width: 100%;
+  width: 90%;
   height: 40px;
   border-radius: ${(props) => (props.isSideBarOpen ? "25px" : "10px")};
   background-color: white;
   padding: 2px;
+  display: ${(props) => (props.isSideBarOpen ? "flex" : "none")};
+  cursor: pointer;
 
   &:hover {
     background-color: #cbcaca;
+    transform: scale(1.05);
 
     .internal {
       background-color: #cbcaca;
@@ -23,7 +27,7 @@ export const Container = styled.div<Props>`
     height: 100%;
     background-color: white;
     border-radius: 25px;
-    border: 3px solid red;
+    border: 3px solid ${(props) => props.primaryColor};
     display: ${(props) => (props.isSideBarOpen ? "flex" : "none")};
     align-items: center;
   }
@@ -34,14 +38,14 @@ export const Container = styled.div<Props>`
     align-items: center;
 
     .tournament-logo {
-      width: 12%;
-      max-height: 36px;
+      width: 20px;
     }
 
     .tournament-name {
       font-size: 18px;
       margin-left: 10px;
-      color: red;
+      color: ${(props) => props.primaryColor};
+      white-space: nowrap;
     }
   }
 `;
