@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const Container = styled.aside<Props>`
-  width: ${(props) => (props.isOpen ? "275px" : "58px")};
+  width: 275px;
   height: 100dvh;
   position: absolute;
   padding: 4px;
@@ -33,7 +33,6 @@ export const Container = styled.aside<Props>`
       display: ${(props) => (props.isOpen ? "flex" : "none")};
       font-size: 18px;
       color: white;
-      font-family: Orbitron;
     }
   }
 `;
