@@ -45,4 +45,12 @@ export const Container = styled.aside<Props>`
     align-items: center;
     gap: 10px;
   }
+
+  .settings {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;

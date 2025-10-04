@@ -15,16 +15,21 @@ interface AppContextProviderProps {
 interface AppContextProps {
   isSideBarOpen: boolean;
   setIsSideBarOpen: Dispatch<SetStateAction<boolean>>;
+  showModalSettings: boolean;
+  setShowModalSettings: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
   const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
+  const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
       value={{
         isSideBarOpen,
         setIsSideBarOpen,
+        showModalSettings,
+        setShowModalSettings,
       }}
     >
       {children}

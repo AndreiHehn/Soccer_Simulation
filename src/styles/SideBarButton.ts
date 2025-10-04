@@ -47,5 +47,11 @@ export const Container = styled.div<Props>`
       color: ${(props) => props.primaryColor};
       white-space: nowrap;
     }
+
+    svg {
+      path {
+        fill: #265643;
+      }
+    }
   }
 `;
