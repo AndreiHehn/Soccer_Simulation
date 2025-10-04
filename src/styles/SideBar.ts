@@ -10,6 +10,7 @@ export const Container = styled.aside<Props>`
   position: absolute;
   padding: 4px;
   background-color: #265643;
+  border-right: 3px solid #7aff1cff;
   transition: 0.5s ease;
   z-index: 2;
   display: flex;
@@ -34,6 +35,19 @@ export const Container = styled.aside<Props>`
       display: ${(props) => (props.isOpen ? "flex" : "none")};
       font-size: 18px;
       color: white;
+    }
+  }
+
+  .separator {
+    display: ${(props) => (props.isOpen ? "flex" : "none")};
+    margin-bottom: 5px;
+
+    .section-category {
+      font-size: 16px;
+      color: white;
+      font-weight: 400;
+      display: flex;
+      white-space: nowrap;
     }
   }
 

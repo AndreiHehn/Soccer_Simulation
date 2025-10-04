@@ -25,6 +25,9 @@ export default function SideBar() {
         <Logo></Logo>
         <h2 className="app-name">REACT SOCCER SIMULATION</h2>
       </div>
+      <section className="separator">
+        <h3 className="section-category">{t("National Leagues")}</h3>
+      </section>
       <div className="tournaments-buttons">
         <SideBarButton
           name="Premier League"
