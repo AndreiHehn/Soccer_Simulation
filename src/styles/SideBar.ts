@@ -9,7 +9,7 @@ export const Container = styled.aside<Props>`
   height: 100dvh;
   position: absolute;
   padding: 4px;
-  background-color: #265643;
+  background-color: var(--app-primary);
   border-right: 3px solid #7aff1cff;
   transition: 0.5s ease;
   z-index: 2;

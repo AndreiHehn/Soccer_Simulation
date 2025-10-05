@@ -2,15 +2,28 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Orbitron !important;
 }
 
 body {
 }
 
-.light-theme {
+.app-theme {
+  --app-primary: #265643;
+  --app-secondary: #73fcc5;
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+
+  --modal-background: var(--app-primary);
 }
 
 .dark-theme {
+  --app-primary: #262928;
+  --app-secondary: #3a423f;
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+
+  --modal-background: var(--app-primary);
 }
 
 h1,
