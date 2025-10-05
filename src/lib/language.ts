@@ -18,7 +18,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: localStorage.getItem("[app_name]_language") || "en",
+  lng: localStorage.getItem("soccer_sim_language") || "en",
   fallbackLng: "en",
   interpolation: {
     escapeValue: false,

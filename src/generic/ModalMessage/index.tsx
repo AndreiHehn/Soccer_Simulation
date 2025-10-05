@@ -27,7 +27,7 @@ export function ModalMessage({
           color="gray"
           functionButton={onClick1}
           borderRadius="6px"
-          width="80px"
+          width="100px"
         >
           {textButton1}
         </Button>
@@ -36,7 +36,7 @@ export function ModalMessage({
             color="red"
             functionButton={onClick2}
             borderRadius="6px"
-            width="80px"
+            width="100px"
           >
             {textButton2}
           </Button>

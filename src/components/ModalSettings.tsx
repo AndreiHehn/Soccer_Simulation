@@ -58,7 +58,7 @@ export default function ModalSettings() {
       <div className="theme-radios">
         <RadioButton
           name="themeRB"
-          text={t("App Theme")}
+          text={t("SoccerSim Theme")}
           color="var(--app-primary)"
           bgColor="var(--text-primary)"
           value="app"
