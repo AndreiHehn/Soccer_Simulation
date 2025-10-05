@@ -16,7 +16,6 @@ function App() {
     setTheme,
     setLanguage,
     settingsChanged,
-    setSettingsChanged,
     quitSettings,
     setQuitSettings,
     resetSettings,
