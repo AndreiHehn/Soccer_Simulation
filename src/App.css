@@ -11,6 +11,7 @@ body {
 .app-theme {
   --app-primary: #265643;
   --app-secondary: #73fcc5;
+  --app-tertiary: #057a4b;
   --text-primary: #ffffff;
   --text-secondary: #ffffff;
 
@@ -19,7 +20,8 @@ body {
 
 .dark-theme {
   --app-primary: #262928;
-  --app-secondary: #3a423f;
+  --app-secondary: #798d86;
+  --app-tertiary: #364b43;
   --text-primary: #ffffff;
   --text-secondary: #ffffff;
 

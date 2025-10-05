@@ -6,16 +6,21 @@ import { ModalGeneric } from "./generic/GenericModal";
 import ModalSettings from "./components/ModalSettings";
 import { useTranslation } from "react-i18next";
 import { ModalMessage } from "./generic/ModalMessage";
+import i18n from "./lib/language";
 
 function App() {
   const {
     showModalSettings,
     setShowModalSettings,
     theme,
+    setTheme,
+    setLanguage,
     settingsChanged,
     setSettingsChanged,
     quitSettings,
     setQuitSettings,
+    resetSettings,
+    setResetSettings,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -41,6 +46,16 @@ function App() {
     }
   }
 
+  function SetDefault() {
+    setTheme("app");
+    setLanguage("en");
+
+    localStorage.setItem("soccer_sim_theme", "app");
+    localStorage.setItem("soccer_sim_language", "en");
+
+    i18n.changeLanguage("en");
+  }
+
   return (
     <>
       <SideBar></SideBar>;
@@ -62,6 +77,17 @@ function App() {
           onClick1={() => setQuitSettings(false)}
           textButton1={t("Cancel")}
           onClick2={() => (setQuitSettings(false), setShowModalSettings(false))}
+          textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
+      {resetSettings && (
+        <ModalMessage
+          textMessage={t("Do you want to reset the settings?")}
+          onClick1={() => setResetSettings(false)}
+          textButton1={t("Cancel")}
+          onClick2={() => (
+            setResetSettings(false), setShowModalSettings(false), SetDefault()
+          )}
           textButton2={t("Yes")}
         ></ModalMessage>
       )}

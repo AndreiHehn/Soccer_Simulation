@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  .theme-radios {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
   .section-separator {
     margin-top: 10px;
 
@@ -21,13 +15,20 @@ export const Container = styled.div`
       height: 0;
       border: none;
       border-top: 1px solid var(--text-primary);
-      margin-bottom: 3px;
+      margin-bottom: 10px;
     }
+  }
+
+  .theme-radios {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
   .footer-buttons {
     display: flex;
     justify-content: end;
     margin-top: 10px;
+    gap: 10px;
   }
 `;

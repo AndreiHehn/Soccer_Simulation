@@ -15,6 +15,8 @@ interface AppContextProviderProps {
 interface AppContextProps {
   theme: string;
   setTheme: Dispatch<SetStateAction<string>>;
+  language: string;
+  setLanguage: Dispatch<SetStateAction<string>>;
   isSideBarOpen: boolean;
   setIsSideBarOpen: Dispatch<SetStateAction<boolean>>;
   showModalSettings: boolean;
@@ -23,22 +25,30 @@ interface AppContextProps {
   setSettingsChanged: Dispatch<SetStateAction<boolean>>;
   quitSettings: boolean;
   setQuitSettings: Dispatch<SetStateAction<boolean>>;
+  resetSettings: boolean;
+  setResetSettings: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
   const [theme, setTheme] = useState<string>(
     localStorage.getItem("soccer_sim_theme") || "app"
   );
+  const [language, setLanguage] = useState(
+    () => localStorage.getItem("soccer_sim_language") || "en"
+  );
   const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
   const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
   const [settingsChanged, setSettingsChanged] = useState<boolean>(false);
   const [quitSettings, setQuitSettings] = useState<boolean>(false);
+  const [resetSettings, setResetSettings] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
       value={{
         theme,
         setTheme,
+        language,
+        setLanguage,
         isSideBarOpen,
         setIsSideBarOpen,
         showModalSettings,
@@ -47,6 +57,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setSettingsChanged,
         quitSettings,
         setQuitSettings,
+        resetSettings,
+        setResetSettings,
       }}
     >
       {children}
