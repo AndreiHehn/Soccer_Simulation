@@ -8,7 +8,7 @@ export const Container = styled.div<Props>`
   width: 90%;
   height: 40px;
   border-radius: ${(props) => (props.isSideBarOpen ? "25px" : "10px")};
-  background-color: white;
+  background-color: var(--text-primary);
   padding: 2px;
   display: ${(props) => (props.isSideBarOpen ? "flex" : "none")};
   cursor: pointer;
@@ -25,7 +25,7 @@ export const Container = styled.div<Props>`
   .internal {
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: var(--text-primary);
     border-radius: 25px;
     border: 3px solid ${(props) => props.primaryColor};
     display: ${(props) => (props.isSideBarOpen ? "flex" : "none")};

@@ -34,7 +34,7 @@ export const Container = styled.aside<Props>`
     .app-name {
       display: ${(props) => (props.isOpen ? "flex" : "none")};
       font-size: 18px;
-      color: white;
+      color: var(--text-primary);
     }
   }
 
@@ -44,7 +44,7 @@ export const Container = styled.aside<Props>`
 
     .section-category {
       font-size: 16px;
-      color: white;
+      color: var(--text-primary);
       font-weight: 400;
       display: flex;
       white-space: nowrap;
