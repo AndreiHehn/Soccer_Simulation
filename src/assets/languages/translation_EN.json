@@ -1,1 +1,16 @@
-{ "Settings": "Settings" }
+{
+  "Cancel": "Cancel",
+  "Dark Theme": "Dark Theme",
+  "Language Selection": "Language Selection",
+  "National Leagues": "National Leagues",
+  "Reset": "Reset",
+  "Save": "Save",
+  "Settings": "Settings",
+  "SoccerSim Theme": "SoccerSim Theme",
+  "System Theme": "System Theme",
+  "Theme Selection": "Theme Selection",
+  "Yes": "Yes",
+
+  "Do you want to reset the settings?": "Do you want to reset the settings?",
+  "Do you want to quit without saving?": "Do you want to quit without saving?"
+}

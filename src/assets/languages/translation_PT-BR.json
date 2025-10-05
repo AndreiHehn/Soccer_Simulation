@@ -1,1 +1,16 @@
-{ "Settings": "Configurações" }
+{
+  "Cancel": "Cancelar",
+  "Dark Theme": "Tema Escuro",
+  "Language Selection": "Seleção de Idioma",
+  "National Leagues": "Ligas Nacionais",
+  "Reset": "Redefinir",
+  "Save": "Salvar",
+  "Settings": "Configurações",
+  "SoccerSim Theme": "Tema do SoccerSim",
+  "System Theme": "Tema do Sistema",
+  "Theme Selection": "Seleção de Tema",
+  "Yes": "Sim",
+
+  "Do you want to reset the settings?": "Tem certeza que deseja redefinir as configurações?",
+  "Do you want to quit without saving?": "Tem certeza que deseja sair sem salvar?"
+}
