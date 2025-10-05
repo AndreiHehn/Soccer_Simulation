@@ -29,6 +29,10 @@ export default function ModalSettings() {
   return (
     <Container>
       <div className="theme-radios">
+        <div className="section-separator">
+          <h2 className="section-title">{t("Theme Selection")}</h2>
+          <hr className="section-line" />
+        </div>
         <RadioButton
           name="themeRB"
           text={t("App Theme")}

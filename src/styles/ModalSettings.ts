@@ -7,6 +7,24 @@ export const Container = styled.div`
     gap: 6px;
   }
 
+  .section-separator {
+    margin-top: 10px;
+
+    .section-title {
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .section-line {
+      width: 100%;
+      height: 0;
+      border: none;
+      border-top: 1px solid var(--text-primary);
+      margin-bottom: 3px;
+    }
+  }
+
   .footer-buttons {
     display: flex;
     justify-content: end;
