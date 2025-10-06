@@ -35,6 +35,11 @@ export const Container = styled.main<Props>`
 
   .tournament-logo {
     margin-bottom: 30px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img {
       width: 250px;
     }
