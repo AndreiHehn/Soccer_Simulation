@@ -17,6 +17,9 @@ export default function SideBar() {
     setSelectedTournament,
     activePage,
     setBackToMenu,
+
+    setLocalTournament,
+    setNewSimulation,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -40,7 +43,11 @@ export default function SideBar() {
             name={tournament.name}
             color={tournament.primaryColor}
             logo={tournament.logo}
-            functionButton={() => setSelectedTournament(tournament)}
+            functionButton={() =>
+              activePage == "Home"
+                ? setSelectedTournament(tournament)
+                : (setLocalTournament(tournament), setNewSimulation(true))
+            }
           />
         ))}
       </div>

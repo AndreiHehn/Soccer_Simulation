@@ -40,10 +40,14 @@ interface AppContextProps {
   setResetSettings: Dispatch<SetStateAction<boolean>>;
   selectedTournament: Tournament | null;
   setSelectedTournament: Dispatch<SetStateAction<Tournament | null>>;
+  localTournament: Tournament | null;
+  setLocalTournament: Dispatch<SetStateAction<Tournament | null>>;
   activePage: string;
   setActivePage: Dispatch<SetStateAction<string>>;
   backToMenu: boolean;
   setBackToMenu: Dispatch<SetStateAction<boolean>>;
+  newSimulation: boolean;
+  setNewSimulation: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -60,8 +64,12 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [resetSettings, setResetSettings] = useState<boolean>(false);
   const [selectedTournament, setSelectedTournament] =
     useState<Tournament | null>(null);
+  const [localTournament, setLocalTournament] = useState<Tournament | null>(
+    null
+  );
   const [activePage, setActivePage] = useState<string>("Home");
   const [backToMenu, setBackToMenu] = useState<boolean>(false);
+  const [newSimulation, setNewSimulation] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
@@ -82,10 +90,14 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setResetSettings,
         selectedTournament,
         setSelectedTournament,
+        localTournament,
+        setLocalTournament,
         activePage,
         setActivePage,
         backToMenu,
         setBackToMenu,
+        newSimulation,
+        setNewSimulation,
       }}
     >
       {children}

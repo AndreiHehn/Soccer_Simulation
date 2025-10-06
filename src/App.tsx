@@ -27,6 +27,9 @@ function App() {
     backToMenu,
     setBackToMenu,
     setSelectedTournament,
+    newSimulation,
+    setNewSimulation,
+    localTournament,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -108,6 +111,17 @@ function App() {
             setBackToMenu(false),
             setActivePage("Home"),
             setSelectedTournament(null)
+          )}
+          textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
+      {newSimulation && (
+        <ModalMessage
+          textMessage={t("Do you want to select another tournament?")}
+          onClick1={() => setNewSimulation(false)}
+          textButton1={t("Cancel")}
+          onClick2={() => (
+            setNewSimulation(false), setSelectedTournament(localTournament)
           )}
           textButton2={t("Yes")}
         ></ModalMessage>
