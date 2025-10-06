@@ -1,5 +1,6 @@
 {
   "Cancel": "Cancel",
+  "Click on the button below to start the simulation!": "Click on the button below to start the simulation!",
   "Dark Theme": "Dark Theme",
   "Language Selection": "Language Selection",
   "National Leagues": "National Leagues",
@@ -7,9 +8,13 @@
   "Save": "Save",
   "Settings": "Settings",
   "SoccerSim Theme": "SoccerSim Theme",
+  "Start Simulation": "Start Simulation",
   "System Theme": "System Theme",
   "Theme Selection": "Theme Selection",
+  "Welcome to the React Soccer Simulation!": "Welcome to the React Soccer Simulation!",
   "Yes": "Yes",
+  "You can find the available tournaments in the side bar on the left!": "You can find the available tournaments in the side bar on the left!",
+  "You selected the ": "You selected the ",
 
   "Do you want to reset the settings?": "Do you want to reset the settings?",
   "Do you want to quit without saving?": "Do you want to quit without saving?"

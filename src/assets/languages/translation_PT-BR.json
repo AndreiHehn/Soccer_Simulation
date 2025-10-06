@@ -1,5 +1,6 @@
 {
   "Cancel": "Cancelar",
+  "Click on the button below to start the simulation!": "Clique no botão abaixo para iniciar a simulação!",
   "Dark Theme": "Tema Escuro",
   "Language Selection": "Seleção de Idioma",
   "National Leagues": "Ligas Nacionais",
@@ -7,9 +8,13 @@
   "Save": "Salvar",
   "Settings": "Configurações",
   "SoccerSim Theme": "Tema do SoccerSim",
+  "Start Simulation": "Iniciar Simulação",
   "System Theme": "Tema do Sistema",
   "Theme Selection": "Seleção de Tema",
+  "Welcome to the React Soccer Simulation!": "Bem-Vindo ao React Soccer Simulation!",
   "Yes": "Sim",
+  "You can find the available tournaments in the side bar on the left!": "Você pode encontrar os torneios disponíveis no menu à esquerda!",
+  "You selected the ": "Você selecionou o(a) ",
 
   "Do you want to reset the settings?": "Tem certeza que deseja redefinir as configurações?",
   "Do you want to quit without saving?": "Tem certeza que deseja sair sem salvar?"
