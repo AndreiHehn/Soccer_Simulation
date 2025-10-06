@@ -8,6 +8,7 @@ export const Container = styled.aside<Props>`
   width: ${(props) => (props.isOpen ? "275px" : "58px")};
   height: 100dvh;
   position: absolute;
+  top: 0;
   padding: 4px;
   background-color: var(--app-primary);
   border-right: 3px solid #7aff1cff;

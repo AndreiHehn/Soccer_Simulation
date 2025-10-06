@@ -7,6 +7,17 @@ import {
   type SetStateAction,
 } from "react";
 
+interface Tournament {
+  id: string;
+  name: string;
+  logo: string;
+  primaryColor: string;
+  secondaryColor: string;
+  backgroundColor: string;
+  textColor: string;
+  teams: number;
+}
+
 export const AppContext = createContext({} as AppContextProps);
 
 interface AppContextProviderProps {
@@ -27,6 +38,8 @@ interface AppContextProps {
   setQuitSettings: Dispatch<SetStateAction<boolean>>;
   resetSettings: boolean;
   setResetSettings: Dispatch<SetStateAction<boolean>>;
+  selectedTournament: Tournament | null;
+  setSelectedTournament: Dispatch<SetStateAction<Tournament | null>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -41,6 +54,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [settingsChanged, setSettingsChanged] = useState<boolean>(false);
   const [quitSettings, setQuitSettings] = useState<boolean>(false);
   const [resetSettings, setResetSettings] = useState<boolean>(false);
+  const [selectedTournament, setSelectedTournament] =
+    useState<Tournament | null>(null);
 
   return (
     <AppContext.Provider
@@ -59,6 +74,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setQuitSettings,
         resetSettings,
         setResetSettings,
+        selectedTournament,
+        setSelectedTournament,
       }}
     >
       {children}

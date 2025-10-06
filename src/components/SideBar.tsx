@@ -3,18 +3,20 @@ import { Container } from "../styles/SideBar";
 import { AppContext } from "../lib/context";
 import SideBarButton from "./SideBarButton";
 import Logo from "../assets/icons/soccer_simulation_logo.svg?react";
-import Bundesliga_logo from "../assets/icons/Bundesliga_logo.png";
-import LaLiga_logo from "../assets/icons/LaLiga_logo.png";
-import PremierLeague_logo from "../assets/icons/Premier_League_logo.png";
-import SerieA_logo from "../assets/icons/SerieA_logo.png";
-import Ligue1_logo from "../assets/icons/Ligue1_logo.png";
+
 import { useTranslation } from "react-i18next";
 import SettingsIcon from "../assets/icons/settingsIcon.svg?react";
+import { TournamentsList } from "../lib/tournamentsList";
 
 export default function SideBar() {
-  const { isSideBarOpen, setIsSideBarOpen, setShowModalSettings } =
-    useContext(AppContext);
+  const {
+    isSideBarOpen,
+    setIsSideBarOpen,
+    setShowModalSettings,
+    setSelectedTournament,
+  } = useContext(AppContext);
   const { t } = useTranslation();
+
   return (
     <Container
       isOpen={isSideBarOpen}
@@ -29,41 +31,20 @@ export default function SideBar() {
         <h3 className="section-category">{t("National Leagues")}</h3>
       </section>
       <div className="tournaments-buttons">
-        <SideBarButton
-          name="Premier League"
-          color="#360D3A"
-          logo={PremierLeague_logo}
-          functionButton={() => console.log("")}
-        ></SideBarButton>
-        <SideBarButton
-          name="La Liga"
-          color="#FF4A42"
-          logo={LaLiga_logo}
-          functionButton={() => console.log("")}
-        ></SideBarButton>
-        <SideBarButton
-          name="Serie A"
-          color="#0C8CFF"
-          logo={SerieA_logo}
-          functionButton={() => console.log("")}
-        ></SideBarButton>
-        <SideBarButton
-          name="Bundesliga"
-          color="#D10214"
-          logo={Bundesliga_logo}
-          functionButton={() => console.log("")}
-        ></SideBarButton>
-        <SideBarButton
-          name="Ligue 1"
-          color="#0061FE"
-          logo={Ligue1_logo}
-          functionButton={() => console.log("")}
-        ></SideBarButton>
+        {TournamentsList.map((tournament) => (
+          <SideBarButton
+            key={tournament.id}
+            name={tournament.name}
+            color={tournament.primaryColor}
+            logo={tournament.logo}
+            functionButton={() => setSelectedTournament(tournament)}
+          />
+        ))}
       </div>
       <footer className="settings">
         <SideBarButton
           name={t("Settings")}
-          color="#265643;"
+          color="#265643"
           logo={SettingsIcon}
           functionButton={() => setShowModalSettings(true)}
         ></SideBarButton>

@@ -16,6 +16,7 @@ body {
   --text-secondary: #ffffff;
 
   --modal-background: var(--app-primary);
+  --home-background: #3e926c;
 }
 
 .dark-theme {
@@ -26,6 +27,7 @@ body {
   --text-secondary: #ffffff;
 
   --modal-background: var(--app-primary);
+  --home-background: #43554d;
 }
 
 h1,
