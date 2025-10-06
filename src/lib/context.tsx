@@ -40,6 +40,10 @@ interface AppContextProps {
   setResetSettings: Dispatch<SetStateAction<boolean>>;
   selectedTournament: Tournament | null;
   setSelectedTournament: Dispatch<SetStateAction<Tournament | null>>;
+  activePage: string;
+  setActivePage: Dispatch<SetStateAction<string>>;
+  backToMenu: boolean;
+  setBackToMenu: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -56,6 +60,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [resetSettings, setResetSettings] = useState<boolean>(false);
   const [selectedTournament, setSelectedTournament] =
     useState<Tournament | null>(null);
+  const [activePage, setActivePage] = useState<string>("Home");
+  const [backToMenu, setBackToMenu] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
@@ -76,6 +82,10 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setResetSettings,
         selectedTournament,
         setSelectedTournament,
+        activePage,
+        setActivePage,
+        backToMenu,
+        setBackToMenu,
       }}
     >
       {children}

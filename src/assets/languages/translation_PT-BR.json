@@ -1,4 +1,5 @@
 {
+  "Back to Menu": "Voltar ao Menu",
   "Cancel": "Cancelar",
   "Click on the button below to start the simulation!": "Clique no botão abaixo para iniciar a simulação!",
   "Dark Theme": "Tema Escuro",
@@ -16,6 +17,7 @@
   "You can find the available tournaments in the side bar on the left!": "Você pode encontrar os torneios disponíveis no menu à esquerda!",
   "You selected the ": "Você selecionou o(a) ",
 
+  "Do you want to return to the menu?": "Tem certeza que deseja voltar ao menu?",
   "Do you want to reset the settings?": "Tem certeza que deseja redefinir as configurações?",
   "Do you want to quit without saving?": "Tem certeza que deseja sair sem salvar?"
 }

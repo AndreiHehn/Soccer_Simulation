@@ -6,6 +6,7 @@ import Logo from "../assets/icons/soccer_simulation_logo.svg?react";
 
 import { useTranslation } from "react-i18next";
 import SettingsIcon from "../assets/icons/settingsIcon.svg?react";
+import HomeIcon from "../assets/icons/homeIcon.svg?react";
 import { TournamentsList } from "../lib/tournamentsList";
 
 export default function SideBar() {
@@ -14,6 +15,8 @@ export default function SideBar() {
     setIsSideBarOpen,
     setShowModalSettings,
     setSelectedTournament,
+    activePage,
+    setBackToMenu,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -41,13 +44,21 @@ export default function SideBar() {
           />
         ))}
       </div>
-      <footer className="settings">
+      <footer className="settings-menu">
         <SideBarButton
           name={t("Settings")}
           color="#265643"
           logo={SettingsIcon}
           functionButton={() => setShowModalSettings(true)}
         ></SideBarButton>
+        {activePage == "Tournament" && (
+          <SideBarButton
+            name={t("Back to Menu")}
+            color="#265643"
+            logo={HomeIcon}
+            functionButton={() => setBackToMenu(true)}
+          ></SideBarButton>
+        )}
       </footer>
     </Container>
   );

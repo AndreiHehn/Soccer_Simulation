@@ -61,11 +61,13 @@ export const Container = styled.aside<Props>`
     gap: 10px;
   }
 
-  .settings {
+  .settings-menu {
     position: absolute;
     bottom: 10px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
   }
 `;

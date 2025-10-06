@@ -1,4 +1,5 @@
 {
+  "Back to Menu": "Back to Menu",
   "Cancel": "Cancel",
   "Click on the button below to start the simulation!": "Click on the button below to start the simulation!",
   "Dark Theme": "Dark Theme",
@@ -16,6 +17,7 @@
   "You can find the available tournaments in the side bar on the left!": "You can find the available tournaments in the side bar on the left!",
   "You selected the ": "You selected the ",
 
+  "Do you want to return to the menu?": "Do you want to return to the menu?",
   "Do you want to reset the settings?": "Do you want to reset the settings?",
   "Do you want to quit without saving?": "Do you want to quit without saving?"
 }

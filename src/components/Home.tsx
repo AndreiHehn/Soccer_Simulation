@@ -7,7 +7,7 @@ import { Button } from "../generic/Button";
 
 export default function Home() {
   const { t } = useTranslation();
-  const { selectedTournament } = useContext(AppContext);
+  const { selectedTournament, setActivePage } = useContext(AppContext);
   return (
     <Container
       primaryColor={
@@ -51,7 +51,13 @@ export default function Home() {
             {t("Click on the button below to start the simulation!")}
           </h2>
           <div className="start-simulation">
-            <Button color="blue" borderRadius="4px" width="200px" height="50px">
+            <Button
+              color="blue"
+              borderRadius="4px"
+              width="200px"
+              height="50px"
+              functionButton={() => setActivePage("Tournament")}
+            >
               {t("Start Simulation")}
             </Button>
           </div>

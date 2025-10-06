@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { ModalMessage } from "./generic/ModalMessage";
 import i18n from "./lib/language";
 import Home from "./components/Home";
+import Tournament from "./components/Tournament";
 
 function App() {
   const {
@@ -21,6 +22,11 @@ function App() {
     setQuitSettings,
     resetSettings,
     setResetSettings,
+    activePage,
+    setActivePage,
+    backToMenu,
+    setBackToMenu,
+    setSelectedTournament,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -58,7 +64,8 @@ function App() {
 
   return (
     <>
-      <Home></Home>
+      {activePage == "Home" && <Home></Home>}
+      {activePage == "Tournament" && <Tournament></Tournament>}
       <SideBar></SideBar>
       {showModalSettings && (
         <ModalGeneric
@@ -88,6 +95,19 @@ function App() {
           textButton1={t("Cancel")}
           onClick2={() => (
             setResetSettings(false), setShowModalSettings(false), SetDefault()
+          )}
+          textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
+      {backToMenu && (
+        <ModalMessage
+          textMessage={t("Do you want to return to the menu?")}
+          onClick1={() => setBackToMenu(false)}
+          textButton1={t("Cancel")}
+          onClick2={() => (
+            setBackToMenu(false),
+            setActivePage("Home"),
+            setSelectedTournament(null)
           )}
           textButton2={t("Yes")}
         ></ModalMessage>
