@@ -117,7 +117,7 @@ function App() {
       )}
       {newSimulation && (
         <ModalMessage
-          textMessage={t("Do you want to select another tournament?")}
+          textMessage={t("Do you want to create another simulation?")}
           onClick1={() => setNewSimulation(false)}
           textButton1={t("Cancel")}
           onClick2={() => (
