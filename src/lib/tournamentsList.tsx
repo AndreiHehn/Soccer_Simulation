@@ -3,6 +3,7 @@ import LaLiga_logo from "../assets/icons/league logos/LaLiga_logo.png";
 import SerieA_logo from "../assets/icons/league logos/SerieA_logo.png";
 import Bundesliga_logo from "../assets/icons/league logos/Bundesliga_logo.png";
 import Ligue1_logo from "../assets/icons/league logos/Ligue1_logo.png";
+import Brasileirão_logo from "../assets/icons/league logos/Brasileirão_logo.png";
 
 export interface Tournament {
   id: string;
@@ -65,5 +66,15 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#0d2534",
     textColor: "#FFFFFF",
     teams: 18,
+  },
+  {
+    id: "brasileirao",
+    name: "Brasileirão",
+    logo: Brasileirão_logo,
+    primaryColor: "#C7FF00",
+    secondaryColor: "#2b16c7",
+    backgroundColor: "#150942",
+    textColor: "#FFFFFF",
+    teams: 20,
   },
 ];
