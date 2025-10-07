@@ -134,7 +134,7 @@ export function TeamSelector({ selectedTeam, onSelectTeam, teams }: Props) {
         ),
         ClearIndicator: CustomClearIndicator,
       }}
-      placeholder={t("Select a team")}
+      placeholder={t("Select a Team")}
       isSearchable={false}
       isClearable
       styles={{
