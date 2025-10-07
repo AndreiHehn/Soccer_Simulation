@@ -85,6 +85,25 @@ export function TeamSelector({ selectedTeam, onSelectTeam, teams }: Props) {
     </components.ClearIndicator>
   );
 
+  const CustomNoOptionsMessage = (props: any) => {
+    return (
+      <components.NoOptionsMessage {...props}>
+        <div
+          style={{
+            fontFamily: "Orbitron, Segoe UI, sans-serif",
+            fontSize: "14px",
+            color: selectedTournament?.textColor,
+            backgroundColor: selectedTournament?.secondaryColor,
+            padding: "8px 0",
+            textAlign: "center",
+          }}
+        >
+          {t("No Teams Available")}
+        </div>
+      </components.NoOptionsMessage>
+    );
+  };
+
   const selectedOption = teams.find((team) => team.id === selectedTeam) || null;
 
   return (
@@ -97,6 +116,7 @@ export function TeamSelector({ selectedTeam, onSelectTeam, teams }: Props) {
       components={{
         SingleValue: customSingleValue,
         Option: customOption,
+        NoOptionsMessage: CustomNoOptionsMessage,
         DropdownIndicator: () => <div style={{ display: "none" }}></div>, // remove dropdown
         IndicatorSeparator: () => <div style={{ display: "none" }}></div>, // remove separator (vertical line)
         Placeholder: (props) => (
