@@ -1,20 +1,11 @@
-import PremierLeague_logo from "../assets/icons/league logos/Premier_League_logo.png";
-import LaLiga_logo from "../assets/icons/league logos/LaLiga_logo.png";
-import SerieA_logo from "../assets/icons/league logos/SerieA_logo.png";
-import Bundesliga_logo from "../assets/icons/league logos/Bundesliga_logo.png";
-import Ligue1_logo from "../assets/icons/league logos/Ligue1_logo.png";
-import Brasileirão_logo from "../assets/icons/league logos/Brasileirão_logo.png";
+import type { Tournament } from "../types";
 
-export interface Tournament {
-  id: string;
-  name: string;
-  logo: string;
-  primaryColor: string;
-  secondaryColor: string;
-  backgroundColor: string;
-  textColor: string;
-  teams: number;
-}
+import PremierLeague_logo from "../../assets/icons/league logos/Premier_League_logo.png";
+import LaLiga_logo from "../../assets/icons/league logos/LaLiga_logo.png";
+import SerieA_logo from "../../assets/icons/league logos/SerieA_logo.png";
+import Bundesliga_logo from "../../assets/icons/league logos/Bundesliga_logo.png";
+import Ligue1_logo from "../../assets/icons/league logos/Ligue1_logo.png";
+import Brasileirão_logo from "../../assets/icons/league logos/Brasileirão_logo.png";
 
 export const TournamentsList: Tournament[] = [
   {
