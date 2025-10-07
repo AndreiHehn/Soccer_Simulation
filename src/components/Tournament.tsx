@@ -5,7 +5,8 @@ import { AppContext } from "../lib/context";
 
 export default function Tournament() {
   const { t } = useTranslation();
-  const { selectedTournament } = useContext(AppContext);
+  const { selectedTournament, tournamentStep, setTournamentStep } =
+    useContext(AppContext);
 
   return (
     <Container
@@ -14,6 +15,24 @@ export default function Tournament() {
           ? selectedTournament.backgroundColor
           : "#FFFFFF"
       }
-    ></Container>
+      textColor={
+        selectedTournament != null ? selectedTournament.textColor : "#FFFFFF"
+      }
+    >
+      <nav className="steps-nav">
+        {["Teams Selection", "Matches", "Standings", "Statistics"].map(
+          (step) => (
+            <div
+              key={step}
+              className={`step ${tournamentStep === step ? "active" : ""}`}
+              onClick={() => setTournamentStep(step)}
+            >
+              <h3 className="step-name">{t(step)}</h3>
+              <hr className="selected-step" />
+            </div>
+          )
+        )}
+      </nav>
+    </Container>
   );
 }

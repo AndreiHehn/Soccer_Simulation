@@ -48,6 +48,8 @@ interface AppContextProps {
   setBackToMenu: Dispatch<SetStateAction<boolean>>;
   newSimulation: boolean;
   setNewSimulation: Dispatch<SetStateAction<boolean>>;
+  tournamentStep: string;
+  setTournamentStep: Dispatch<SetStateAction<string>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -70,6 +72,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [activePage, setActivePage] = useState<string>("Home");
   const [backToMenu, setBackToMenu] = useState<boolean>(false);
   const [newSimulation, setNewSimulation] = useState<boolean>(false);
+  const [tournamentStep, setTournamentStep] =
+    useState<string>("Teams Selection");
 
   return (
     <AppContext.Provider
@@ -98,6 +102,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setBackToMenu,
         newSimulation,
         setNewSimulation,
+        tournamentStep,
+        setTournamentStep,
       }}
     >
       {children}
