@@ -4,8 +4,9 @@ import { useContext, useState, useMemo } from "react";
 import { AppContext } from "../lib/context";
 import { TeamSelector } from "./TeamSelector";
 
-// importa listas de times (exemplo)
+// importa listas de times
 import { PremierLeagueList } from "../lib/tournaments/PremierLeague";
+import { LaLigaList } from "../lib/tournaments/LaLiga";
 
 export default function Tournament() {
   const { t } = useTranslation();
@@ -21,6 +22,8 @@ export default function Tournament() {
     switch (selectedTournament.id) {
       case "premier_league":
         return PremierLeagueList;
+      case "la_liga":
+        return LaLigaList;
       default:
         return [];
     }
