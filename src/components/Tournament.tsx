@@ -7,6 +7,7 @@ import { TeamSelector } from "./TeamSelector";
 // importa listas de times
 import { PremierLeagueList } from "../lib/tournaments/PremierLeague";
 import { LaLigaList } from "../lib/tournaments/LaLiga";
+import { SerieAList } from "../lib/tournaments/SerieA";
 
 export default function Tournament() {
   const { t } = useTranslation();
@@ -24,6 +25,8 @@ export default function Tournament() {
         return PremierLeagueList;
       case "la_liga":
         return LaLigaList;
+      case "serie_a":
+        return SerieAList;
       default:
         return [];
     }
