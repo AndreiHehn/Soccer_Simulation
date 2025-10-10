@@ -69,12 +69,16 @@ export default function Tournament() {
         )}
       </nav>
 
-      <TeamSelector
-        selectedTournament={selectedTournament}
-        selectedTeam={selectedTeam}
-        onSelectTeam={setSelectedTeam}
-        teams={teams}
-      />
+      {tournamentStep == "Teams Selection" && (
+        <>
+          <TeamSelector
+            selectedTournament={selectedTournament}
+            selectedTeam={selectedTeam}
+            onSelectTeam={setSelectedTeam}
+            teams={teams}
+          />
+        </>
+      )}
     </Container>
   );
 }
