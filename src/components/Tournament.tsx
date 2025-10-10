@@ -9,6 +9,7 @@ import { PremierLeagueList } from "../lib/tournaments/PremierLeague";
 import { LaLigaList } from "../lib/tournaments/LaLiga";
 import { SerieAList } from "../lib/tournaments/SerieA";
 import { BundesligaList } from "../lib/tournaments/Bundesliga";
+import { Ligue1List } from "../lib/tournaments/Ligue1";
 
 export default function Tournament() {
   const { t } = useTranslation();
@@ -30,6 +31,8 @@ export default function Tournament() {
         return SerieAList;
       case "bundesliga":
         return BundesligaList;
+      case "ligue_1":
+        return Ligue1List;
       default:
         return [];
     }
