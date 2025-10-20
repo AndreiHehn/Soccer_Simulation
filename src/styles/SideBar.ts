@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 interface Props {
   isOpen: boolean;
+  tournamentColor?: string;
+  lineColor?: string;
 }
 
 export const Container = styled.aside<Props>`
@@ -10,8 +12,10 @@ export const Container = styled.aside<Props>`
   position: absolute;
   top: 0;
   padding: 4px;
-  background-color: var(--app-primary);
-  border-right: 3px solid #7aff1cff;
+  background-color: ${(props) =>
+    props.tournamentColor ? props.tournamentColor : "var(--app-primary)"};
+  border-right: 3px solid
+    ${(props) => (props.lineColor ? props.lineColor : "#7aff1c")};
   transition: 0.5s ease;
   z-index: 2;
   display: flex;

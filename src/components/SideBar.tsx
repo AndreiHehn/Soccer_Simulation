@@ -15,6 +15,7 @@ export default function SideBar() {
     setIsSideBarOpen,
     setShowModalSettings,
     setSelectedTournament,
+    selectedTournament,
     activePage,
     setBackToMenu,
 
@@ -28,6 +29,8 @@ export default function SideBar() {
       isOpen={isSideBarOpen}
       onMouseEnter={() => setIsSideBarOpen(true)}
       onMouseLeave={() => setIsSideBarOpen(false)}
+      tournamentColor={selectedTournament?.secondaryColor}
+      lineColor={selectedTournament?.textColor}
     >
       <div className="logo">
         <Logo></Logo>
