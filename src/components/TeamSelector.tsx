@@ -11,9 +11,15 @@ interface Props {
   selectedTeam: string; // armazena o ID do time
   onSelectTeam: (teamId: string) => void;
   teams: Team[];
+  disabledTeams?: string[]; // 👈 nova prop
 }
 
-export function TeamSelector({ selectedTeam, onSelectTeam, teams }: Props) {
+export function TeamSelector({
+  selectedTeam,
+  onSelectTeam,
+  teams,
+  disabledTeams = [],
+}: Props) {
   const { selectedTournament } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -30,6 +36,8 @@ export function TeamSelector({ selectedTeam, onSelectTeam, teams }: Props) {
 
   const customOption = (props: any) => {
     const { data, innerRef, innerProps, isFocused } = props;
+    const isDisabled = disabledTeams.includes(data.id);
+
     return (
       <div
         ref={innerRef}
@@ -42,8 +50,8 @@ export function TeamSelector({ selectedTeam, onSelectTeam, teams }: Props) {
           gap: "8px",
           width: "280px",
           padding: "6px 10px",
-          cursor: "pointer",
-          color: selectedTournament?.textColor,
+          cursor: isDisabled ? "default" : "pointer",
+          color: isDisabled ? "#9a9a9c" : selectedTournament?.textColor,
           backgroundColor: isFocused
             ? darken(0.1, selectedTournament?.secondaryColor ?? "#ffffff")
             : selectedTournament?.secondaryColor ?? "#ffffff",
@@ -52,7 +60,11 @@ export function TeamSelector({ selectedTeam, onSelectTeam, teams }: Props) {
         <img
           src={data.logo}
           alt={`${data.name} logo`}
-          style={{ width: 30, height: 30 }}
+          style={{
+            width: 30,
+            height: 30,
+            filter: isDisabled ? "grayscale(50%) brightness(0.7)" : "none",
+          }}
         />
         <span>{data.name}</span>
       </div>
@@ -111,6 +123,7 @@ export function TeamSelector({ selectedTeam, onSelectTeam, teams }: Props) {
       options={teams}
       getOptionLabel={(team) => team.name}
       getOptionValue={(team) => team.id}
+      isOptionDisabled={(option) => disabledTeams.includes(option.id)} // desabilita times já selecionados
       value={selectedOption}
       onChange={(option) => onSelectTeam(option?.id ?? "")}
       components={{
@@ -147,7 +160,7 @@ export function TeamSelector({ selectedTeam, onSelectTeam, teams }: Props) {
           borderRadius: "6px",
           borderColor: selectedTournament?.textColor,
           padding: "0 4px",
-          width: "280px",
+          width: "300px",
           backgroundColor: selectedTournament?.secondaryColor,
           boxShadow: "none",
           overflow: "hidden",

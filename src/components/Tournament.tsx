@@ -18,7 +18,10 @@ export default function Tournament() {
     useContext(AppContext);
 
   // Estado local do time selecionado
-  const [selectedTeam, setSelectedTeam] = useState("");
+  const [, setSelectedTeam] = useState("");
+
+  // Times selecionados
+  const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
 
   // Mapeia as equipes com base no torneio selecionado
   const teams = useMemo(() => {
@@ -44,7 +47,15 @@ export default function Tournament() {
   // Limpa o time ao trocar de torneio
   useMemo(() => {
     setSelectedTeam("");
-  }, [selectedTournament]);
+  }, []);
+
+  function handleSelectTeam(index: number, teamId: string) {
+    setSelectedTeams((prev) => {
+      const newTeams = [...prev];
+      newTeams[index] = teamId;
+      return newTeams;
+    });
+  }
 
   return (
     <Container
@@ -72,14 +83,20 @@ export default function Tournament() {
         )}
       </nav>
 
-      {tournamentStep == "Teams Selection" && (
+      {tournamentStep === "Teams Selection" && selectedTournament && (
         <>
-          <TeamSelector
-            selectedTournament={selectedTournament}
-            selectedTeam={selectedTeam}
-            onSelectTeam={setSelectedTeam}
-            teams={teams}
-          />
+          <section className="teams-selection">
+            {[...Array(selectedTournament.teams)].map((_, index) => (
+              <TeamSelector
+                key={index}
+                selectedTournament={selectedTournament}
+                selectedTeam={selectedTeams[index]}
+                onSelectTeam={(teamId) => handleSelectTeam(index, teamId)}
+                teams={teams}
+                disabledTeams={selectedTeams.filter((_, i) => i !== index)} //
+              />
+            ))}
+          </section>
         </>
       )}
     </Container>

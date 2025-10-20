@@ -61,4 +61,10 @@ export const Container = styled.main<Props>`
       }
     }
   }
+
+  .teams-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px 16px;
+  }
 `;
