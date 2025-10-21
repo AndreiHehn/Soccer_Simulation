@@ -31,6 +31,8 @@ function App() {
     setNewSimulation,
     localTournament,
     setSelectedTeams,
+    resetAllTeams,
+    setResetAllTeams,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -126,6 +128,15 @@ function App() {
             setSelectedTournament(localTournament),
             setSelectedTeams([])
           )}
+          textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
+      {resetAllTeams && (
+        <ModalMessage
+          textMessage={t("Do you want to reset all teams?")}
+          onClick1={() => setResetAllTeams(false)}
+          textButton1={t("Cancel")}
+          onClick2={() => (setSelectedTeams([]), setResetAllTeams(false))}
           textButton2={t("Yes")}
         ></ModalMessage>
       )}

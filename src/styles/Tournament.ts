@@ -1,6 +1,8 @@
+import { darken, lighten } from "polished";
 import styled from "styled-components";
 
 interface Props {
+  secondaryColor: string;
   backgroundColor: string;
   textColor: string;
 }
@@ -76,9 +78,29 @@ export const Container = styled.main<Props>`
     }
   }
 
+  // Teams Selection
   .teams-selection {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px 16px;
+  }
+
+  .footer-buttons {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    gap: 10px;
+
+    button {
+      background-color: ${(props) => props.secondaryColor};
+
+      &:hover {
+        background-color: ${(props) => darken(0.2, props.secondaryColor)};
+      }
+
+      &:disabled {
+        background-color: ${(props) => lighten(0.15, props.secondaryColor)};
+      }
+    }
   }
 `;

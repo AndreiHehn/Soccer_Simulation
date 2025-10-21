@@ -11,6 +11,7 @@ import { SerieAList } from "../lib/tournaments/SerieA";
 import { BundesligaList } from "../lib/tournaments/Bundesliga";
 import { Ligue1List } from "../lib/tournaments/Ligue1";
 import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
+import { Button } from "../generic/Button";
 
 export default function Tournament() {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ export default function Tournament() {
     setTournamentStep,
     setSelectedTeams,
     selectedTeams,
+    setResetAllTeams,
   } = useContext(AppContext);
 
   // Estado local do time selecionado
@@ -64,6 +66,11 @@ export default function Tournament() {
 
   return (
     <Container
+      secondaryColor={
+        selectedTournament != null
+          ? selectedTournament.secondaryColor
+          : "#FFFFFF"
+      }
       backgroundColor={
         selectedTournament != null
           ? selectedTournament.backgroundColor
@@ -111,6 +118,20 @@ export default function Tournament() {
               />
             ))}
           </section>
+          <footer className="footer-buttons">
+            <Button color="gray" borderRadius="6px" height="35px">
+              {t("Load Default")}
+            </Button>
+            <Button
+              color="gray"
+              borderRadius="6px"
+              height="35px"
+              functionButton={() => setResetAllTeams(true)}
+              disabled={selectedCount < 1}
+            >
+              {t("Reset Teams")}
+            </Button>
+          </footer>
         </>
       )}
     </Container>

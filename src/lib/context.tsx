@@ -48,6 +48,8 @@ interface AppContextProps {
   setBackToMenu: Dispatch<SetStateAction<boolean>>;
   newSimulation: boolean;
   setNewSimulation: Dispatch<SetStateAction<boolean>>;
+  resetAllTeams: boolean;
+  setResetAllTeams: Dispatch<SetStateAction<boolean>>;
   tournamentStep: string;
   setTournamentStep: Dispatch<SetStateAction<string>>;
   selectedTeams: Array<string>;
@@ -74,9 +76,10 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [activePage, setActivePage] = useState<string>("Home");
   const [backToMenu, setBackToMenu] = useState<boolean>(false);
   const [newSimulation, setNewSimulation] = useState<boolean>(false);
+  const [resetAllTeams, setResetAllTeams] = useState<boolean>(false);
   const [tournamentStep, setTournamentStep] =
     useState<string>("Teams Selection");
-  const [selectedTeams, setSelectedTeams] = useState<string[]>([]); // Preenche o array completo (com undefined)
+  const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
 
   return (
     <AppContext.Provider
@@ -105,6 +108,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setBackToMenu,
         newSimulation,
         setNewSimulation,
+        resetAllTeams,
+        setResetAllTeams,
         tournamentStep,
         setTournamentStep,
         selectedTeams,
