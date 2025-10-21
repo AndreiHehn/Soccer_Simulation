@@ -4,10 +4,13 @@
   "Click on the button below to start the simulation!": "Click on the button below to start the simulation!",
   "Dark Theme": "Dark Theme",
   "Language Selection": "Language Selection",
+  "Load 2025/2026": "Load 2025/2026",
+
   "Matches": "Matches",
   "National Leagues": "National Leagues",
   "No Teams Available": "No Teams Available",
   "Reset": "Reset",
+  "Reset Teams": "Reset Teams",
   "Save": "Save",
   "Select a Team": "Select a Team",
   "Settings": "Settings",
@@ -24,7 +27,9 @@
   "You selected the ": "You selected the ",
 
   "Do you want to create another simulation?": "Do you want to create another simulation?",
+  "Do you want to load the teams from the 2025/26 season?": "Do you want to load the teams from the 2025/26 season?",
   "Do you want to return to the menu?": "Do you want to return to the menu?",
   "Do you want to reset the settings?": "Do you want to reset the settings?",
+  "Do you want to reset all teams?": "Do you want to reset all teams?",
   "Do you want to quit without saving?": "Do you want to quit without saving?"
 }

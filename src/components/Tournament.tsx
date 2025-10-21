@@ -126,7 +126,7 @@ export default function Tournament() {
               height="35px"
               functionButton={() => setLoadDefaultTeams(true)}
             >
-              {t("Load Default")}
+              {t("Load 2025/2026")}
             </Button>
             <Button
               color="gray"

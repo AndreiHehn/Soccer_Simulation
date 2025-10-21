@@ -4,10 +4,12 @@
   "Click on the button below to start the simulation!": "Clique no botão abaixo para iniciar a simulação!",
   "Dark Theme": "Tema Escuro",
   "Language Selection": "Seleção de Idioma",
+  "Load 2025/2026": "Carregar 2025/2026",
   "Matches": "Partidas",
   "National Leagues": "Ligas Nacionais",
   "No Teams Available": "Nenhuma Equipe Disponível",
   "Reset": "Redefinir",
+  "Reset Teams": "Redefinir Equipes",
   "Save": "Salvar",
   "Select a Team": "Selecione uma Equipe",
   "Settings": "Configurações",
@@ -24,7 +26,9 @@
   "You selected the ": "Você selecionou o(a) ",
 
   "Do you want to create another simulation?": "Tem certeza que deseja criar outra simulação?",
+  "Do you want to load the teams from the 2025/26 season?": "Tem certeza que deseja carregar as equipes da temporada 2025/26?",
   "Do you want to return to the menu?": "Tem certeza que deseja voltar ao menu?",
   "Do you want to reset the settings?": "Tem certeza que deseja redefinir as configurações?",
+  "Do you want to reset all teams?": "Tem certeza que deseja redefinir todas as equipes?",
   "Do you want to quit without saving?": "Tem certeza que deseja sair sem salvar?"
 }
