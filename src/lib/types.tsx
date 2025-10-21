@@ -7,6 +7,7 @@ export interface Tournament {
   backgroundColor: string;
   textColor: string;
   teams: number;
+  defaultTeams: string[];
 }
 
 export interface Team {

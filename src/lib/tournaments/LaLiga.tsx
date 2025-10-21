@@ -181,7 +181,7 @@ export const LaLigaList: Team[] = [
     league: "Spain",
   },
   {
-    id: "sevilla_logo",
+    id: "sevilla",
     name: "Sevilla",
     logo: Sevilla_logo,
     league: "Spain",

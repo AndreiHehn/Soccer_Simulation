@@ -143,7 +143,7 @@ export const BundesligaList: Team[] = [
     league: "Germany",
   },
   {
-    id: "rb_lepzig",
+    id: "rb_leipzig",
     name: "RB Leipzig",
     logo: RBLeipzig_logo,
     league: "Germany",

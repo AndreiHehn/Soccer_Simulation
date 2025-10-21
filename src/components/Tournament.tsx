@@ -22,6 +22,7 @@ export default function Tournament() {
     setSelectedTeams,
     selectedTeams,
     setResetAllTeams,
+    setLoadDefaultTeams,
   } = useContext(AppContext);
 
   // Estado local do time selecionado
@@ -119,7 +120,12 @@ export default function Tournament() {
             ))}
           </section>
           <footer className="footer-buttons">
-            <Button color="gray" borderRadius="6px" height="35px">
+            <Button
+              color="gray"
+              borderRadius="6px"
+              height="35px"
+              functionButton={() => setLoadDefaultTeams(true)}
+            >
               {t("Load Default")}
             </Button>
             <Button

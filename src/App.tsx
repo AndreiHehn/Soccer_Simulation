@@ -33,6 +33,9 @@ function App() {
     setSelectedTeams,
     resetAllTeams,
     setResetAllTeams,
+    selectedTournament,
+    loadDefaultTeams,
+    setLoadDefaultTeams,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -137,6 +140,20 @@ function App() {
           onClick1={() => setResetAllTeams(false)}
           textButton1={t("Cancel")}
           onClick2={() => (setSelectedTeams([]), setResetAllTeams(false))}
+          textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
+      {loadDefaultTeams && (
+        <ModalMessage
+          textMessage={t(
+            "Do you want to load the teams from the 2025/26 season?"
+          )}
+          onClick1={() => setLoadDefaultTeams(false)}
+          textButton1={t("Cancel")}
+          onClick2={() => {
+            setSelectedTeams(selectedTournament?.defaultTeams ?? []);
+            setLoadDefaultTeams(false);
+          }}
           textButton2={t("Yes")}
         ></ModalMessage>
       )}

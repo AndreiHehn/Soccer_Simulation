@@ -7,16 +7,7 @@ import {
   type SetStateAction,
 } from "react";
 
-interface Tournament {
-  id: string;
-  name: string;
-  logo: string;
-  primaryColor: string;
-  secondaryColor: string;
-  backgroundColor: string;
-  textColor: string;
-  teams: number;
-}
+import type { Tournament } from "./types";
 
 export const AppContext = createContext({} as AppContextProps);
 
@@ -54,6 +45,8 @@ interface AppContextProps {
   setTournamentStep: Dispatch<SetStateAction<string>>;
   selectedTeams: Array<string>;
   setSelectedTeams: Dispatch<SetStateAction<Array<string>>>;
+  loadDefaultTeams: boolean;
+  setLoadDefaultTeams: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -80,6 +73,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [tournamentStep, setTournamentStep] =
     useState<string>("Teams Selection");
   const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
+  const [loadDefaultTeams, setLoadDefaultTeams] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
@@ -114,6 +108,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setTournamentStep,
         selectedTeams,
         setSelectedTeams,
+        loadDefaultTeams,
+        setLoadDefaultTeams,
       }}
     >
       {children}
