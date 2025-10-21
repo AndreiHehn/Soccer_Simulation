@@ -21,7 +21,8 @@ export default function Tournament() {
   const [, setSelectedTeam] = useState("");
 
   // Times selecionados
-  const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
+  const [selectedTeams, setSelectedTeams] = useState<string[]>([]); // Preenche o array completo (com undefined)
+  const selectedCount = selectedTeams.filter(Boolean).length; // Apenas times selecionados
 
   // Mapeia as equipes com base no torneio selecionado
   const teams = useMemo(() => {
@@ -73,14 +74,24 @@ export default function Tournament() {
           (step) => (
             <div
               key={step}
-              className={`step ${tournamentStep === step ? "active" : ""}`}
-              onClick={() => setTournamentStep(step)}
+              className={`step ${tournamentStep === step ? "active" : ""} ${
+                selectedTournament != null &&
+                step != "Teams Selection" &&
+                selectedCount < selectedTournament?.teams
+                  ? "disabled"
+                  : ""
+              }`}
+              onClick={() =>
+                selectedCount == selectedTournament?.teams &&
+                setTournamentStep(step)
+              }
             >
               <h3 className="step-name">{t(step)}</h3>
               <hr className="selected-step" />
             </div>
           )
         )}
+        <p>{selectedCount}</p>
       </nav>
 
       {tournamentStep === "Teams Selection" && selectedTournament && (

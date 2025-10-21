@@ -59,6 +59,20 @@ export const Container = styled.main<Props>`
           font-weight: 600;
         }
       }
+
+      &.disabled {
+        cursor: default;
+
+        .step-name {
+          color: #9a9a9c;
+        }
+
+        &:hover {
+          .step-name {
+            transform: none;
+          }
+        }
+      }
     }
   }
 
