@@ -5,21 +5,26 @@ import Bologna_logo from "../../assets/icons/teams logos/Italy/Bologna_logo.png"
 import Cagliari_logo from "../../assets/icons/teams logos/Italy/Cagliari_logo.png";
 import Como_logo from "../../assets/icons/teams logos/Italy/Como_logo.png";
 import Cremonese_logo from "../../assets/icons/teams logos/Italy/Cremonese_logo.png";
+import Empoli_logo from "../../assets/icons/teams logos/Italy/Empoli_logo.png";
 import Fiorentina_logo from "../../assets/icons/teams logos/Italy/Fiorentina_logo.png";
+import Frosinone_logo from "../../assets/icons/teams logos/Italy/Frosinone_logo.png";
 import Genoa_logo from "../../assets/icons/teams logos/Italy/Genoa_logo.png";
 import HellasVerona_logo from "../../assets/icons/teams logos/Italy/HellasVerona_logo.png";
 import Internazionale_logo from "../../assets/icons/teams logos/Italy/Internazionale_logo.png";
 import Juventus_logo from "../../assets/icons/teams logos/Italy/Juventus_logo.png";
 import Lazio_logo from "../../assets/icons/teams logos/Italy/Lazio_logo.png";
 import Lecce_logo from "../../assets/icons/teams logos/Italy/Lecce_logo.png";
+import Monza_logo from "../../assets/icons/teams logos/Italy/Monza_logo.png";
 import Milan_logo from "../../assets/icons/teams logos/Italy/Milan_logo.png";
 import Napoli_logo from "../../assets/icons/teams logos/Italy/Napoli_logo.png";
 import Parma_logo from "../../assets/icons/teams logos/Italy/Parma_logo.png";
+import Pescara_logo from "../../assets/icons/teams logos/Italy/Pescara_logo.png";
 import Pisa_logo from "../../assets/icons/teams logos/Italy/Pisa_logo.png";
 import Roma_logo from "../../assets/icons/teams logos/Italy/Roma_logo.png";
 import Sassuolo_logo from "../../assets/icons/teams logos/Italy/Sassuolo_logo.png";
 import Torino_logo from "../../assets/icons/teams logos/Italy/Torino_logo.png";
 import Udinese_logo from "../../assets/icons/teams logos/Italy/Udinese_logo.png";
+import Venezia_logo from "../../assets/icons/teams logos/Italy/Venezia_logo.png";
 
 export const SerieAList: Team[] = [
   {
@@ -53,9 +58,21 @@ export const SerieAList: Team[] = [
     league: "Italy",
   },
   {
+    id: "empoli",
+    name: "Empoli",
+    logo: Empoli_logo,
+    league: "Italy",
+  },
+  {
     id: "fiorentina",
     name: "Fiorentina",
     logo: Fiorentina_logo,
+    league: "Italy",
+  },
+  {
+    id: "frosinone",
+    name: "Frosinone",
+    logo: Frosinone_logo,
     league: "Italy",
   },
   {
@@ -101,6 +118,12 @@ export const SerieAList: Team[] = [
     league: "Italy",
   },
   {
+    id: "monza",
+    name: "Monza",
+    logo: Monza_logo,
+    league: "Italy",
+  },
+  {
     id: "napoli",
     name: "Napoli",
     logo: Napoli_logo,
@@ -110,6 +133,12 @@ export const SerieAList: Team[] = [
     id: "parma",
     name: "Parma",
     logo: Parma_logo,
+    league: "Italy",
+  },
+  {
+    id: "pescara",
+    name: "Pescara",
+    logo: Pescara_logo,
     league: "Italy",
   },
   {
@@ -140,6 +169,12 @@ export const SerieAList: Team[] = [
     id: "udinese",
     name: "Udinese",
     logo: Udinese_logo,
+    league: "Italy",
+  },
+  {
+    id: "venezia",
+    name: "Venezia",
+    logo: Venezia_logo,
     league: "Italy",
   },
 ];

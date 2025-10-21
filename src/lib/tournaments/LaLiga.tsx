@@ -1,14 +1,20 @@
 import type { Team } from "../types";
 
-import AthleticBlub_logo from "../../assets/icons/teams logos/Spain/AthleticClub_logo.png";
+import Almeria_logo from "../../assets/icons/teams logos/Spain/Almeria_logo.png";
+import AthleticClub_logo from "../../assets/icons/teams logos/Spain/AthleticClub_logo.png";
 import AtléticoMadrid_logo from "../../assets/icons/teams logos/Spain/AtléticoMadrid_logo.png";
 import Barcelona_logo from "../../assets/icons/teams logos/Spain/Barcelona_logo.png";
+import Cadiz_logo from "../../assets/icons/teams logos/Spain/Cadiz_logo.png";
 import Celta_logo from "../../assets/icons/teams logos/Spain/Celta_logo.png";
 import DeportivoAlavés_logo from "../../assets/icons/teams logos/Spain/DeportivoAlavés_logo.png";
+import Eibar_logo from "../../assets/icons/teams logos/Spain/Eibar_logo.png";
 import Elche_logo from "../../assets/icons/teams logos/Spain/Elche_logo.png";
 import Espanyol_logo from "../../assets/icons/teams logos/Spain/Espanyol_logo.png";
 import Getafe_logo from "../../assets/icons/teams logos/Spain/Getafe_logo.png";
 import Girona_logo from "../../assets/icons/teams logos/Spain/Girona_logo.png";
+import Granada_logo from "../../assets/icons/teams logos/Spain/Granada_logo.png";
+import LasPalmas_logo from "../../assets/icons/teams logos/Spain/LasPalmas_logo.png";
+import Leganes_logo from "../../assets/icons/teams logos/Spain/Leganes_logo.png";
 import Levante_logo from "../../assets/icons/teams logos/Spain/Levante_logo.png";
 import Mallorca_logo from "../../assets/icons/teams logos/Spain/Mallorca_logo.png";
 import Osasuna_logo from "../../assets/icons/teams logos/Spain/Osasuna_logo.png";
@@ -17,15 +23,23 @@ import RealBetis_logo from "../../assets/icons/teams logos/Spain/RealBetis_logo.
 import RealMadrid_logo from "../../assets/icons/teams logos/Spain/RealMadrid_logo.png";
 import RealOviedo_logo from "../../assets/icons/teams logos/Spain/RealOviedo_logo.png";
 import RealSociedad_logo from "../../assets/icons/teams logos/Spain/RealSociedad_logo.png";
+import RealValladolid_logo from "../../assets/icons/teams logos/Spain/RealValladolid_logo.png";
+import RealZaragoza_logo from "../../assets/icons/teams logos/Spain/RealZaragoza_logo.png";
 import Sevilla_logo from "../../assets/icons/teams logos/Spain/Sevilla_logo.png";
 import Valencia_logo from "../../assets/icons/teams logos/Spain/Valencia_logo.png";
 import Villarreal_logo from "../../assets/icons/teams logos/Spain/Villarreal_logo.png";
 
 export const LaLigaList: Team[] = [
   {
+    id: "almeria",
+    name: "Almería",
+    logo: Almeria_logo,
+    league: "Spain",
+  },
+  {
     id: "athletic_club",
     name: "Athletic Club",
-    logo: AthleticBlub_logo,
+    logo: AthleticClub_logo,
     league: "Spain",
   },
   {
@@ -41,6 +55,12 @@ export const LaLigaList: Team[] = [
     league: "Spain",
   },
   {
+    id: "cadiz",
+    name: "Cádiz",
+    logo: Cadiz_logo,
+    league: "Spain",
+  },
+  {
     id: "celta",
     name: "Celta",
     logo: Celta_logo,
@@ -50,6 +70,12 @@ export const LaLigaList: Team[] = [
     id: "deportivo_alaves",
     name: "Deportivo Alavés",
     logo: DeportivoAlavés_logo,
+    league: "Spain",
+  },
+  {
+    id: "eibar",
+    name: "Eibar",
+    logo: Eibar_logo,
     league: "Spain",
   },
   {
@@ -74,6 +100,24 @@ export const LaLigaList: Team[] = [
     id: "girona",
     name: "Girona",
     logo: Girona_logo,
+    league: "Spain",
+  },
+  {
+    id: "granada",
+    name: "Granada",
+    logo: Granada_logo,
+    league: "Spain",
+  },
+  {
+    id: "las_palmas",
+    name: "Las Palmas",
+    logo: LasPalmas_logo,
+    league: "Spain",
+  },
+  {
+    id: "leganes",
+    name: "Leganés",
+    logo: Leganes_logo,
     league: "Spain",
   },
   {
@@ -122,6 +166,18 @@ export const LaLigaList: Team[] = [
     id: "real_sociedad",
     name: "Real Sociedad",
     logo: RealSociedad_logo,
+    league: "Spain",
+  },
+  {
+    id: "real_valladolid",
+    name: "Real Valladolid",
+    logo: RealValladolid_logo,
+    league: "Spain",
+  },
+  {
+    id: "real_zaragoza",
+    name: "Real Zaragoza",
+    logo: RealZaragoza_logo,
     league: "Spain",
   },
   {

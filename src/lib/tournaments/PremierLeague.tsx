@@ -10,14 +10,20 @@ import Chelsea_logo from "../../assets/icons/teams logos/England/Chelsea_logo.pn
 import CrystalPalace_logo from "../../assets/icons/teams logos/England/CrystalPalace_logo.png";
 import Everton_logo from "../../assets/icons/teams logos/England/Everton_logo.png";
 import Fulham_logo from "../../assets/icons/teams logos/England/Fulham_logo.png";
+import IpswichTown_logo from "../../assets/icons/teams logos/England/IpswichTown_logo.png";
 import LeedsUnited_logo from "../../assets/icons/teams logos/England/LeedsUnited_logo.png";
+import LeicesterCity_logo from "../../assets/icons/teams logos/England/LeicesterCity_logo.png";
 import Liverpool_logo from "../../assets/icons/teams logos/England/Liverpool_logo.png";
 import ManchesterCity_logo from "../../assets/icons/teams logos/England/ManchesterCity_logo.png";
 import ManchesterUnited_logo from "../../assets/icons/teams logos/England/ManchesterUnited_logo.png";
 import Newcastle_logo from "../../assets/icons/teams logos/England/Newcastle_logo.png";
 import NottinghamForest_logo from "../../assets/icons/teams logos/England/NottinghamForest_logo.png";
+import SheffieldUnited_logo from "../../assets/icons/teams logos/England/SheffieldUnited_logo.png";
+import Southampton_logo from "../../assets/icons/teams logos/England/Southampton_logo.png";
 import Sunderland_logo from "../../assets/icons/teams logos/England/Sunderland_logo.png";
 import Tottenham_logo from "../../assets/icons/teams logos/England/Tottenham_logo.png";
+import Watford_logo from "../../assets/icons/teams logos/England/Watford_logo.png";
+import WestBromwich_logo from "../../assets/icons/teams logos/England/WestBromwich_logo.png";
 import WestHamUnited_logo from "../../assets/icons/teams logos/England/WestHamUnited_logo.png";
 import Wolves_logo from "../../assets/icons/teams logos/England/Wolves_logo.png";
 
@@ -83,9 +89,21 @@ export const PremierLeagueList: Team[] = [
     league: "England",
   },
   {
+    id: "ipswich_town",
+    name: "Ipswich Town",
+    logo: IpswichTown_logo,
+    league: "England",
+  },
+  {
     id: "leeds_united",
     name: "Leeds United",
     logo: LeedsUnited_logo,
+    league: "England",
+  },
+  {
+    id: "leicester_city",
+    name: "Leicester City",
+    logo: LeicesterCity_logo,
     league: "England",
   },
   {
@@ -119,6 +137,18 @@ export const PremierLeagueList: Team[] = [
     league: "England",
   },
   {
+    id: "sheffield_united",
+    name: "Sheffield United",
+    logo: SheffieldUnited_logo,
+    league: "England",
+  },
+  {
+    id: "southampton",
+    name: "Southampton",
+    logo: Southampton_logo,
+    league: "England",
+  },
+  {
     id: "sunderland",
     name: "Sunderland",
     logo: Sunderland_logo,
@@ -128,6 +158,18 @@ export const PremierLeagueList: Team[] = [
     id: "tottenham",
     name: "Tottenham",
     logo: Tottenham_logo,
+    league: "England",
+  },
+  {
+    id: "watford",
+    name: "Watford",
+    logo: Watford_logo,
+    league: "England",
+  },
+  {
+    id: "west_bromwich",
+    name: "West Bromwich",
+    logo: WestBromwich_logo,
     league: "England",
   },
   {

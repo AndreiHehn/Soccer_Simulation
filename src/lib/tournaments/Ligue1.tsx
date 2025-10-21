@@ -3,6 +3,7 @@ import type { Team } from "../types";
 import Angers_logo from "../../assets/icons/teams logos/France/Angers_logo.png";
 import Auxerre_logo from "../../assets/icons/teams logos/France/Auxerre_logo.png";
 import Brest_logo from "../../assets/icons/teams logos/France/Brest_logo.png";
+import ClermontFoot_logo from "../../assets/icons/teams logos/France/ClermontFoot_logo.png";
 import LeHavre_logo from "../../assets/icons/teams logos/France/LeHavre_logo.png";
 import Lens_logo from "../../assets/icons/teams logos/France/Lens_logo.png";
 import Lille_logo from "../../assets/icons/teams logos/France/Lille_logo.png";
@@ -11,13 +12,17 @@ import Lyon_logo from "../../assets/icons/teams logos/France/Lyon_logo.png";
 import Marseille_logo from "../../assets/icons/teams logos/France/Marseille_logo.png";
 import Metz_logo from "../../assets/icons/teams logos/France/Metz_logo.png";
 import Monaco_logo from "../../assets/icons/teams logos/France/Monaco_logo.png";
+import Montpellier_logo from "../../assets/icons/teams logos/France/Montpellier_logo.png";
 import Nantes_logo from "../../assets/icons/teams logos/France/Nantes_logo.png";
 import Nice_logo from "../../assets/icons/teams logos/France/Nice_logo.png";
 import ParisFC_logo from "../../assets/icons/teams logos/France/ParisFC_logo.png";
 import PSG_logo from "../../assets/icons/teams logos/France/PSG_logo.png";
+import Reims_logo from "../../assets/icons/teams logos/France/Reims_logo.png";
+import SaintEtienne_logo from "../../assets/icons/teams logos/France/SaintEtienne_logo.png";
 import StadeRennais_logo from "../../assets/icons/teams logos/France/StadeRennais_logo.png";
 import Strasbourg_logo from "../../assets/icons/teams logos/France/Strasbourg_logo.png";
 import Toulouse_logo from "../../assets/icons/teams logos/France/Toulouse_logo.png";
+import Troyes_logo from "../../assets/icons/teams logos/France/Troyes_logo.png";
 
 export const Ligue1List: Team[] = [
   {
@@ -42,6 +47,12 @@ export const Ligue1List: Team[] = [
     id: "brest",
     name: "Brest",
     logo: Brest_logo,
+    league: "France",
+  },
+  {
+    id: "clermont_foot",
+    name: "Clermont Foot",
+    logo: ClermontFoot_logo,
     league: "France",
   },
   {
@@ -86,7 +97,12 @@ export const Ligue1List: Team[] = [
     logo: Metz_logo,
     league: "France",
   },
-
+  {
+    id: "montpellier",
+    name: "Montpellier",
+    logo: Montpellier_logo,
+    league: "France",
+  },
   {
     id: "nantes",
     name: "Nantes",
@@ -112,6 +128,18 @@ export const Ligue1List: Team[] = [
     league: "France",
   },
   {
+    id: "reims",
+    name: "Reims",
+    logo: Reims_logo,
+    league: "France",
+  },
+  {
+    id: "saint_etienne",
+    name: "Saint-Ètienne",
+    logo: SaintEtienne_logo,
+    league: "France",
+  },
+  {
     id: "stade_rennais",
     name: "Stade Rennais",
     logo: StadeRennais_logo,
@@ -127,6 +155,12 @@ export const Ligue1List: Team[] = [
     id: "toulouse",
     name: "Toulouse",
     logo: Toulouse_logo,
+    league: "France",
+  },
+  {
+    id: "troyes",
+    name: "Troyes",
+    logo: Troyes_logo,
     league: "France",
   },
 ];
