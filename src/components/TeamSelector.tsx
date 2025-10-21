@@ -164,6 +164,7 @@ export function TeamSelector({
           backgroundColor: selectedTournament?.secondaryColor,
           boxShadow: "none",
           overflow: "hidden",
+          cursor: "pointer",
           "&:hover": {
             borderColor: "#2f3640",
           },
