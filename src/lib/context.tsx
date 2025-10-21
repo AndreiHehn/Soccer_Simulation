@@ -50,6 +50,8 @@ interface AppContextProps {
   setNewSimulation: Dispatch<SetStateAction<boolean>>;
   tournamentStep: string;
   setTournamentStep: Dispatch<SetStateAction<string>>;
+  selectedTeams: Array<string>;
+  setSelectedTeams: Dispatch<SetStateAction<Array<string>>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -74,6 +76,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [newSimulation, setNewSimulation] = useState<boolean>(false);
   const [tournamentStep, setTournamentStep] =
     useState<string>("Teams Selection");
+  const [selectedTeams, setSelectedTeams] = useState<string[]>([]); // Preenche o array completo (com undefined)
 
   return (
     <AppContext.Provider
@@ -104,6 +107,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setNewSimulation,
         tournamentStep,
         setTournamentStep,
+        selectedTeams,
+        setSelectedTeams,
       }}
     >
       {children}

@@ -30,6 +30,7 @@ function App() {
     newSimulation,
     setNewSimulation,
     localTournament,
+    setSelectedTeams,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -121,7 +122,9 @@ function App() {
           onClick1={() => setNewSimulation(false)}
           textButton1={t("Cancel")}
           onClick2={() => (
-            setNewSimulation(false), setSelectedTournament(localTournament)
+            setNewSimulation(false),
+            setSelectedTournament(localTournament),
+            setSelectedTeams([])
           )}
           textButton2={t("Yes")}
         ></ModalMessage>

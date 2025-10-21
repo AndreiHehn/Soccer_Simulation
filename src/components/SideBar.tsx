@@ -21,6 +21,8 @@ export default function SideBar() {
 
     setLocalTournament,
     setNewSimulation,
+
+    setSelectedTeams,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -49,7 +51,9 @@ export default function SideBar() {
             functionButton={() =>
               activePage == "Home"
                 ? setSelectedTournament(tournament)
-                : (setLocalTournament(tournament), setNewSimulation(true))
+                : (setLocalTournament(tournament),
+                  setNewSimulation(true),
+                  setSelectedTeams)
             }
           />
         ))}

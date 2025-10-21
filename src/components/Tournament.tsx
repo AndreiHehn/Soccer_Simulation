@@ -14,14 +14,18 @@ import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
 
 export default function Tournament() {
   const { t } = useTranslation();
-  const { selectedTournament, tournamentStep, setTournamentStep } =
-    useContext(AppContext);
+  const {
+    selectedTournament,
+    tournamentStep,
+    setTournamentStep,
+    setSelectedTeams,
+    selectedTeams,
+  } = useContext(AppContext);
 
   // Estado local do time selecionado
   const [, setSelectedTeam] = useState("");
 
   // Times selecionados
-  const [selectedTeams, setSelectedTeams] = useState<string[]>([]); // Preenche o array completo (com undefined)
   const selectedCount = selectedTeams.filter(Boolean).length; // Apenas times selecionados
 
   // Mapeia as equipes com base no torneio selecionado
