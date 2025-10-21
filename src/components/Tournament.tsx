@@ -91,7 +91,6 @@ export default function Tournament() {
             </div>
           )
         )}
-        <p>{selectedCount}</p>
       </nav>
 
       {tournamentStep === "Teams Selection" && selectedTournament && (
