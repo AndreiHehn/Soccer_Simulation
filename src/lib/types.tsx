@@ -4,6 +4,7 @@ export interface Tournament {
   logo: string;
   primaryColor: string;
   secondaryColor: string;
+  tertiaryColor: string;
   backgroundColor: string;
   textColor: string;
   teams: number;
