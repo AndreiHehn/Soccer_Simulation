@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Container } from "../styles/Tournament";
-import { useContext, useState, useMemo, useEffect } from "react";
+import { useContext, useState, useMemo } from "react";
 import { AppContext } from "../lib/context";
 import { TeamSelector } from "./TeamSelector";
 import Matchday from "./Matchday";
