@@ -36,6 +36,7 @@ function App() {
     selectedTournament,
     loadDefaultTeams,
     setLoadDefaultTeams,
+    setTournamentStep,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -128,6 +129,7 @@ function App() {
           textButton1={t("Cancel")}
           onClick2={() => (
             setNewSimulation(false),
+            setTournamentStep("Teams Selection"),
             setSelectedTournament(localTournament),
             setSelectedTeams([])
           )}

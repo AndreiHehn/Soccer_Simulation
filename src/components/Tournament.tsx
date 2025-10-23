@@ -12,6 +12,7 @@ import { BundesligaList } from "../lib/tournaments/Bundesliga";
 import { Ligue1List } from "../lib/tournaments/Ligue1";
 import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
 import { Button } from "../generic/Button";
+import Match from "./Match";
 
 export default function Tournament() {
   const { t } = useTranslation();
@@ -139,6 +140,12 @@ export default function Tournament() {
             </Button>
           </footer>
         </>
+      )}
+      {tournamentStep == "Matches" && selectedTournament && (
+        <div className="matches">
+          <Match homeTeam="Chelsea" awayTeam="Manchester United"></Match>
+          <Match homeTeam="Nottingham Forest" awayTeam="Fulham"></Match>
+        </div>
       )}
     </Container>
   );
