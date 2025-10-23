@@ -2,15 +2,19 @@ import { useContext } from "react";
 import { Container } from "../styles/Match";
 import { AppContext } from "../lib/context";
 
-import Arsenal_logo from "../assets/icons/teams logos/England/Arsenal_logo.png";
-import AstonVilla_logo from "../assets/icons/teams logos/England/AstonVilla_logo.png";
-
 interface MatchProps {
   homeTeam: string;
+  homeLogo: string;
   awayTeam: string;
+  awayLogo: string;
 }
 
-export default function Match({ homeTeam, awayTeam }: MatchProps) {
+export default function Match({
+  homeTeam,
+  homeLogo,
+  awayTeam,
+  awayLogo,
+}: MatchProps) {
   const { selectedTournament } = useContext(AppContext);
   return (
     <Container
@@ -21,7 +25,7 @@ export default function Match({ homeTeam, awayTeam }: MatchProps) {
     >
       <div className="home-team">
         <h2 className="home-team-name">{homeTeam}</h2>
-        <img src={Arsenal_logo} className="home-team-logo" />
+        <img src={homeLogo} className="home-team-logo" />
       </div>
       <div className="results-container">
         <input type="number" className="home-goals" />
@@ -29,7 +33,7 @@ export default function Match({ homeTeam, awayTeam }: MatchProps) {
         <input type="number" className="away-goals" />
       </div>
       <div className="away-team">
-        <img src={AstonVilla_logo} className="away-team-logo" />
+        <img src={awayLogo} className="away-team-logo" />
         <h2 className="away-team-name">{awayTeam}</h2>
       </div>
     </Container>

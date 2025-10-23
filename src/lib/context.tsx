@@ -47,6 +47,8 @@ interface AppContextProps {
   setSelectedTeams: Dispatch<SetStateAction<Array<string>>>;
   loadDefaultTeams: boolean;
   setLoadDefaultTeams: Dispatch<SetStateAction<boolean>>;
+  matchdayNumber: number;
+  setMatchdayNumber: Dispatch<SetStateAction<number>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -74,6 +76,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
     useState<string>("Teams Selection");
   const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
   const [loadDefaultTeams, setLoadDefaultTeams] = useState<boolean>(false);
+  const [matchdayNumber, setMatchdayNumber] = useState<number>(1);
 
   return (
     <AppContext.Provider
@@ -110,6 +113,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setSelectedTeams,
         loadDefaultTeams,
         setLoadDefaultTeams,
+        matchdayNumber,
+        setMatchdayNumber,
       }}
     >
       {children}

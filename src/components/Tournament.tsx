@@ -1,8 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { Container } from "../styles/Tournament";
-import { useContext, useState, useMemo } from "react";
+import { useContext, useState, useMemo, useEffect } from "react";
 import { AppContext } from "../lib/context";
 import { TeamSelector } from "./TeamSelector";
+import Matchday from "./Matchday";
+import ArrowLeft from "../assets/icons/arrowLeftIcon.svg?react";
+import ArrowRight from "../assets/icons/arrowRightIcon.svg?react";
 
 // importa listas de times
 import { PremierLeagueList } from "../lib/tournaments/PremierLeague";
@@ -12,7 +15,6 @@ import { BundesligaList } from "../lib/tournaments/Bundesliga";
 import { Ligue1List } from "../lib/tournaments/Ligue1";
 import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
 import { Button } from "../generic/Button";
-import Match from "./Match";
 
 export default function Tournament() {
   const { t } = useTranslation();
@@ -24,12 +26,11 @@ export default function Tournament() {
     selectedTeams,
     setResetAllTeams,
     setLoadDefaultTeams,
+    matchdayNumber,
+    setMatchdayNumber,
   } = useContext(AppContext);
 
-  // Estado local do time selecionado
-  const [, setSelectedTeam] = useState("");
-
-  // Times selecionados
+  const [, setSelectedTeam] = useState(""); // Estado local do time selecionado
   const selectedCount = selectedTeams.filter(Boolean).length; // Apenas times selecionados
 
   // Mapeia as equipes com base no torneio selecionado
@@ -66,11 +67,30 @@ export default function Tournament() {
     });
   }
 
+  function PreviousMatchday() {
+    if (matchdayNumber > 1) {
+      setMatchdayNumber(matchdayNumber - 1);
+    }
+  }
+
+  function NextMatchday() {
+    if (selectedTournament != undefined) {
+      if (matchdayNumber < (selectedTournament.teams - 1) * 2) {
+        setMatchdayNumber(matchdayNumber + 1);
+      }
+    }
+  }
+
   return (
     <Container
       secondaryColor={
         selectedTournament != null
           ? selectedTournament.secondaryColor
+          : "#FFFFFF"
+      }
+      tertiaryColor={
+        selectedTournament != null
+          ? selectedTournament.tertiaryColor
           : "#FFFFFF"
       }
       backgroundColor={
@@ -142,10 +162,35 @@ export default function Tournament() {
         </>
       )}
       {tournamentStep == "Matches" && selectedTournament && (
-        <div className="matches">
-          <Match homeTeam="Chelsea" awayTeam="Manchester United"></Match>
-          <Match homeTeam="Nottingham Forest" awayTeam="Fulham"></Match>
-        </div>
+        <>
+          <nav className="matchday">
+            <div
+              className={`previous-matchday ${
+                matchdayNumber == 1 ? "inactive" : ""
+              }`}
+              onClick={PreviousMatchday}
+            >
+              <ArrowLeft></ArrowLeft>
+            </div>
+            <h3 className="matchday-number">
+              {t("Matchday")} {matchdayNumber < 10 && "0"}
+              {matchdayNumber}
+            </h3>
+            <div
+              className={`next-matchday ${
+                matchdayNumber == (selectedTournament.teams - 1) * 2
+                  ? "inactive"
+                  : ""
+              }`}
+              onClick={NextMatchday}
+            >
+              <ArrowRight></ArrowRight>
+            </div>
+          </nav>
+          <div className="matches">
+            <Matchday></Matchday>
+          </div>
+        </>
       )}
     </Container>
   );

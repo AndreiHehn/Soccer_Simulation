@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface Props {
   secondaryColor: string;
+  tertiaryColor: string;
   backgroundColor: string;
   textColor: string;
 }
@@ -100,6 +101,59 @@ export const Container = styled.main<Props>`
 
       &:disabled {
         background-color: ${(props) => lighten(0.15, props.secondaryColor)};
+      }
+    }
+  }
+
+  // Matches
+  .matchday {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+    user-select: none;
+
+    .matchday-number {
+      color: ${(props) => props.textColor};
+      font-size: 16px;
+      font-weight: 400;
+      width: 130px;
+      text-align: center;
+    }
+
+    .previous-matchday,
+    .next-matchday {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: ${(props) => props.tertiaryColor};
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: ${(props) => lighten(0.05, props.tertiaryColor)};
+        svg {
+          transform: scale(1.1);
+        }
+      }
+
+      svg path {
+        fill: ${(props) => props.textColor};
+      }
+    }
+
+    .inactive {
+      background-color: ${(props) => lighten(0.08, props.tertiaryColor)};
+      cursor: default;
+
+      &:hover {
+        background-color: ${(props) => lighten(0.08, props.tertiaryColor)};
+        svg {
+          transform: none;
+        }
       }
     }
   }

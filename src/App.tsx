@@ -37,6 +37,7 @@ function App() {
     loadDefaultTeams,
     setLoadDefaultTeams,
     setTournamentStep,
+    setMatchdayNumber,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -131,7 +132,8 @@ function App() {
             setNewSimulation(false),
             setTournamentStep("Teams Selection"),
             setSelectedTournament(localTournament),
-            setSelectedTeams([])
+            setSelectedTeams([]),
+            setMatchdayNumber(1)
           )}
           textButton2={t("Yes")}
         ></ModalMessage>

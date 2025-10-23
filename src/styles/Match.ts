@@ -17,6 +17,7 @@ export const Container = styled.div<Props>`
   color: ${(props) => props.textColor};
   position: relative;
   margin-bottom: 2px;
+  user-select: none;
 
   .home-team,
   .away-team {

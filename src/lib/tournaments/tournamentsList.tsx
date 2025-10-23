@@ -47,7 +47,7 @@ export const TournamentsList: Tournament[] = [
     logo: LaLiga_logo,
     primaryColor: "#ff6560",
     secondaryColor: "#ff6560",
-    tertiaryColor: "#f3f3f3",
+    tertiaryColor: "#e9e5e5",
     backgroundColor: "#FFFFFF",
     textColor: "#08237F",
     teams: 20,
