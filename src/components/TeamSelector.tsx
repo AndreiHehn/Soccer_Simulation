@@ -36,7 +36,7 @@ export function TeamSelector({
 
   const customOption = (props: any) => {
     const { data, innerRef, innerProps, isFocused } = props;
-    const isDisabled = disabledTeams.includes(data.id);
+    const isDisabled = disabledTeams.includes(data.name);
 
     return (
       <div
@@ -116,7 +116,8 @@ export function TeamSelector({
     );
   };
 
-  const selectedOption = teams.find((team) => team.id === selectedTeam) || null;
+  const selectedOption =
+    teams.find((team) => team.name === selectedTeam) || null;
 
   return (
     <Select
