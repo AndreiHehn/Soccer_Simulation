@@ -7,7 +7,7 @@ import {
   type SetStateAction,
 } from "react";
 
-import type { Tournament } from "./types";
+import type { Team, Tournament } from "./types";
 
 export const AppContext = createContext({} as AppContextProps);
 
@@ -45,10 +45,14 @@ interface AppContextProps {
   setTournamentStep: Dispatch<SetStateAction<string>>;
   selectedTeams: Array<string>;
   setSelectedTeams: Dispatch<SetStateAction<Array<string>>>;
+  selectedLogos: Array<string>;
+  setSelectedLogos: Dispatch<SetStateAction<Array<string>>>;
   loadDefaultTeams: boolean;
   setLoadDefaultTeams: Dispatch<SetStateAction<boolean>>;
   matchdayNumber: number;
   setMatchdayNumber: Dispatch<SetStateAction<number>>;
+  teams: Array<Team>;
+  setTeams: Dispatch<SetStateAction<Array<Team>>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -75,8 +79,10 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [tournamentStep, setTournamentStep] =
     useState<string>("Teams Selection");
   const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
+  const [selectedLogos, setSelectedLogos] = useState<string[]>([]);
   const [loadDefaultTeams, setLoadDefaultTeams] = useState<boolean>(false);
   const [matchdayNumber, setMatchdayNumber] = useState<number>(1);
+  const [teams, setTeams] = useState<Team[]>([]);
 
   return (
     <AppContext.Provider
@@ -111,10 +117,14 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setTournamentStep,
         selectedTeams,
         setSelectedTeams,
+        selectedLogos,
+        setSelectedLogos,
         loadDefaultTeams,
         setLoadDefaultTeams,
         matchdayNumber,
         setMatchdayNumber,
+        teams,
+        setTeams,
       }}
     >
       {children}

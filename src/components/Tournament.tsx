@@ -1,9 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { Container } from "../styles/Tournament";
-import { useContext, useState, useMemo } from "react";
+import { useContext, useState, useMemo, useEffect } from "react";
 import { AppContext } from "../lib/context";
 import { TeamSelector } from "./TeamSelector";
 import Matchday from "./Matchday";
+import { Button } from "../generic/Button";
+import Standings from "./Standings";
 import ArrowLeft from "../assets/icons/arrowLeftIcon.svg?react";
 import ArrowRight from "../assets/icons/arrowRightIcon.svg?react";
 
@@ -14,7 +16,6 @@ import { SerieAList } from "../lib/tournaments/SerieA";
 import { BundesligaList } from "../lib/tournaments/Bundesliga";
 import { Ligue1List } from "../lib/tournaments/Ligue1";
 import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
-import { Button } from "../generic/Button";
 
 export default function Tournament() {
   const { t } = useTranslation();
@@ -28,6 +29,8 @@ export default function Tournament() {
     setLoadDefaultTeams,
     matchdayNumber,
     setMatchdayNumber,
+    setSelectedLogos,
+    setTeams,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState(""); // Estado local do time selecionado
@@ -54,16 +57,30 @@ export default function Tournament() {
     }
   }, [selectedTournament]);
 
+  useEffect(() => {
+    setTeams(teams);
+  }, [teams, setTeams]);
+
   // Limpa o time ao trocar de torneio
   useMemo(() => {
     setSelectedTeam("");
   }, []);
 
   function handleSelectTeam(index: number, teamId: string) {
+    const selected = teams.find((t) => t.id === teamId);
+    const teamName = selected ? selected.name : "";
+    const teamLogo = selected ? selected.logo : "";
+
     setSelectedTeams((prev) => {
       const newTeams = [...prev];
-      newTeams[index] = teamId;
+      newTeams[index] = teamName;
       return newTeams;
+    });
+
+    setSelectedLogos((prev) => {
+      const newLogos = [...prev];
+      newLogos[index] = teamLogo;
+      return newLogos;
     });
   }
 
@@ -191,6 +208,9 @@ export default function Tournament() {
             <Matchday></Matchday>
           </div>
         </>
+      )}
+      {tournamentStep == "Standings" && selectedTournament && (
+        <Standings></Standings>
       )}
     </Container>
   );

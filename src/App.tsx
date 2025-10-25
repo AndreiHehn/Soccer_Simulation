@@ -38,6 +38,8 @@ function App() {
     setLoadDefaultTeams,
     setTournamentStep,
     setMatchdayNumber,
+    teams,
+    setSelectedLogos,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -155,7 +157,19 @@ function App() {
           onClick1={() => setLoadDefaultTeams(false)}
           textButton1={t("Cancel")}
           onClick2={() => {
-            setSelectedTeams(selectedTournament?.defaultTeams ?? []);
+            if (selectedTournament?.defaultTeams) {
+              const defaultTeams = selectedTournament.defaultTeams;
+
+              // Gera os logos correspondentes automaticamente
+              const defaultLogos = defaultTeams.map((teamName) => {
+                const team = teams.find((t) => t.name === teamName);
+                return team ? team.logo : "";
+              });
+
+              setSelectedTeams(defaultTeams);
+              setSelectedLogos(defaultLogos);
+            }
+
             setLoadDefaultTeams(false);
           }}
           textButton2={t("Yes")}
