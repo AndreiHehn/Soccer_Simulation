@@ -1,0 +1,2 @@
+1 - Verificar itens desabilitados TeamSelector --> É possível selecioná-los
+2 - Criar um botão para gerar o campeonato --> gera a tabela/jogos e bloqueia os TeamSelector para edição
