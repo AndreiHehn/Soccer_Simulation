@@ -1,1 +1,0 @@
-Criar um botão para gerar o campeonato --> gera a tabela/jogos e bloqueia os TeamSelector para edição
