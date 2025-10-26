@@ -124,7 +124,7 @@ export function TeamSelector({
       options={teams}
       getOptionLabel={(team) => team.name}
       getOptionValue={(team) => team.id}
-      isOptionDisabled={(option) => disabledTeams.includes(option.id)} // desabilita times já selecionados
+      isOptionDisabled={(option) => disabledTeams.includes(option.name)} // desabilita times já selecionados
       value={selectedOption}
       onChange={(option) => onSelectTeam(option?.id ?? "")}
       components={{
