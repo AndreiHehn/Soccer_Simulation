@@ -31,6 +31,8 @@ export default function Tournament() {
     setMatchdayNumber,
     setSelectedLogos,
     setTeams,
+    setConfirmTeams,
+    activeTournament,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState(""); // Estado local do time selecionado
@@ -162,7 +164,17 @@ export default function Tournament() {
               color="gray"
               borderRadius="6px"
               height="35px"
+              functionButton={() => setConfirmTeams(true)}
+              disabled={selectedCount != selectedTournament.teams}
+            >
+              {t("Generate Tournament")}
+            </Button>
+            <Button
+              color="gray"
+              borderRadius="6px"
+              height="35px"
               functionButton={() => setLoadDefaultTeams(true)}
+              disabled={activeTournament == true}
             >
               {t("Load 2025/2026")}
             </Button>

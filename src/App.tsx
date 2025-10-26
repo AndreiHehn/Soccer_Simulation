@@ -40,6 +40,9 @@ function App() {
     setMatchdayNumber,
     teams,
     setSelectedLogos,
+    confirmTeams,
+    setConfirmTeams,
+    setActiveTournament,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -135,7 +138,8 @@ function App() {
             setTournamentStep("Teams Selection"),
             setSelectedTournament(localTournament),
             setSelectedTeams([]),
-            setMatchdayNumber(1)
+            setMatchdayNumber(1),
+            setActiveTournament(false)
           )}
           textButton2={t("Yes")}
         ></ModalMessage>
@@ -145,7 +149,11 @@ function App() {
           textMessage={t("Do you want to reset all teams?")}
           onClick1={() => setResetAllTeams(false)}
           textButton1={t("Cancel")}
-          onClick2={() => (setSelectedTeams([]), setResetAllTeams(false))}
+          onClick2={() => (
+            setSelectedTeams([]),
+            setResetAllTeams(false),
+            setActiveTournament(false)
+          )}
           textButton2={t("Yes")}
         ></ModalMessage>
       )}
@@ -172,6 +180,17 @@ function App() {
 
             setLoadDefaultTeams(false);
           }}
+          textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
+      {confirmTeams && (
+        <ModalMessage
+          textMessage={t(
+            "Do you want create the tournament with the selected teams?"
+          )}
+          onClick1={() => setConfirmTeams(false)}
+          textButton1={t("Cancel")}
+          onClick2={() => (setConfirmTeams(false), setActiveTournament(true))}
           textButton2={t("Yes")}
         ></ModalMessage>
       )}

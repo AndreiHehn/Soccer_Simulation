@@ -4,7 +4,7 @@ import { AppContext } from "../lib/context";
 import { useTranslation } from "react-i18next";
 
 export default function Standings() {
-  const { selectedTournament, selectedTeams, selectedLogos } =
+  const { selectedTournament, selectedTeams, selectedLogos, activeTournament } =
     useContext(AppContext);
   const { t } = useTranslation();
 
@@ -38,21 +38,20 @@ export default function Standings() {
 
       {selectedTeams.map((team, index) => (
         <tr key={team} className="standings">
-          <td className="standings-points">{index + 1}</td>
-          <td className="standings-teams">
-            <img src={selectedLogos[index]} className="team-logo" alt="" />
-            <h2
-              className="team-name"
-              onClick={() => console.log(selectedLogos)}
-            >
-              {team}
-            </h2>
-          </td>
-          {Array(8)
-            .fill("")
-            .map((_, i) => (
-              <td key={i}></td>
-            ))}
+          {activeTournament && (
+            <>
+              <td className="standings-points">{index + 1}</td>
+              <td className="standings-teams">
+                <img src={selectedLogos[index]} className="team-logo" alt="" />
+                <h2 className="team-name">{team}</h2>
+              </td>
+              {Array(8)
+                .fill("")
+                .map((_, i) => (
+                  <td key={i}></td>
+                ))}
+            </>
+          )}
         </tr>
       ))}
     </Container>

@@ -11,7 +11,7 @@ interface Props {
   selectedTeam: string; // armazena o ID do time
   onSelectTeam: (teamId: string) => void;
   teams: Team[];
-  disabledTeams?: string[]; // 👈 nova prop
+  disabledTeams?: string[];
 }
 
 export function TeamSelector({
@@ -20,7 +20,7 @@ export function TeamSelector({
   teams,
   disabledTeams = [],
 }: Props) {
-  const { selectedTournament } = useContext(AppContext);
+  const { selectedTournament, activeTournament } = useContext(AppContext);
   const { t } = useTranslation();
 
   const customSingleValue = ({ data }: any) => (
@@ -127,6 +127,7 @@ export function TeamSelector({
       isOptionDisabled={(option) => disabledTeams.includes(option.name)} // desabilita times já selecionados
       value={selectedOption}
       onChange={(option) => onSelectTeam(option?.id ?? "")}
+      isDisabled={activeTournament == true}
       components={{
         SingleValue: customSingleValue,
         Option: customOption,
@@ -166,6 +167,7 @@ export function TeamSelector({
           boxShadow: "none",
           overflow: "hidden",
           cursor: "pointer",
+          userSelect: "none",
           "&:hover": {
             borderColor: "#2f3640",
           },
