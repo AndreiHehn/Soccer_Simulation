@@ -165,7 +165,10 @@ export default function Tournament() {
               borderRadius="6px"
               height="35px"
               functionButton={() => setConfirmTeams(true)}
-              disabled={selectedCount != selectedTournament.teams}
+              disabled={
+                selectedCount != selectedTournament.teams ||
+                activeTournament == true
+              }
             >
               {t("Generate Tournament")}
             </Button>
