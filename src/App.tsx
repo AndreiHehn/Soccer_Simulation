@@ -123,7 +123,9 @@ function App() {
           onClick2={() => (
             setBackToMenu(false),
             setActivePage("Home"),
-            setSelectedTournament(null)
+            setSelectedTournament(null),
+            setTournamentStep("Teams Selection"),
+            setSelectedTeams([])
           )}
           textButton2={t("Yes")}
         ></ModalMessage>
