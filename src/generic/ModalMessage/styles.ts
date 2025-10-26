@@ -16,6 +16,7 @@ export const Container = styled.div`
   z-index: 12;
   .content {
     display: flex;
+    align-items: center;
 
     .warningIcon {
       width: 40px;
