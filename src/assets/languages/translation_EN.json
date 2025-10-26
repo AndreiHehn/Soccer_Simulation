@@ -3,6 +3,7 @@
   "Cancel": "Cancel",
   "Click on the button below to start the simulation!": "Click on the button below to start the simulation!",
   "Dark Theme": "Dark Theme",
+  "Generate Tournament": "Generate Tournament",
   "Language Selection": "Language Selection",
   "Load 2025/2026": "Load 2025/2026",
   "Matchday": "Matchday",
@@ -27,6 +28,7 @@
   "You selected the ": "You selected the ",
 
   "Do you want to create another simulation?": "Do you want to create another simulation?",
+  "Do you want create the tournament with the selected teams?": "Do you want create the tournament with the selected teams?",
   "Do you want to load the teams from the 2025/26 season?": "Do you want to load the teams from the 2025/26 season?",
   "Do you want to return to the menu?": "Do you want to return to the menu?",
   "Do you want to reset the settings?": "Do you want to reset the settings?",

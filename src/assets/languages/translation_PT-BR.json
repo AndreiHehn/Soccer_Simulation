@@ -3,6 +3,7 @@
   "Cancel": "Cancelar",
   "Click on the button below to start the simulation!": "Clique no botão abaixo para iniciar a simulação!",
   "Dark Theme": "Tema Escuro",
+  "Generate Tournament": "Gerar Torneio",
   "Language Selection": "Seleção de Idioma",
   "Load 2025/2026": "Carregar 2025/2026",
   "Matchday": "Rodada",
@@ -27,6 +28,7 @@
   "You selected the ": "Você selecionou o(a) ",
 
   "Do you want to create another simulation?": "Tem certeza que deseja criar outra simulação?",
+  "Do you want create the tournament with the selected teams?": "Tem certeza que deseja criar o torneio com os times selecionados?",
   "Do you want to load the teams from the 2025/26 season?": "Tem certeza que deseja carregar as equipes da temporada 2025/26?",
   "Do you want to return to the menu?": "Tem certeza que deseja voltar ao menu?",
   "Do you want to reset the settings?": "Tem certeza que deseja redefinir as configurações?",
