@@ -82,7 +82,7 @@ export const TournamentsList: Tournament[] = [
     secondaryColor: "#00F4E6",
     tertiaryColor: "#93fffa",
     backgroundColor: "#FFFFFF",
-    textColor: "#0C8CFF",
+    textColor: "#024c8c",
     teams: 20,
     defaultTeams: [
       "Atalanta",
