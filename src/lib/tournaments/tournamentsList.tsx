@@ -33,7 +33,7 @@ export const TournamentsList: Tournament[] = [
       "Liverpool",
       "Manchester City",
       "Manchester United",
-      "Newcastle",
+      "Newcastle United",
       "Nottingham Forest",
       "Sunderland",
       "Tottenham",

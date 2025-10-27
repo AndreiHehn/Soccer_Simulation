@@ -125,8 +125,8 @@ export const PremierLeagueList: Team[] = [
     league: "England",
   },
   {
-    id: "newcastle",
-    name: "Newcastle",
+    id: "newcastle_united",
+    name: "Newcastle United",
     logo: Newcastle_logo,
     league: "England",
   },
