@@ -8,6 +8,8 @@ import { Button } from "../generic/Button";
 import Standings from "./Standings";
 import ArrowLeft from "../assets/icons/arrowLeftIcon.svg?react";
 import ArrowRight from "../assets/icons/arrowRightIcon.svg?react";
+import DoubleArrowLeft from "../assets/icons/doubleArrowLeftIcon.svg?react";
+import DoubleArrowRight from "../assets/icons/doubleArrowRightIcon.svg?react";
 
 // importa listas de times
 import { PremierLeagueList } from "../lib/tournaments/PremierLeague";
@@ -200,6 +202,14 @@ export default function Tournament() {
               className={`previous-matchday ${
                 matchdayNumber == 1 ? "inactive" : ""
               }`}
+              onClick={() => setMatchdayNumber(1)}
+            >
+              <DoubleArrowLeft></DoubleArrowLeft>
+            </div>
+            <div
+              className={`previous-matchday ${
+                matchdayNumber == 1 ? "inactive" : ""
+              }`}
               onClick={PreviousMatchday}
             >
               <ArrowLeft></ArrowLeft>
@@ -217,6 +227,18 @@ export default function Tournament() {
               onClick={NextMatchday}
             >
               <ArrowRight></ArrowRight>
+            </div>
+            <div
+              className={`next-matchday ${
+                matchdayNumber == (selectedTournament.teams - 1) * 2
+                  ? "inactive"
+                  : ""
+              }`}
+              onClick={() =>
+                setMatchdayNumber((selectedTournament.teams - 1) * 2)
+              }
+            >
+              <DoubleArrowRight></DoubleArrowRight>
             </div>
           </nav>
           <div className="matches">
