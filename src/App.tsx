@@ -46,6 +46,7 @@ function App() {
     setStandings,
     selectedTeams,
     selectedLogos,
+    setMatchResults,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -96,6 +97,7 @@ function App() {
         goalDifference: 0,
       }))
     );
+    setMatchResults({});
   }
 
   return (

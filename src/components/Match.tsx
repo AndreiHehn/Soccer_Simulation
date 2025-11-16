@@ -17,31 +17,12 @@ export default function Match({
   awayLogo,
   index,
 }: MatchProps) {
-  const {
-    selectedTournament,
-    standings,
-    setStandings,
-    matchResults,
-    setMatchResults,
-    matchdayNumber,
-  } = useContext(AppContext);
+  const { selectedTournament, matchResults, setMatchResults, matchdayNumber } =
+    useContext(AppContext);
 
   const homeGoals = matchResults?.[matchdayNumber]?.[index]?.home ?? "";
   const awayGoals = matchResults?.[matchdayNumber]?.[index]?.away ?? "";
 
-  // Atualiza standings quando resultados mudam
-  // useEffect(() => {
-  //   if (homeGoals === "" || awayGoals === "") return;
-  //   updateStandings();
-  // }, [homeGoals, awayGoals]);
-
-  // ---------------------------------------------------------
-  // REMOVE resultado anterior da tabela
-  // ---------------------------------------------------------
-
-  // ---------------------------------------------------------
-  // Salva o resultado no contexto
-  // ---------------------------------------------------------
   function handleResultChange(
     matchIndex: number,
     team: "home" | "away",
