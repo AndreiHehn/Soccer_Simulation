@@ -161,7 +161,8 @@ function App() {
             setSelectedTournament(localTournament),
             setSelectedTeams([]),
             setMatchdayNumber(1),
-            setActiveTournament(false)
+            setActiveTournament(false),
+            SetDefaultStandings()
           )}
           textButton2={t("Yes")}
         ></ModalMessage>
