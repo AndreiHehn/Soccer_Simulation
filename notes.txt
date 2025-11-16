@@ -1,0 +1,1 @@
+1. Standings não está sendo atualizado ao preencher o componente Match
