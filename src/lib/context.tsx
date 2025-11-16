@@ -8,7 +8,7 @@ import {
   type SetStateAction,
 } from "react";
 
-import type { Team, Tournament } from "./types";
+import type { Team, TeamStats, Tournament } from "./types";
 
 export const AppContext = createContext({} as AppContextProps);
 
@@ -61,6 +61,17 @@ interface AppContextProps {
   scheduleRef: React.MutableRefObject<
     { home: string; away: string }[][] | null
   >;
+  standings: TeamStats[];
+  setStandings: React.Dispatch<React.SetStateAction<TeamStats[]>>;
+  matchResults: Record<
+    number,
+    Record<number, { home: number | ""; away: number | "" }>
+  >;
+  setMatchResults: Dispatch<
+    SetStateAction<
+      Record<number, Record<number, { home: number | ""; away: number | "" }>>
+    >
+  >;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -94,6 +105,10 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [confirmTeams, setConfirmTeams] = useState<boolean>(false);
   const [activeTournament, setActiveTournament] = useState<boolean>(false);
   const scheduleRef = useRef(null);
+  const [standings, setStandings] = useState<TeamStats[]>([]);
+  const [matchResults, setMatchResults] = useState<
+    Record<number, Record<number, { home: number | ""; away: number | "" }>>
+  >({});
 
   return (
     <AppContext.Provider
@@ -141,6 +156,10 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         activeTournament,
         setActiveTournament,
         scheduleRef,
+        standings,
+        setStandings,
+        matchResults,
+        setMatchResults,
       }}
     >
       {children}

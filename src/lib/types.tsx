@@ -17,3 +17,16 @@ export interface Team {
   logo: string;
   league: string;
 }
+
+export interface TeamStats {
+  team: string;
+  logo: string;
+  points: number;
+  played: number;
+  wins: number;
+  draws: number;
+  losses: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  goalDifference: number;
+}

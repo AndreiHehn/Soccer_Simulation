@@ -43,6 +43,9 @@ function App() {
     confirmTeams,
     setConfirmTeams,
     setActiveTournament,
+    setStandings,
+    selectedTeams,
+    selectedLogos,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -76,6 +79,23 @@ function App() {
     localStorage.setItem("soccer_sim_language", "en");
 
     i18n.changeLanguage("en");
+  }
+
+  function SetDefaultStandings() {
+    setStandings(
+      selectedTeams.map((team, idx) => ({
+        team,
+        logo: selectedLogos[idx],
+        points: 0,
+        played: 0,
+        wins: 0,
+        draws: 0,
+        losses: 0,
+        goalsFor: 0,
+        goalsAgainst: 0,
+        goalDifference: 0,
+      }))
+    );
   }
 
   return (
@@ -192,7 +212,11 @@ function App() {
           )}
           onClick1={() => setConfirmTeams(false)}
           textButton1={t("Cancel")}
-          onClick2={() => (setConfirmTeams(false), setActiveTournament(true))}
+          onClick2={() => (
+            setConfirmTeams(false),
+            setActiveTournament(true),
+            SetDefaultStandings()
+          )}
           textButton2={t("Yes")}
         ></ModalMessage>
       )}

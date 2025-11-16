@@ -33,7 +33,8 @@ export const Container = styled.table<Props>`
     margin-bottom: 1px;
   }
 
-  .standings-points {
+  .standings-points,
+  .standings-info {
     text-align: center;
   }
 

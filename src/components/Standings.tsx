@@ -4,8 +4,13 @@ import { AppContext } from "../lib/context";
 import { useTranslation } from "react-i18next";
 
 export default function Standings() {
-  const { selectedTournament, selectedTeams, selectedLogos, activeTournament } =
-    useContext(AppContext);
+  const {
+    selectedTournament,
+    selectedTeams,
+    selectedLogos,
+    activeTournament,
+    standings,
+  } = useContext(AppContext);
   const { t } = useTranslation();
 
   const StandingsInfo = [
@@ -36,24 +41,26 @@ export default function Standings() {
         ))}
       </tr>
 
-      {selectedTeams.map((team, index) => (
-        <tr key={team} className="standings">
-          {activeTournament && (
-            <>
-              <td className="standings-points">{index + 1}</td>
-              <td className="standings-teams">
-                <img src={selectedLogos[index]} className="team-logo" alt="" />
-                <h2 className="team-name">{team}</h2>
-              </td>
-              {Array(8)
-                .fill("")
-                .map((_, i) => (
-                  <td key={i}></td>
-                ))}
-            </>
-          )}
-        </tr>
-      ))}
+      {activeTournament &&
+        standings.map((team, index) => (
+          <tr key={team.team} className="standings">
+            <td className="standings-points">{index + 1}</td>
+
+            <td className="standings-teams">
+              <img src={team.logo} className="team-logo" alt="" />
+              <h2 className="team-name">{team.team}</h2>
+            </td>
+
+            <td className="standings-info">{team.played}</td>
+            <td className="standings-info">{team.wins}</td>
+            <td className="standings-info">{team.draws}</td>
+            <td className="standings-info">{team.losses}</td>
+            <td className="standings-info">{team.goalsFor}</td>
+            <td className="standings-info">{team.goalsAgainst}</td>
+            <td className="standings-info">{team.goalDifference}</td>
+            <td className="standings-info">{team.points}</td>
+          </tr>
+        ))}
     </Container>
   );
 }

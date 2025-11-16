@@ -23,6 +23,7 @@ export default function Matchday() {
         return (
           <Match
             key={index}
+            index={index}
             homeTeam={match.home}
             awayTeam={match.away}
             homeLogo={homeLogo}
