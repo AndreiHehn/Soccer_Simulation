@@ -1,2 +1,1 @@
-1. Limpar os inputs dos resultados ao iniciar uma nova simulação
-2. Adicionar prop de numero de rebaixados e vagas para competições continentais + estilo no Standings
+1. Adicionar prop de numero de rebaixados e vagas para competições continentais + estilo no Standings
