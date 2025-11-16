@@ -1,1 +1,2 @@
-1. Standings não está sendo atualizado ao preencher o componente Match
+1. Limpar os inputs dos resultados ao iniciar uma nova simulação
+2. Adicionar prop de numero de rebaixados e vagas para competições continentais + estilo no Standings
