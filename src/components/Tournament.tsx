@@ -18,6 +18,12 @@ import { SerieAList } from "../lib/tournaments/SerieA";
 import { BundesligaList } from "../lib/tournaments/Bundesliga";
 import { Ligue1List } from "../lib/tournaments/Ligue1";
 import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
+import {
+  balanceHomeAway,
+  generateFirstLeg,
+  generateSecondLeg,
+  shuffleRounds,
+} from "../lib/functions";
 
 export default function Tournament() {
   const { t } = useTranslation();
@@ -35,6 +41,7 @@ export default function Tournament() {
     setTeams,
     setConfirmTeams,
     activeTournament,
+    scheduleRef,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState(""); // Estado local do time selecionado
@@ -101,6 +108,21 @@ export default function Tournament() {
       }
     }
   }
+
+  useEffect(() => {
+    if (activeTournament && selectedTeams.length > 1) {
+      // gera apenas 1 vez
+      const firstLeg = generateFirstLeg(selectedTeams);
+
+      shuffleRounds(firstLeg);
+      firstLeg.forEach((r) => shuffleRounds(r));
+      balanceHomeAway(firstLeg);
+
+      const secondLeg = generateSecondLeg(firstLeg);
+
+      scheduleRef.current = [...firstLeg, ...secondLeg];
+    }
+  }, [activeTournament]);
 
   return (
     <Container
@@ -197,50 +219,53 @@ export default function Tournament() {
       )}
       {tournamentStep == "Matches" && selectedTournament && (
         <>
-          <nav className="matchday">
-            <div
-              className={`previous-matchday ${
-                matchdayNumber == 1 ? "inactive" : ""
-              }`}
-              onClick={() => setMatchdayNumber(1)}
-            >
-              <DoubleArrowLeft></DoubleArrowLeft>
-            </div>
-            <div
-              className={`previous-matchday ${
-                matchdayNumber == 1 ? "inactive" : ""
-              }`}
-              onClick={PreviousMatchday}
-            >
-              <ArrowLeft></ArrowLeft>
-            </div>
-            <h3 className="matchday-number">
-              {t("Matchday")} {matchdayNumber < 10 && "0"}
-              {matchdayNumber}
-            </h3>
-            <div
-              className={`next-matchday ${
-                matchdayNumber == (selectedTournament.teams - 1) * 2
-                  ? "inactive"
-                  : ""
-              }`}
-              onClick={NextMatchday}
-            >
-              <ArrowRight></ArrowRight>
-            </div>
-            <div
-              className={`next-matchday ${
-                matchdayNumber == (selectedTournament.teams - 1) * 2
-                  ? "inactive"
-                  : ""
-              }`}
-              onClick={() =>
-                setMatchdayNumber((selectedTournament.teams - 1) * 2)
-              }
-            >
-              <DoubleArrowRight></DoubleArrowRight>
-            </div>
-          </nav>
+          {activeTournament && (
+            <nav className="matchday">
+              <div
+                className={`previous-matchday ${
+                  matchdayNumber == 1 ? "inactive" : ""
+                }`}
+                onClick={() => setMatchdayNumber(1)}
+              >
+                <DoubleArrowLeft></DoubleArrowLeft>
+              </div>
+              <div
+                className={`previous-matchday ${
+                  matchdayNumber == 1 ? "inactive" : ""
+                }`}
+                onClick={PreviousMatchday}
+              >
+                <ArrowLeft></ArrowLeft>
+              </div>
+              <h3 className="matchday-number">
+                {t("Matchday")} {matchdayNumber < 10 && "0"}
+                {matchdayNumber}
+              </h3>
+              <div
+                className={`next-matchday ${
+                  matchdayNumber == (selectedTournament.teams - 1) * 2
+                    ? "inactive"
+                    : ""
+                }`}
+                onClick={NextMatchday}
+              >
+                <ArrowRight></ArrowRight>
+              </div>
+              <div
+                className={`next-matchday ${
+                  matchdayNumber == (selectedTournament.teams - 1) * 2
+                    ? "inactive"
+                    : ""
+                }`}
+                onClick={() =>
+                  setMatchdayNumber((selectedTournament.teams - 1) * 2)
+                }
+              >
+                <DoubleArrowRight></DoubleArrowRight>
+              </div>
+            </nav>
+          )}
+
           <div className="matches">
             <Matchday></Matchday>
           </div>

@@ -4,15 +4,32 @@ import Match from "./Match";
 import { AppContext } from "../lib/context";
 
 export default function Matchday() {
-  const { selectedTournament } = useContext(AppContext);
+  const { matchdayNumber, selectedLogos, scheduleRef, selectedTeams } =
+    useContext(AppContext);
+
+  const currentMatchday = scheduleRef.current
+    ? scheduleRef.current[matchdayNumber - 1]
+    : [];
 
   return (
     <Container>
-      {[...Array(Math.floor((selectedTournament?.teams ?? 0) / 2))].map(
-        (_, index) => (
-          <Match key={index} homeTeam="Chelsea" awayTeam="Manchester United" />
-        )
-      )}
+      {currentMatchday.map((match, index) => {
+        const homeIndex = selectedTeams.indexOf(match.home);
+        const awayIndex = selectedTeams.indexOf(match.away);
+
+        const homeLogo = selectedLogos[homeIndex] || "";
+        const awayLogo = selectedLogos[awayIndex] || "";
+
+        return (
+          <Match
+            key={index}
+            homeTeam={match.home}
+            awayTeam={match.away}
+            homeLogo={homeLogo}
+            awayLogo={awayLogo}
+          />
+        );
+      })}
     </Container>
   );
 }

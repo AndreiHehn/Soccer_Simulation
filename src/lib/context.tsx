@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import {
   createContext,
+  useRef,
   useState,
   type Dispatch,
   type ReactNode,
@@ -57,6 +58,9 @@ interface AppContextProps {
   setConfirmTeams: Dispatch<SetStateAction<boolean>>;
   activeTournament: boolean;
   setActiveTournament: Dispatch<SetStateAction<boolean>>;
+  scheduleRef: React.MutableRefObject<
+    { home: string; away: string }[][] | null
+  >;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -89,6 +93,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [teams, setTeams] = useState<Team[]>([]);
   const [confirmTeams, setConfirmTeams] = useState<boolean>(false);
   const [activeTournament, setActiveTournament] = useState<boolean>(false);
+  const scheduleRef = useRef(null);
 
   return (
     <AppContext.Provider
@@ -135,6 +140,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setConfirmTeams,
         activeTournament,
         setActiveTournament,
+        scheduleRef,
       }}
     >
       {children}
