@@ -4,13 +4,8 @@ import { AppContext } from "../lib/context";
 import { useTranslation } from "react-i18next";
 
 export default function Standings() {
-  const {
-    selectedTournament,
-    selectedTeams,
-    selectedLogos,
-    activeTournament,
-    standings,
-  } = useContext(AppContext);
+  const { selectedTournament, activeTournament, standings } =
+    useContext(AppContext);
   const { t } = useTranslation();
 
   const StandingsInfo = [
