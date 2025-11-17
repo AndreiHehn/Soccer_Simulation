@@ -177,7 +177,8 @@ function App() {
           onClick2={() => (
             setSelectedTeams([]),
             setResetAllTeams(false),
-            setActiveTournament(false)
+            setActiveTournament(false),
+            SetDefaultStandings()
           )}
           textButton2={t("Yes")}
         ></ModalMessage>

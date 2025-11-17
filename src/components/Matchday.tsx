@@ -11,6 +11,7 @@ export default function Matchday() {
     selectedTeams,
     matchResults,
     setStandings,
+    activeTournament,
   } = useContext(AppContext);
 
   const currentMatchday = scheduleRef.current
@@ -101,24 +102,25 @@ export default function Matchday() {
 
   return (
     <Container>
-      {currentMatchday.map((match, index) => {
-        const homeIndex = selectedTeams.indexOf(match.home);
-        const awayIndex = selectedTeams.indexOf(match.away);
+      {activeTournament &&
+        currentMatchday.map((match, index) => {
+          const homeIndex = selectedTeams.indexOf(match.home);
+          const awayIndex = selectedTeams.indexOf(match.away);
 
-        const homeLogo = selectedLogos[homeIndex] || "";
-        const awayLogo = selectedLogos[awayIndex] || "";
+          const homeLogo = selectedLogos[homeIndex] || "";
+          const awayLogo = selectedLogos[awayIndex] || "";
 
-        return (
-          <Match
-            key={index}
-            index={index}
-            homeTeam={match.home}
-            awayTeam={match.away}
-            homeLogo={homeLogo}
-            awayLogo={awayLogo}
-          />
-        );
-      })}
+          return (
+            <Match
+              key={index}
+              index={index}
+              homeTeam={match.home}
+              awayTeam={match.away}
+              homeLogo={homeLogo}
+              awayLogo={awayLogo}
+            />
+          );
+        })}
     </Container>
   );
 }
