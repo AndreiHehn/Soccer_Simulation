@@ -153,7 +153,7 @@ export default function Tournament() {
               className={`step ${tournamentStep === step ? "active" : ""} ${
                 selectedTournament != null &&
                 step != "Teams Selection" &&
-                selectedCount < selectedTournament?.teams
+                !activeTournament
                   ? "disabled"
                   : ""
               }`}
