@@ -54,17 +54,70 @@ export default function Match({
 
       <div className="results-container">
         <input
-          type="number"
+          type="text"
           className="home-goals"
           value={homeGoals}
-          onChange={(e) => handleResultChange(index, "home", e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+
+            // permite vazio
+            if (value === "") {
+              handleResultChange(index, "home", "");
+              return;
+            }
+
+            // aceita apenas números 0–9
+            if (/^\d+$/.test(value)) {
+              handleResultChange(index, "home", value);
+            }
+          }}
+          onKeyDown={(e) => {
+            // bloqueia tudo que não for número, backspace ou delete
+            if (
+              !/^[0-9]$/.test(e.key) &&
+              e.key !== "Backspace" &&
+              e.key !== "Delete" &&
+              e.key !== "Tab" &&
+              e.key !== "ArrowLeft" &&
+              e.key !== "ArrowRight"
+            ) {
+              e.preventDefault();
+            }
+          }}
         />
+
         <div className="separator">-</div>
         <input
-          type="number"
+          type="text"
           className="away-goals"
           value={awayGoals}
-          onChange={(e) => handleResultChange(index, "away", e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+
+            // permite vazio
+            if (value === "") {
+              handleResultChange(index, "away", "");
+              return;
+            }
+
+            // aceita apenas números 0–9
+            if (/^\d+$/.test(value)) {
+              handleResultChange(index, "away", value);
+            }
+          }}
+          onKeyDown={(e) => {
+            // bloqueia tudo que não for número, backspace ou delete
+            if (
+              !/^[0-9]$/.test(e.key) &&
+              e.key !== "Backspace" &&
+              e.key !== "Delete" &&
+              e.key !== "Tab" &&
+              e.key !== "ArrowLeft" &&
+              e.key !== "ArrowRight"
+            ) {
+              e.preventDefault();
+            }
+          }}
         />
       </div>
 
