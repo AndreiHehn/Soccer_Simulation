@@ -24,6 +24,7 @@ import {
   generateSecondLeg,
   shuffleRounds,
 } from "../lib/functions";
+import CardStatistics from "./CardStatistics";
 
 export default function Tournament() {
   const { t } = useTranslation();
@@ -273,6 +274,24 @@ export default function Tournament() {
       )}
       {tournamentStep == "Standings" && selectedTournament && (
         <Standings></Standings>
+      )}
+      {tournamentStep == "Statistics" && selectedTournament && (
+        <>
+          <article className="cards">
+            <CardStatistics
+              cardTitle="Goals Forward"
+              orderBy="goalsFor"
+            ></CardStatistics>
+            <CardStatistics
+              cardTitle="Goals Against"
+              orderBy="goalsAgainst"
+            ></CardStatistics>
+            <CardStatistics
+              cardTitle="Goals Difference"
+              orderBy="goalDifference"
+            ></CardStatistics>
+          </article>
+        </>
       )}
     </Container>
   );

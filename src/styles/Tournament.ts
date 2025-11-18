@@ -157,4 +157,10 @@ export const Container = styled.main<Props>`
       }
     }
   }
+
+  // Statistics
+  .cards {
+    display: flex;
+    gap: 20px;
+  }
 `;
