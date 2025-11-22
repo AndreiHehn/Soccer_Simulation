@@ -31,30 +31,30 @@ export default function Matchday() {
       goalsAgainst: 0,
       goalDifference: 0,
       points: 0,
+      history: [] as string[], // armazenar TODOS os resultados
+      lastFive: [] as string[],
     }));
 
-    // percorre TODAS as rodadas já preenchidas
-    Object.entries(matchResults).forEach(([day, results]) => {
-      const matchdayIdx = Number(day) - 1;
-      const matchday = scheduleRef.current?.[matchdayIdx] ?? [];
+    // 🔥 Percorre TODAS as rodadas preenchidas
+    for (const [day, results] of Object.entries(matchResults)) {
+      const dayIndex = Number(day) - 1;
+      const matchesOfDay = scheduleRef.current?.[dayIndex] ?? [];
 
-      Object.entries(results).forEach(([matchIndex, result]) => {
-        const { home, away } = result;
-        if (home === "" || away === "") return;
+      for (const [matchIndex, result] of Object.entries(results)) {
+        const match = matchesOfDay[Number(matchIndex)];
+        if (!match) continue;
 
-        const match = matchday[Number(matchIndex)];
-        if (!match) return;
+        const hg = Number(result.home);
+        const ag = Number(result.away);
+        if (isNaN(hg) || isNaN(ag)) continue;
 
         const homeIdx = selectedTeams.indexOf(match.home);
         const awayIdx = selectedTeams.indexOf(match.away);
 
-        const hg = Number(home);
-        const ag = Number(away);
-
         const H = table[homeIdx];
         const A = table[awayIdx];
 
-        // Stats
+        // Stats básicos
         H.played++;
         A.played++;
 
@@ -71,26 +71,37 @@ export default function Matchday() {
           H.wins++;
           H.points += 3;
           A.losses++;
+          H.history.push("W");
+          A.history.push("L");
         } else if (ag > hg) {
           A.wins++;
           A.points += 3;
           H.losses++;
+          A.history.push("W");
+          H.history.push("L");
         } else {
           H.draws++;
           A.draws++;
           H.points++;
           A.points++;
+          H.history.push("D");
+          A.history.push("D");
         }
-      });
-    });
+      }
+    }
 
-    // 🔥 ORDENAÇÃO
+    // 🔥 Ordenação oficial
     table.sort((a, b) => {
       if (b.points !== a.points) return b.points - a.points;
       if (b.goalDifference !== a.goalDifference)
         return b.goalDifference - a.goalDifference;
       if (b.goalsFor !== a.goalsFor) return b.goalsFor - a.goalsFor;
       return a.team.localeCompare(b.team);
+    });
+
+    // 🔥 Last 5 (sempre estável)
+    table.forEach((entry) => {
+      entry.lastFive = entry.history.slice(-5);
     });
 
     setStandings(table);

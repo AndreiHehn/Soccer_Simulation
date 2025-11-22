@@ -19,6 +19,7 @@ export default function Standings() {
     "GA",
     "GD",
     "PTS",
+    "Last 5",
   ];
 
   return (
@@ -54,6 +55,13 @@ export default function Standings() {
             <td className="standings-info">{team.goalsAgainst}</td>
             <td className="standings-info">{team.goalDifference}</td>
             <td className="standings-info">{team.points}</td>
+            <td className="standings-last5">
+              {team.lastFive.map((r, i) => (
+                <span key={i} className={`result-${r}`}>
+                  <span className="resultText">{r}</span>
+                </span>
+              ))}
+            </td>
           </tr>
         ))}
     </Container>

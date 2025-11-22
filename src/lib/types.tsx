@@ -29,4 +29,5 @@ export interface TeamStats {
   goalsFor: number;
   goalsAgainst: number;
   goalDifference: number;
+  lastFive: string[];
 }

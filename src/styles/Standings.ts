@@ -58,4 +58,38 @@ export const Container = styled.table<Props>`
     font-weight: 400;
     margin-left: 10px;
   }
+
+  .standings-last5 {
+    width: 175px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .result-W,
+  .result-L,
+  .result-D {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+  }
+
+  .result-W {
+    background-color: #25a146;
+  }
+
+  .result-D {
+    background-color: #bd9914ff;
+  }
+
+  .result-L {
+    background-color: #bb3b3b;
+  }
+
+  .resultText {
+    font-size: 10px;
+  }
 `;
