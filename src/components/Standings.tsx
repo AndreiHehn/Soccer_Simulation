@@ -9,7 +9,7 @@ export default function Standings() {
   const { t } = useTranslation();
 
   const StandingsInfo = [
-    "POS",
+    "#",
     "Team",
     "PL",
     "W",
