@@ -6,6 +6,7 @@ import SerieA_logo from "../../assets/icons/league logos/SerieA_logo.png";
 import Bundesliga_logo from "../../assets/icons/league logos/Bundesliga_logo.png";
 import Ligue1_logo from "../../assets/icons/league logos/Ligue1_logo.png";
 import Brasileirão_logo from "../../assets/icons/league logos/Brasileirão_logo.png";
+import Eredivisie_logo from "../../assets/icons/league logos/Eredivisie_logo.png";
 
 export const TournamentsList: Tournament[] = [
   {
@@ -167,6 +168,37 @@ export const TournamentsList: Tournament[] = [
       "Stade Rennais",
       "Strasbourg",
       "Toulouse",
+    ],
+  },
+  {
+    id: "eredivisie",
+    name: "Eredivisie",
+    logo: Eredivisie_logo,
+    primaryColor: "#14094a",
+    secondaryColor: "#14094a",
+    tertiaryColor: "#3e368c",
+    backgroundColor: "#39365b",
+    textColor: "#FFFFFF",
+    teams: 18,
+    defaultTeams: [
+      "Ajax",
+      "AZ Alkmaar",
+      "Excelsior",
+      "Feyenoord",
+      "Fortuna Sittard",
+      "Go Ahead Eagles",
+      "Groningen",
+      "Heerenveen",
+      "Heracles Almelo",
+      "NAC Breda",
+      "Nijmegen",
+      "PEC Zwolle",
+      "PSV",
+      "Sparta Rotterdam",
+      "Telstar",
+      "Twente",
+      "Utrecht",
+      "Volendam",
     ],
   },
   {
