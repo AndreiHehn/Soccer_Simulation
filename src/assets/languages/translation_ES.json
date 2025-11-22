@@ -4,6 +4,9 @@
   "Click on the button below to start the simulation!": "¡Clique en el butón abajo para empezar la simulación!",
   "Dark Theme": "Tema Oscuro",
   "Generate Tournament": "Generar Torneo",
+  "Goals Against": "Goles Sufridos",
+  "Goals Difference": "Diferencia de Goles",
+  "Goals Forward": "Goles Marcados",
   "Language Selection": "Selección de Idioma",
   "Load 2025/2026": "Cargar 2025/2026",
   "Matchday": "Ronda",
@@ -33,5 +36,16 @@
   "Do you want to return to the menu?": "¿Estás seguro que quiéres volver al inicio?",
   "Do you want to reset the settings?": "¿Estás seguro que quiéres redefinir las configuracciónes?",
   "Do you want to reset all teams?": "¿Estás seguro que quiéres redefinir todos los equipos?",
-  "Do you want to quit without saving?": "¿Estás seguro que quiéres salir sin guardar?"
+  "Do you want to quit without saving?": "¿Estás seguro que quiéres salir sin guardar?",
+
+  "PTS": "PTS",
+  "PL": "P",
+  "W": "V",
+  "D": "D",
+  "L": "L",
+  "GF": "GM",
+  "GA": "GS",
+  "GD": "DG",
+  "Team": "Equipo",
+  "Last 5": "Últimos 5"
 }

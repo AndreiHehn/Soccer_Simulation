@@ -4,6 +4,9 @@
   "Click on the button below to start the simulation!": "Click on the button below to start the simulation!",
   "Dark Theme": "Dark Theme",
   "Generate Tournament": "Generate Tournament",
+  "Goals Against": "Goals Against",
+  "Goals Difference": "Goals Difference",
+  "Goals Forward": "Goals Forward",
   "Language Selection": "Language Selection",
   "Load 2025/2026": "Load 2025/2026",
   "Matchday": "Matchday",
@@ -33,5 +36,16 @@
   "Do you want to return to the menu?": "Do you want to return to the menu?",
   "Do you want to reset the settings?": "Do you want to reset the settings?",
   "Do you want to reset all teams?": "Do you want to reset all teams?",
-  "Do you want to quit without saving?": "Do you want to quit without saving?"
+  "Do you want to quit without saving?": "Do you want to quit without saving?",
+
+  "PTS": "PTS",
+  "PL": "PL",
+  "W": "W",
+  "D": "D",
+  "L": "L",
+  "GF": "GF",
+  "GA": "GA",
+  "GD": "GD",
+  "Team": "Team",
+  "Last 5": "Last 5"
 }
