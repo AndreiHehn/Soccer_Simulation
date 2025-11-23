@@ -42,7 +42,7 @@ export const Container = styled.div<Props>`
     }
 
     .tournament-name {
-      font-size: 18px;
+      font-size: 16px;
       margin-left: 10px;
       color: ${(props) => props.primaryColor};
       white-space: nowrap;

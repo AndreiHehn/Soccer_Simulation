@@ -9,11 +9,15 @@ import Brasileirão_logo from "../../assets/icons/league logos/Brasileirão_logo
 import Eredivisie_logo from "../../assets/icons/league logos/Eredivisie_logo.png";
 import LigaPortugal_logo from "../../assets/icons/league logos/LigaPortugal_logo.png";
 
+import UefaChampionsLeague_logo from "../../assets/icons/league logos/UefaChampionsLeague_logo.png";
+import Libertadores_logo from "../../assets/icons/league logos/Libertadores_logo.png";
+
 export const TournamentsList: Tournament[] = [
   {
     id: "premier_league",
     name: "Premier League",
     logo: PremierLeague_logo,
+    type: "National League",
     primaryColor: "#37003C",
     secondaryColor: "#8252FF",
     tertiaryColor: "#48034f",
@@ -49,6 +53,7 @@ export const TournamentsList: Tournament[] = [
     id: "la_liga",
     name: "La Liga",
     logo: LaLiga_logo,
+    type: "National League",
     primaryColor: "#ff6560",
     secondaryColor: "#ff6560",
     tertiaryColor: "#e9e5e5",
@@ -84,6 +89,7 @@ export const TournamentsList: Tournament[] = [
     id: "serie_a",
     name: "Serie A",
     logo: SerieA_logo,
+    type: "National League",
     primaryColor: "#0C8CFF",
     secondaryColor: "#00F4E6",
     tertiaryColor: "#93fffa",
@@ -119,6 +125,7 @@ export const TournamentsList: Tournament[] = [
     id: "bundesliga",
     name: "Bundesliga",
     logo: Bundesliga_logo,
+    type: "National League",
     primaryColor: "#D10214",
     secondaryColor: "#D10214",
     tertiaryColor: "#1c2429",
@@ -152,6 +159,7 @@ export const TournamentsList: Tournament[] = [
     id: "ligue_1",
     name: "Ligue 1",
     logo: Ligue1_logo,
+    type: "National League",
     primaryColor: "#0061FE",
     secondaryColor: "#0061FE",
     tertiaryColor: "#213744",
@@ -185,6 +193,7 @@ export const TournamentsList: Tournament[] = [
     id: "eredivisie",
     name: "Eredivisie",
     logo: Eredivisie_logo,
+    type: "National League",
     primaryColor: "#14094a",
     secondaryColor: "#14094a",
     tertiaryColor: "#3e368c",
@@ -218,6 +227,7 @@ export const TournamentsList: Tournament[] = [
     id: "liga_portugal",
     name: "Liga Portugal",
     logo: LigaPortugal_logo,
+    type: "National League",
     primaryColor: "#257f09",
     secondaryColor: "#257f09",
     tertiaryColor: "#97cb8e",
@@ -251,6 +261,7 @@ export const TournamentsList: Tournament[] = [
     id: "brasileirao",
     name: "Brasileirão",
     logo: Brasileirão_logo,
+    type: "National League",
     primaryColor: "#C7FF00",
     secondaryColor: "#2b16c7",
     tertiaryColor: "#7967ff",
@@ -281,5 +292,34 @@ export const TournamentsList: Tournament[] = [
       "Vasco",
       "Vitória",
     ],
+  },
+  {
+    id: "uefa_champions_league",
+    name: "Champions League",
+    logo: UefaChampionsLeague_logo,
+    type: "Continental",
+    primaryColor: "#120d4b",
+    secondaryColor: "#180c93",
+    tertiaryColor: "#180c93",
+    backgroundColor: "#120d4b",
+    textColor: "#FFFFFF",
+    teams: 20,
+    relegated: 0,
+    qualified: [8, 16], // Round of 16 / Round of 32
+    defaultTeams: ["Atlético-MG"],
+  },
+  {
+    id: "libertadores",
+    name: "Libertadores",
+    logo: Libertadores_logo,
+    type: "Continental",
+    primaryColor: "#AA7125",
+    secondaryColor: "#AA7125",
+    tertiaryColor: "#AA7125",
+    backgroundColor: "#373737",
+    textColor: "#FFFFFF",
+    teams: 20,
+    relegated: 0,
+    defaultTeams: ["Atlético-MG"],
   },
 ];

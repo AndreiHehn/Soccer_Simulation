@@ -2,6 +2,7 @@ export interface Tournament {
   id: string;
   name: string;
   logo: string;
+  type: string;
   primaryColor: string;
   secondaryColor: string;
   tertiaryColor: string;
