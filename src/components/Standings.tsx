@@ -9,6 +9,7 @@ export default function Standings() {
   const { t } = useTranslation();
 
   const StandingsInfo = [
+    "detail",
     "#",
     "Team",
     "PL",
@@ -32,7 +33,7 @@ export default function Standings() {
       <tr className="standings-header">
         {StandingsInfo.map((item) => (
           <th key={item} className="header-item" id={`${item}-column`}>
-            {t(item)}
+            {item != "detail" && t(item)}
           </th>
         ))}
       </tr>
@@ -40,6 +41,37 @@ export default function Standings() {
       {activeTournament &&
         standings.map((team, index) => (
           <tr key={team.team} className="standings">
+            <td className="standings-detail">
+              <div
+                className={(() => {
+                  if (!selectedTournament) return "";
+
+                  const q = selectedTournament.qualified ?? [];
+                  const relegated = selectedTournament.relegated ?? 0;
+                  const totalTeams = selectedTournament.teams;
+
+                  const qtPrimary = q[0] ?? 0;
+                  const qtSecondary = q[1] ?? 0;
+
+                  // Relegated Teams
+                  if (index >= totalTeams - relegated) {
+                    return "detail relegated";
+                  }
+
+                  // Main Competition (Champions, Libertadores)
+                  if (index < qtPrimary) {
+                    return "detail primaryTournament";
+                  }
+
+                  // Secondary Competition (Europa League, Sudamericana)
+                  if (index >= qtPrimary && index < qtPrimary + qtSecondary) {
+                    return "detail secondaryTournament";
+                  }
+
+                  return "";
+                })()}
+              ></div>
+            </td>
             <td className="standings-points">{index + 1}</td>
 
             <td className="standings-teams">

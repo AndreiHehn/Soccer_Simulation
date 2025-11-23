@@ -19,6 +19,8 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#37003C",
     textColor: "#FFFFFF",
     teams: 20,
+    relegated: 3,
+    qualified: [5, 2], // Champions League / Europa League
     defaultTeams: [
       "Arsenal",
       "Aston Villa",
@@ -52,6 +54,8 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#FFFFFF",
     textColor: "#08237F",
     teams: 20,
+    relegated: 3,
+    qualified: [5, 2], // Champions League / Europa League
     defaultTeams: [
       "Athletic Club",
       "Atlético Madrid",
@@ -85,6 +89,8 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#FFFFFF",
     textColor: "#024c8c",
     teams: 20,
+    relegated: 3,
+    qualified: [4, 2], // Champions League / Europa League
     defaultTeams: [
       "Atalanta",
       "Bologna",
@@ -118,6 +124,8 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#0A141A",
     textColor: "#FFFFFF",
     teams: 18,
+    relegated: 3,
+    qualified: [4, 2], // Champions League / Europa League
     defaultTeams: [
       "Augsburg",
       "Bayer Leverkusen",
@@ -149,6 +157,8 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#0d2534",
     textColor: "#FFFFFF",
     teams: 18,
+    relegated: 3,
+    qualified: [3, 3], // Champions League / Europa League
     defaultTeams: [
       "Angers",
       "AS Monaco",
@@ -180,6 +190,8 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#39365b",
     textColor: "#FFFFFF",
     teams: 18,
+    relegated: 3,
+    qualified: [3, 3], // Champions League / Europa League
     defaultTeams: [
       "Ajax",
       "AZ Alkmaar",
@@ -211,6 +223,8 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#150942",
     textColor: "#FFFFFF",
     teams: 20,
+    relegated: 4,
+    qualified: [6, 6], // Libertadores / Sudamericana
     defaultTeams: [
       "Atlético-MG",
       "Bahia",

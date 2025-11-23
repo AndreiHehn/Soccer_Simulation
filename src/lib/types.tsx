@@ -8,6 +8,8 @@ export interface Tournament {
   backgroundColor: string;
   textColor: string;
   teams: number;
+  relegated?: number;
+  qualified?: number[];
   defaultTeams: string[];
 }
 

@@ -92,4 +92,28 @@ export const Container = styled.table<Props>`
   .resultText {
     font-size: 10px;
   }
+
+  .standings-detail {
+    height: 28px;
+  }
+  .detail {
+    width: 100%;
+    height: 100%;
+  }
+
+  .relegated {
+    background-color: #e21111;
+  }
+
+  .primaryTournament {
+    background-color: #0cbb29;
+  }
+
+  .secondaryTournament {
+    background-color: #3b3eee;
+  }
+
+  #detail-column {
+    width: 5px;
+  }
 `;
