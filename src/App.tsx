@@ -95,6 +95,7 @@ function App() {
         goalsFor: 0,
         goalsAgainst: 0,
         goalDifference: 0,
+        lastFive: [],
       }))
     );
     setMatchResults({});
@@ -147,6 +148,7 @@ function App() {
             setActivePage("Home"),
             setSelectedTournament(null),
             setTournamentStep("Teams Selection"),
+            setActiveTournament(false),
             setSelectedTeams([])
           )}
           textButton2={t("Yes")}
