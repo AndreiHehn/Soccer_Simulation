@@ -41,48 +41,50 @@ export default function SideBar() {
       <section className="separator">
         <h3 className="section-category">{t("National Leagues")}</h3>
       </section>
-      <div className="tournaments-buttons">
-        {TournamentsList.map(
-          (tournament) =>
-            tournament.type == "National League" && (
-              <SideBarButton
-                key={tournament.id}
-                name={tournament.name}
-                color={tournament.primaryColor}
-                logo={tournament.logo}
-                functionButton={() =>
-                  activePage == "Home"
-                    ? setSelectedTournament(tournament)
-                    : (setLocalTournament(tournament),
-                      setNewSimulation(true),
-                      setSelectedTeams)
-                }
-              />
-            )
-        )}
-      </div>
-      <section className="separator">
-        <h3 className="section-category">{t("Continental Cups")}</h3>
-      </section>
-      <div className="tournaments-buttons">
-        {TournamentsList.map(
-          (tournament) =>
-            tournament.type == "Continental" && (
-              <SideBarButton
-                key={tournament.id}
-                name={tournament.name}
-                color={tournament.primaryColor}
-                logo={tournament.logo}
-                functionButton={() =>
-                  activePage == "Home"
-                    ? setSelectedTournament(tournament)
-                    : (setLocalTournament(tournament),
-                      setNewSimulation(true),
-                      setSelectedTeams)
-                }
-              />
-            )
-        )}
+      <div className="buttons">
+        <div className="tournaments-buttons">
+          {TournamentsList.map(
+            (tournament) =>
+              tournament.type == "National League" && (
+                <SideBarButton
+                  key={tournament.id}
+                  name={tournament.name}
+                  color={tournament.primaryColor}
+                  logo={tournament.logo}
+                  functionButton={() =>
+                    activePage == "Home"
+                      ? setSelectedTournament(tournament)
+                      : (setLocalTournament(tournament),
+                        setNewSimulation(true),
+                        setSelectedTeams)
+                  }
+                />
+              )
+          )}
+        </div>
+        <section className="separator">
+          <h3 className="section-category">{t("Continental Cups")}</h3>
+        </section>
+        <div className="tournaments-buttons">
+          {TournamentsList.map(
+            (tournament) =>
+              tournament.type == "Continental" && (
+                <SideBarButton
+                  key={tournament.id}
+                  name={tournament.name}
+                  color={tournament.primaryColor}
+                  logo={tournament.logo}
+                  functionButton={() =>
+                    activePage == "Home"
+                      ? setSelectedTournament(tournament)
+                      : (setLocalTournament(tournament),
+                        setNewSimulation(true),
+                        setSelectedTeams)
+                  }
+                />
+              )
+          )}
+        </div>
       </div>
       <footer className="settings-menu">
         <SideBarButton

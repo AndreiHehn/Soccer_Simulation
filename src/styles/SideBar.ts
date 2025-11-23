@@ -1,3 +1,4 @@
+import { darken } from "polished";
 import styled from "styled-components";
 
 interface Props {
@@ -46,6 +47,7 @@ export const Container = styled.aside<Props>`
   .separator {
     display: ${(props) => (props.isOpen ? "flex" : "none")};
     margin-bottom: 5px;
+    justify-content: center;
 
     .section-category {
       font-size: 16px;
@@ -53,16 +55,24 @@ export const Container = styled.aside<Props>`
       font-weight: 400;
       display: flex;
       white-space: nowrap;
+      margin-top: 10px;
     }
+  }
+
+  .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    overflow-y: ${(props) => props.isOpen && "scroll"};
   }
 
   .tournaments-buttons {
     margin-top: ${(props) => !props.isOpen && "30px"};
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
   }
 
   .settings-menu {
@@ -73,5 +83,30 @@ export const Container = styled.aside<Props>`
     align-items: center;
     flex-direction: column;
     gap: 10px;
+  }
+
+  /* Largura do scroll */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Fundo do trilho */
+  ::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  /* "Botão" que desliza */
+  ::-webkit-scrollbar-thumb {
+    background: ${(props) =>
+      props.tournamentColor
+        ? darken(0.2, props.tournamentColor)
+        : "var(--app-secondary)"};
+
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
   }
 `;
