@@ -7,6 +7,7 @@ import Bundesliga_logo from "../../assets/icons/league logos/Bundesliga_logo.png
 import Ligue1_logo from "../../assets/icons/league logos/Ligue1_logo.png";
 import Brasileirão_logo from "../../assets/icons/league logos/Brasileirão_logo.png";
 import Eredivisie_logo from "../../assets/icons/league logos/Eredivisie_logo.png";
+import LigaPortugal_logo from "../../assets/icons/league logos/LigaPortugal_logo.png";
 
 export const TournamentsList: Tournament[] = [
   {
@@ -211,6 +212,39 @@ export const TournamentsList: Tournament[] = [
       "Twente",
       "Utrecht",
       "Volendam",
+    ],
+  },
+  {
+    id: "liga_portugal",
+    name: "Liga Portugal",
+    logo: LigaPortugal_logo,
+    primaryColor: "#257f09",
+    secondaryColor: "#257f09",
+    tertiaryColor: "#97cb8e",
+    backgroundColor: "#420a0a",
+    textColor: "#FFFFFF",
+    teams: 18,
+    relegated: 3,
+    qualified: [2, 2], // Champions League / Europa League
+    defaultTeams: [
+      "Alverca",
+      "Arouca",
+      "AVS",
+      "Benfica",
+      "Braga",
+      "Casa Pia",
+      "Estoril",
+      "Estrela Amadora",
+      "Famalicão",
+      "Gil Vicente",
+      "Nacional",
+      "Moreirense",
+      "Porto",
+      "Rio Ave",
+      "Santa Clara",
+      "Sporting",
+      "Tondela",
+      "Vitória de Guimarães",
     ],
   },
   {
