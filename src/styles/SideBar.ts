@@ -65,6 +65,7 @@ export const Container = styled.aside<Props>`
     flex-direction: column;
     height: calc(100% - 250px);
     overflow-y: ${(props) => props.isOpen && "scroll"};
+    overflow-x: hidden;
   }
 
   .tournaments-buttons {
