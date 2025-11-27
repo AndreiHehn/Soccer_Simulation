@@ -20,6 +20,7 @@ import { Ligue1List } from "../lib/tournaments/Ligue1";
 import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
 import { EredivisieList } from "../lib/tournaments/Eredivisie";
 import { LigaPortugalList } from "../lib/tournaments/LigaPortugal";
+import { RestOfEuropeList } from "../lib/tournaments/RestOfEurope";
 import {
   balanceHomeAway,
   generateFirstLeg,
@@ -70,6 +71,8 @@ export default function Tournament() {
         return LigaPortugalList;
       case "brasileirao":
         return BrasileirãoList;
+      case "uefa_champions_league":
+        return RestOfEuropeList;
       default:
         return [];
     }
