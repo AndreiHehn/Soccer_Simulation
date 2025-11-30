@@ -303,7 +303,7 @@ export const TournamentsList: Tournament[] = [
     tertiaryColor: "#180c93",
     backgroundColor: "#120d4b",
     textColor: "#FFFFFF",
-    teams: 20,
+    teams: 82,
     relegated: 0,
     qualified: [8, 16], // Round of 16 / Round of 32
     defaultTeams: ["Atlético-MG"],

@@ -84,6 +84,9 @@ export const Container = styled.main<Props>`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px 16px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
   }
 
   .footer-buttons {
@@ -103,6 +106,28 @@ export const Container = styled.main<Props>`
         background-color: ${(props) => lighten(0.15, props.secondaryColor)};
       }
     }
+  }
+
+  /* Largura do scroll */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Fundo do trilho */
+  ::-webkit-scrollbar-track {
+    background: ${(props) => props.textColor};
+    border-radius: 8px;
+  }
+
+  /* "Botão" que desliza */
+  ::-webkit-scrollbar-thumb {
+    background: ${(props) => props.tertiaryColor};
+
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
   }
 
   // Matches
