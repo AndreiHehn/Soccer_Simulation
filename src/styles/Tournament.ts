@@ -89,6 +89,17 @@ export const Container = styled.main<Props>`
     padding-right: 10px;
   }
 
+  .team-slot {
+    display: flex;
+    align-items: center;
+  }
+
+  .team-flag {
+    width: 30px;
+    margin-right: 10px;
+    user-select: none;
+  }
+
   .footer-buttons {
     position: absolute;
     bottom: 30px;

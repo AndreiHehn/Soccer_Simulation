@@ -28,9 +28,19 @@ import {
   shuffleRounds,
 } from "../lib/functions";
 import CardStatistics from "./CardStatistics";
+import { ChampionsLeagueTeams } from "../lib/tournamentsInfo";
+
+const flags = import.meta.glob(
+  "../assets/icons/country flags/europe/*_flag.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
 
 export default function Tournament() {
   const { t } = useTranslation();
+
   const {
     selectedTournament,
     tournamentStep,
@@ -48,12 +58,12 @@ export default function Tournament() {
     scheduleRef,
   } = useContext(AppContext);
 
-  const [, setSelectedTeam] = useState(""); // Estado local do time selecionado
-  const selectedCount = selectedTeams.filter(Boolean).length; // Apenas times selecionados
+  const [, setSelectedTeam] = useState("");
+  const selectedCount = selectedTeams.filter(Boolean).length;
 
-  // Mapeia as equipes com base no torneio selecionado
   const teams = useMemo(() => {
     if (!selectedTournament) return [];
+
     switch (selectedTournament.id) {
       case "premier_league":
         return PremierLeagueList;
@@ -82,7 +92,6 @@ export default function Tournament() {
     setTeams(teams);
   }, [teams, setTeams]);
 
-  // Limpa o time ao trocar de torneio
   useMemo(() => {
     setSelectedTeam("");
   }, []);
@@ -93,15 +102,15 @@ export default function Tournament() {
     const teamLogo = selected ? selected.logo : "";
 
     setSelectedTeams((prev) => {
-      const newTeams = [...prev];
-      newTeams[index] = teamName;
-      return newTeams;
+      const updated = [...prev];
+      updated[index] = teamName;
+      return updated;
     });
 
     setSelectedLogos((prev) => {
-      const newLogos = [...prev];
-      newLogos[index] = teamLogo;
-      return newLogos;
+      const updated = [...prev];
+      updated[index] = teamLogo;
+      return updated;
     });
   }
 
@@ -112,16 +121,28 @@ export default function Tournament() {
   }
 
   function NextMatchday() {
-    if (selectedTournament != undefined) {
+    if (selectedTournament) {
       if (matchdayNumber < (selectedTournament.teams - 1) * 2) {
         setMatchdayNumber(matchdayNumber + 1);
       }
     }
   }
 
+  function expandCountries(countryTeams: Record<string, number>) {
+    const result: string[] = [];
+
+    Object.entries(countryTeams).forEach(([country, qty]) => {
+      for (let i = 0; i < qty; i++) result.push(country);
+    });
+
+    console.log(result);
+    return result;
+  }
+
+  const countrySlots = expandCountries(ChampionsLeagueTeams);
+
   useEffect(() => {
     if (activeTournament && selectedTeams.length > 1) {
-      // gera apenas 1 vez
       const firstLeg = generateFirstLeg(selectedTeams);
 
       shuffleRounds(firstLeg);
@@ -136,24 +157,10 @@ export default function Tournament() {
 
   return (
     <Container
-      secondaryColor={
-        selectedTournament != null
-          ? selectedTournament.secondaryColor
-          : "#FFFFFF"
-      }
-      tertiaryColor={
-        selectedTournament != null
-          ? selectedTournament.tertiaryColor
-          : "#FFFFFF"
-      }
-      backgroundColor={
-        selectedTournament != null
-          ? selectedTournament.backgroundColor
-          : "#FFFFFF"
-      }
-      textColor={
-        selectedTournament != null ? selectedTournament.textColor : "#FFFFFF"
-      }
+      secondaryColor={selectedTournament?.secondaryColor ?? "#FFF"}
+      tertiaryColor={selectedTournament?.tertiaryColor ?? "#FFF"}
+      backgroundColor={selectedTournament?.backgroundColor ?? "#FFF"}
+      textColor={selectedTournament?.textColor ?? "#FFF"}
     >
       <nav className="steps-nav">
         {["Teams Selection", "Matches", "Standings", "Statistics"].map(
@@ -161,14 +168,14 @@ export default function Tournament() {
             <div
               key={step}
               className={`step ${tournamentStep === step ? "active" : ""} ${
-                selectedTournament != null &&
-                step != "Teams Selection" &&
+                selectedTournament &&
+                step !== "Teams Selection" &&
                 !activeTournament
                   ? "disabled"
                   : ""
               }`}
               onClick={() =>
-                selectedCount == selectedTournament?.teams &&
+                selectedCount === selectedTournament?.teams &&
                 setTournamentStep(step)
               }
             >
@@ -182,17 +189,35 @@ export default function Tournament() {
       {tournamentStep === "Teams Selection" && selectedTournament && (
         <>
           <section className="teams-selection">
-            {[...Array(selectedTournament.teams)].map((_, index) => (
-              <TeamSelector
-                key={index}
-                selectedTournament={selectedTournament}
-                selectedTeam={selectedTeams[index]}
-                onSelectTeam={(teamId) => handleSelectTeam(index, teamId)}
-                teams={teams}
-                disabledTeams={selectedTeams.filter((_, i) => i !== index)} //
-              />
-            ))}
+            {[...Array(selectedTournament.teams)].map((_, index) => {
+              const country = countrySlots[index];
+
+              // Flag correta mapeada dinamicamente
+              const flagPath = `../assets/icons/country flags/europe/${country}_flag.png`;
+              const flagSrc = flags[flagPath];
+
+              return (
+                <div key={index} className="team-slot">
+                  {selectedTournament.name == "Champions League" && (
+                    <img
+                      src={flagSrc as string}
+                      className="team-flag"
+                      alt={country}
+                    />
+                  )}
+
+                  <TeamSelector
+                    selectedTournament={selectedTournament}
+                    selectedTeam={selectedTeams[index]}
+                    onSelectTeam={(teamId) => handleSelectTeam(index, teamId)}
+                    teams={teams}
+                    disabledTeams={selectedTeams.filter((_, i) => i !== index)}
+                  />
+                </div>
+              );
+            })}
           </section>
+
           <footer className="footer-buttons">
             <Button
               color="gray"
@@ -200,21 +225,22 @@ export default function Tournament() {
               height="35px"
               functionButton={() => setConfirmTeams(true)}
               disabled={
-                selectedCount != selectedTournament.teams ||
-                activeTournament == true
+                selectedCount !== selectedTournament.teams || activeTournament
               }
             >
               {t("Generate Tournament")}
             </Button>
+
             <Button
               color="gray"
               borderRadius="6px"
               height="35px"
               functionButton={() => setLoadDefaultTeams(true)}
-              disabled={activeTournament == true}
+              disabled={activeTournament}
             >
               {t("Load 2025/2026")}
             </Button>
+
             <Button
               color="gray"
               borderRadius="6px"
@@ -227,43 +253,48 @@ export default function Tournament() {
           </footer>
         </>
       )}
-      {tournamentStep == "Matches" && selectedTournament && (
+
+      {tournamentStep === "Matches" && selectedTournament && (
         <>
           {activeTournament && (
             <nav className="matchday">
               <div
                 className={`previous-matchday ${
-                  matchdayNumber == 1 ? "inactive" : ""
+                  matchdayNumber === 1 ? "inactive" : ""
                 }`}
                 onClick={() => setMatchdayNumber(1)}
               >
-                <DoubleArrowLeft></DoubleArrowLeft>
+                <DoubleArrowLeft />
               </div>
+
               <div
                 className={`previous-matchday ${
-                  matchdayNumber == 1 ? "inactive" : ""
+                  matchdayNumber === 1 ? "inactive" : ""
                 }`}
                 onClick={PreviousMatchday}
               >
-                <ArrowLeft></ArrowLeft>
+                <ArrowLeft />
               </div>
+
               <h3 className="matchday-number">
                 {t("Matchday")} {matchdayNumber < 10 && "0"}
                 {matchdayNumber}
               </h3>
+
               <div
                 className={`next-matchday ${
-                  matchdayNumber == (selectedTournament.teams - 1) * 2
+                  matchdayNumber === (selectedTournament.teams - 1) * 2
                     ? "inactive"
                     : ""
                 }`}
                 onClick={NextMatchday}
               >
-                <ArrowRight></ArrowRight>
+                <ArrowRight />
               </div>
+
               <div
                 className={`next-matchday ${
-                  matchdayNumber == (selectedTournament.teams - 1) * 2
+                  matchdayNumber === (selectedTournament.teams - 1) * 2
                     ? "inactive"
                     : ""
                 }`}
@@ -271,36 +302,28 @@ export default function Tournament() {
                   setMatchdayNumber((selectedTournament.teams - 1) * 2)
                 }
               >
-                <DoubleArrowRight></DoubleArrowRight>
+                <DoubleArrowRight />
               </div>
             </nav>
           )}
 
           <div className="matches">
-            <Matchday></Matchday>
+            <Matchday />
           </div>
         </>
       )}
-      {tournamentStep == "Standings" && selectedTournament && (
-        <Standings></Standings>
-      )}
-      {tournamentStep == "Statistics" && selectedTournament && (
-        <>
-          <article className="cards">
-            <CardStatistics
-              cardTitle="Goals Forward"
-              orderBy="goalsFor"
-            ></CardStatistics>
-            <CardStatistics
-              cardTitle="Goals Against"
-              orderBy="goalsAgainst"
-            ></CardStatistics>
-            <CardStatistics
-              cardTitle="Goals Difference"
-              orderBy="goalDifference"
-            ></CardStatistics>
-          </article>
-        </>
+
+      {tournamentStep === "Standings" && selectedTournament && <Standings />}
+
+      {tournamentStep === "Statistics" && selectedTournament && (
+        <article className="cards">
+          <CardStatistics cardTitle="Goals Forward" orderBy="goalsFor" />
+          <CardStatistics cardTitle="Goals Against" orderBy="goalsAgainst" />
+          <CardStatistics
+            cardTitle="Goals Difference"
+            orderBy="goalDifference"
+          />
+        </article>
       )}
     </Container>
   );
