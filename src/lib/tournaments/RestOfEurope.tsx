@@ -300,13 +300,13 @@ export const RestOfEuropeList: Team[] = [
     id: "fk_sarajevo",
     name: "FK Sarajevo",
     logo: FKSarajevo_logo,
-    league: "Bosnia and Herzegovina",
+    league: "Bosnia_and_Herzegovina",
   },
   {
     id: "zrinjski_mostar",
     name: "Zrinjski Mostar",
     logo: ZrinjskiMostar_logo,
-    league: "Bosnia and Herzegovina",
+    league: "Bosnia_and_Herzegovina",
   },
   // Bulgaria
   {
@@ -371,19 +371,19 @@ export const RestOfEuropeList: Team[] = [
     id: "slavia_praha",
     name: "Slavia Praha",
     logo: SlaviaPraha_logo,
-    league: "Czech Republic",
+    league: "Czech_Republic",
   },
   {
     id: "sparta_praha",
     name: "Sparta Praha",
     logo: SpartaPraha_logo,
-    league: "Czech Republic",
+    league: "Czech_Republic",
   },
   {
     id: "viktoria_plzen",
     name: "Viktoria Plzen",
     logo: ViktoriaPlzen_logo,
-    league: "Czech Republic",
+    league: "Czech_Republic",
   },
   // Denmark
   {
@@ -422,13 +422,13 @@ export const RestOfEuropeList: Team[] = [
     id: "hb_torshavn",
     name: "HB Tórshavn",
     logo: HBTorshavn_logo,
-    league: "Faroe Islands",
+    league: "Faroe_Islands",
   },
   {
     id: "ki_klaksvik",
     name: "KI Klaksvík",
     logo: KIKlaksvik_logo,
-    league: "Faroe Islands",
+    league: "Faroe_Islands",
   },
   // Finland
   {
@@ -667,26 +667,26 @@ export const RestOfEuropeList: Team[] = [
     id: "fc_struga",
     name: "FC Struga",
     logo: FCStruga_logo,
-    league: "North Macedonia",
+    league: "North_Macedonia",
   },
   {
     id: "kf_shkendija",
     name: "KF Shkëndija",
     logo: KFShkendija_logo,
-    league: "North Macedonia",
+    league: "North_Macedonia",
   },
   // Northern Ireland
   {
     id: "larne_fc",
     name: "Larne FC",
     logo: LarneFC_logo,
-    league: "Northern Ireland",
+    league: "Northern_Ireland",
   },
   {
     id: "linfield_fc",
     name: "Linfield FC",
     logo: LinfieldFC_logo,
-    league: "Northern Ireland",
+    league: "Northern_Ireland",
   },
   // Norway
   {
@@ -756,13 +756,13 @@ export const RestOfEuropeList: Team[] = [
     id: "la_fiorita",
     name: "La Fiorita",
     logo: LaFiorita_logo,
-    league: "San Marino",
+    league: "San_Marino",
   },
   {
     id: "tre_penne",
     name: "SP Tre Penne",
     logo: TrePenne_logo,
-    league: "San Marino",
+    league: "San_Marino",
   },
   // Scotland
   {

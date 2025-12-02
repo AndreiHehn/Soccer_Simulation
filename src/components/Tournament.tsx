@@ -146,7 +146,6 @@ export default function Tournament() {
       for (let i = 0; i < qty; i++) result.push(country);
     });
 
-    console.log(result);
     return result;
   }
 
@@ -202,6 +201,7 @@ export default function Tournament() {
           <section className="teams-selection">
             {[...Array(selectedTournament.teams)].map((_, index) => {
               const country = countrySlots[index];
+              const countryTeams = teams.filter((t) => t.league === country); // Only for Champions League
 
               // Flag correta mapeada dinamicamente
               const flagPath = `../assets/icons/country flags/europe/${country}_flag.png`;
@@ -221,7 +221,11 @@ export default function Tournament() {
                     selectedTournament={selectedTournament}
                     selectedTeam={selectedTeams[index]}
                     onSelectTeam={(teamId) => handleSelectTeam(index, teamId)}
-                    teams={teams}
+                    teams={
+                      selectedTournament.name == "Champions League"
+                        ? countryTeams
+                        : teams
+                    }
                     disabledTeams={selectedTeams.filter((_, i) => i !== index)}
                   />
                 </div>
