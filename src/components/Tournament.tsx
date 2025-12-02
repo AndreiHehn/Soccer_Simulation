@@ -61,6 +61,17 @@ export default function Tournament() {
   const [, setSelectedTeam] = useState("");
   const selectedCount = selectedTeams.filter(Boolean).length;
 
+  const ChampionsLeagueList = [
+    ...PremierLeagueList,
+    ...LaLigaList,
+    ...SerieAList,
+    ...BundesligaList,
+    ...Ligue1List,
+    ...EredivisieList,
+    ...LigaPortugalList,
+    ...RestOfEuropeList,
+  ];
+
   const teams = useMemo(() => {
     if (!selectedTournament) return [];
 
@@ -82,7 +93,7 @@ export default function Tournament() {
       case "brasileirao":
         return BrasileirãoList;
       case "uefa_champions_league":
-        return RestOfEuropeList;
+        return ChampionsLeagueList;
       default:
         return [];
     }
