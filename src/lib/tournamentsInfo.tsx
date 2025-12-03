@@ -1,5 +1,6 @@
 export const ChampionsLeagueTeams = {
-  England: 6,
+  EuropaLeague: 1,
+  England: 5,
   Spain: 5,
   Germany: 4,
   Italy: 4,

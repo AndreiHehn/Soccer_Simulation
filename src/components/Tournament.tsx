@@ -21,6 +21,8 @@ import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
 import { EredivisieList } from "../lib/tournaments/Eredivisie";
 import { LigaPortugalList } from "../lib/tournaments/LigaPortugal";
 import { RestOfEuropeList } from "../lib/tournaments/RestOfEurope";
+import { EuropaLeagueChampionsList } from "../lib/tournaments/PossibleChampions";
+import EuropaLeagueLogo from "../assets/icons/league logos/EuropaLeague_logo.png";
 import {
   balanceHomeAway,
   generateFirstLeg,
@@ -199,7 +201,25 @@ export default function Tournament() {
       {tournamentStep === "Teams Selection" && selectedTournament && (
         <>
           <section className="teams-selection">
-            {[...Array(selectedTournament.teams)].map((_, index) => {
+            {selectedTournament.name === "Champions League" && (
+              <div className="team-slot">
+                <img
+                  src={EuropaLeagueLogo}
+                  className="team-flag"
+                  alt="europa-league-champion"
+                />
+
+                <TeamSelector
+                  selectedTournament={selectedTournament}
+                  selectedTeam={selectedTeams[0]}
+                  onSelectTeam={(teamId) => handleSelectTeam(0, teamId)}
+                  teams={EuropaLeagueChampionsList}
+                  disabledTeams={selectedTeams.filter((_, i) => i !== 0)}
+                />
+              </div>
+            )}
+            {[...Array(selectedTournament.teams - 1)].map((_, i) => {
+              const index = i + 1;
               const country = countrySlots[index];
               const countryTeams = teams.filter((t) => t.league === country); // Only for Champions League
 
