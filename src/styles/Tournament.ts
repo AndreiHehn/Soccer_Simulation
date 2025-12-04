@@ -2,6 +2,7 @@ import { darken, lighten } from "polished";
 import styled from "styled-components";
 
 interface Props {
+  tournamentName: string;
   secondaryColor: string;
   tertiaryColor: string;
   backgroundColor: string;
@@ -85,7 +86,8 @@ export const Container = styled.main<Props>`
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px 16px;
     max-height: 400px;
-    overflow-y: auto;
+    overflow-y: ${(props) =>
+      props.tournamentName == "Champions League" ? "auto" : "hidden"};
     padding-right: 10px;
   }
 

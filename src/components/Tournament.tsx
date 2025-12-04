@@ -169,6 +169,7 @@ export default function Tournament() {
 
   return (
     <Container
+      tournamentName={selectedTournament?.name ?? ""}
       secondaryColor={selectedTournament?.secondaryColor ?? "#FFF"}
       tertiaryColor={selectedTournament?.tertiaryColor ?? "#FFF"}
       backgroundColor={selectedTournament?.backgroundColor ?? "#FFF"}
