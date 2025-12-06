@@ -72,6 +72,9 @@ interface AppContextProps {
       Record<number, Record<number, { home: number | ""; away: number | "" }>>
     >
   >;
+
+  Q1Teams: Array<string>;
+  setQ1Teams: Dispatch<SetStateAction<Array<string>>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -109,6 +112,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [matchResults, setMatchResults] = useState<
     Record<number, Record<number, { home: number | ""; away: number | "" }>>
   >({});
+  const [Q1Teams, setQ1Teams] = useState<string[]>([]);
 
   return (
     <AppContext.Provider
@@ -160,6 +164,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setStandings,
         matchResults,
         setMatchResults,
+        Q1Teams,
+        setQ1Teams,
       }}
     >
       {children}

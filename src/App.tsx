@@ -47,6 +47,8 @@ function App() {
     selectedTeams,
     selectedLogos,
     setMatchResults,
+    setQ1Teams,
+    Q1Teams,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -99,6 +101,12 @@ function App() {
       }))
     );
     setMatchResults({});
+  }
+
+  function FillQ1Teams() {
+    if (selectedTournament?.name == "Champions League") {
+      setQ1Teams(selectedTeams.slice(52)); // Sweden
+    }
   }
 
   return (
@@ -221,7 +229,9 @@ function App() {
           onClick2={() => (
             setConfirmTeams(false),
             setActiveTournament(true),
-            SetDefaultStandings()
+            SetDefaultStandings(),
+            FillQ1Teams(),
+            console.log(Q1Teams)
           )}
           textButton2={t("Yes")}
         ></ModalMessage>
