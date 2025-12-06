@@ -62,6 +62,7 @@ export default function Tournament() {
 
   const [, setSelectedTeam] = useState("");
   const selectedCount = selectedTeams.filter(Boolean).length;
+  const [navbarItems, setNavbarItems] = useState(Array<string>);
 
   const ChampionsLeagueList = [
     ...PremierLeagueList,
@@ -104,6 +105,20 @@ export default function Tournament() {
   useEffect(() => {
     setTeams(teams);
   }, [teams, setTeams]);
+
+  useEffect(() => {
+    if (selectedTournament?.name == "Champions League") {
+      setNavbarItems([
+        "Teams Selection",
+        "Qualifying Rounds",
+        "Standings",
+        "Knockout Stage",
+        "Statistics",
+      ]);
+    } else {
+      setNavbarItems(["Teams Selection", "Matches", "Standings", "Statistics"]);
+    }
+  }, [selectedTournament]);
 
   useMemo(() => {
     setSelectedTeam("");
@@ -176,27 +191,25 @@ export default function Tournament() {
       textColor={selectedTournament?.textColor ?? "#FFF"}
     >
       <nav className="steps-nav">
-        {["Teams Selection", "Matches", "Standings", "Statistics"].map(
-          (step) => (
-            <div
-              key={step}
-              className={`step ${tournamentStep === step ? "active" : ""} ${
-                selectedTournament &&
-                step !== "Teams Selection" &&
-                !activeTournament
-                  ? "disabled"
-                  : ""
-              }`}
-              onClick={() =>
-                selectedCount === selectedTournament?.teams &&
-                setTournamentStep(step)
-              }
-            >
-              <h3 className="step-name">{t(step)}</h3>
-              <hr className="selected-step" />
-            </div>
-          )
-        )}
+        {navbarItems.map((step) => (
+          <div
+            key={step}
+            className={`step ${tournamentStep === step ? "active" : ""} ${
+              selectedTournament &&
+              step !== "Teams Selection" &&
+              !activeTournament
+                ? "disabled"
+                : ""
+            }`}
+            onClick={() =>
+              selectedCount === selectedTournament?.teams &&
+              setTournamentStep(step)
+            }
+          >
+            <h3 className="step-name">{t(step)}</h3>
+            <hr className="selected-step" />
+          </div>
+        ))}
       </nav>
 
       {tournamentStep === "Teams Selection" && selectedTournament && (
