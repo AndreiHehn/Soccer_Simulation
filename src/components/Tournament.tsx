@@ -58,6 +58,7 @@ export default function Tournament() {
     setConfirmTeams,
     activeTournament,
     scheduleRef,
+    Q1Teams,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState("");
@@ -302,6 +303,17 @@ export default function Tournament() {
           </footer>
         </>
       )}
+
+      {tournamentStep == "Qualifying Rounds" &&
+        selectedTournament?.name == "Champions League" && (
+          <>
+            <div>
+              {Q1Teams.map((team) => (
+                <h4>{team}</h4>
+              ))}
+            </div>
+          </>
+        )}
 
       {tournamentStep === "Matches" && selectedTournament && (
         <>

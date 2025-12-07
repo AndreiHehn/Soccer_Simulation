@@ -105,7 +105,7 @@ function App() {
 
   function FillQ1Teams() {
     if (selectedTournament?.name == "Champions League") {
-      setQ1Teams(selectedTeams.slice(52)); // Sweden
+      setQ1Teams(selectedTeams.slice(54)); // Sweden
     }
   }
 
