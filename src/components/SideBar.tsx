@@ -78,7 +78,8 @@ export default function SideBar() {
                   logo={tournament.logo}
                   functionButton={() =>
                     activePage == "Home" || activePage == "Rankings"
-                      ? setSelectedTournament(tournament)
+                      ? (setSelectedTournament(tournament),
+                        setActivePage("Home"))
                       : (setLocalTournament(tournament),
                         setNewSimulation(true),
                         setSelectedTeams)

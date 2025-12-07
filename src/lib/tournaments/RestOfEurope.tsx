@@ -81,6 +81,7 @@ import Ferencvaros_logo from "../../assets/icons/teams logos/Europe/Ferencvaros_
 // Iceland
 import Breidablik_logo from "../../assets/icons/teams logos/Europe/Breidablik_logo.png";
 import ValurReykjavik_logo from "../../assets/icons/teams logos/Europe/ValurReykjavik_logo.png";
+import VikingurReykjavik_logo from "../../assets/icons/teams logos/Europe/VikingurReykjavik_logo.png";
 // Ireland
 import DerryCity_logo from "../../assets/icons/teams logos/Europe/DerryCity_logo.png";
 import ShamrockRovers_logo from "../../assets/icons/teams logos/Europe/ShamrockRovers_logo.png";
@@ -156,6 +157,7 @@ import Celje_logo from "../../assets/icons/teams logos/Europe/Celje_logo.png";
 import NKMaribor_logo from "../../assets/icons/teams logos/Europe/NKMaribor_logo.png";
 import OlimpijaLjubliana_logo from "../../assets/icons/teams logos/Europe/OlimpijaLjubliana_logo.png";
 // Sweden
+import Djurgardens_logo from "../../assets/icons/teams logos/Europe/DjurgardensIF_logo.png";
 import Hacken_logo from "../../assets/icons/teams logos/Europe/Hacken_logo.png";
 import Malmo_logo from "../../assets/icons/teams logos/Europe/Malmo_logo.png";
 import Mjallby_logo from "../../assets/icons/teams logos/Europe/Mjallby_logo.png";
@@ -512,7 +514,7 @@ export const RestOfEuropeList: Team[] = [
   // Greece
   {
     id: "aek",
-    name: "AEK",
+    name: "AEK Athens",
     logo: AEK_logo,
     league: "Greece",
   },
@@ -558,6 +560,12 @@ export const RestOfEuropeList: Team[] = [
     id: "valur_reykjavik",
     name: "Valur Reykjavík",
     logo: ValurReykjavik_logo,
+    league: "Iceland",
+  },
+  {
+    id: "vikingur_reykjavik",
+    name: "Vikingur Reykjavík",
+    logo: VikingurReykjavik_logo,
     league: "Iceland",
   },
   // Ireland
@@ -905,6 +913,12 @@ export const RestOfEuropeList: Team[] = [
     league: "Slovenia",
   },
   // Sweden
+  {
+    id: "djurgardens",
+    name: "Djurgardens IF",
+    logo: Djurgardens_logo,
+    league: "Sweden",
+  },
   {
     id: "hacken",
     name: "Häcken",
