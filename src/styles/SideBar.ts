@@ -63,7 +63,7 @@ export const Container = styled.aside<Props>`
     width: 100%;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 250px);
+    height: calc(100% - 300px);
     overflow-y: ${(props) => props.isOpen && "scroll"};
     overflow-x: hidden;
   }

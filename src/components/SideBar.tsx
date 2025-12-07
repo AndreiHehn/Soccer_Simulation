@@ -5,6 +5,7 @@ import SideBarButton from "./SideBarButton";
 import Logo from "../assets/icons/soccer_simulation_logo.svg?react";
 
 import { useTranslation } from "react-i18next";
+import GraphIcon from "../assets/icons/GraphIcon.svg?react";
 import SettingsIcon from "../assets/icons/settingsIcon.svg?react";
 import HomeIcon from "../assets/icons/homeIcon.svg?react";
 import { TournamentsList } from "../lib/tournaments/tournamentsList";
@@ -18,10 +19,10 @@ export default function SideBar() {
     selectedTournament,
     activePage,
     setBackToMenu,
-
+    setActivePage,
     setLocalTournament,
     setNewSimulation,
-
+    setRanking,
     setSelectedTeams,
   } = useContext(AppContext);
   const { t } = useTranslation();
@@ -52,8 +53,9 @@ export default function SideBar() {
                   color={tournament.primaryColor}
                   logo={tournament.logo}
                   functionButton={() =>
-                    activePage == "Home"
-                      ? setSelectedTournament(tournament)
+                    activePage == "Home" || activePage == "Rankings"
+                      ? (setSelectedTournament(tournament),
+                        setActivePage("Home"))
                       : (setLocalTournament(tournament),
                         setNewSimulation(true),
                         setSelectedTeams)
@@ -75,7 +77,7 @@ export default function SideBar() {
                   color={tournament.primaryColor}
                   logo={tournament.logo}
                   functionButton={() =>
-                    activePage == "Home"
+                    activePage == "Home" || activePage == "Rankings"
                       ? setSelectedTournament(tournament)
                       : (setLocalTournament(tournament),
                         setNewSimulation(true),
@@ -87,20 +89,33 @@ export default function SideBar() {
         </div>
       </div>
       <footer className="settings-menu">
+        {activePage != "Rankings" && (
+          <SideBarButton
+            name={t("Rankings")}
+            color="#265643"
+            logo={GraphIcon}
+            functionButton={() =>
+              selectedTournament != null
+                ? setRanking(true)
+                : (setActivePage("Rankings"), setSelectedTournament(null))
+            }
+          ></SideBarButton>
+        )}
         <SideBarButton
           name={t("Settings")}
           color="#265643"
           logo={SettingsIcon}
           functionButton={() => setShowModalSettings(true)}
         ></SideBarButton>
-        {activePage == "Tournament" && (
-          <SideBarButton
-            name={t("Back to Menu")}
-            color="#265643"
-            logo={HomeIcon}
-            functionButton={() => setBackToMenu(true)}
-          ></SideBarButton>
-        )}
+        {activePage == "Tournament" ||
+          (activePage == "Rankings" && (
+            <SideBarButton
+              name={t("Back to Menu")}
+              color="#265643"
+              logo={HomeIcon}
+              functionButton={() => setBackToMenu(true)}
+            ></SideBarButton>
+          ))}
       </footer>
     </Container>
   );

@@ -9,6 +9,7 @@ import { ModalMessage } from "./generic/ModalMessage";
 import i18n from "./lib/language";
 import Home from "./components/Home";
 import Tournament from "./components/Tournament";
+import Rankings from "./components/Rankings";
 
 function App() {
   const {
@@ -47,6 +48,8 @@ function App() {
     selectedTeams,
     selectedLogos,
     setMatchResults,
+    ranking,
+    setRanking,
     setQ1Teams,
     Q1Teams,
   } = useContext(AppContext);
@@ -113,6 +116,7 @@ function App() {
     <>
       {activePage == "Home" && <Home></Home>}
       {activePage == "Tournament" && <Tournament></Tournament>}
+      {activePage == "Rankings" && <Rankings></Rankings>}
       <SideBar></SideBar>
       {showModalSettings && (
         <ModalGeneric
@@ -175,6 +179,24 @@ function App() {
             setMatchdayNumber(1),
             setActiveTournament(false),
             SetDefaultStandings()
+          )}
+          textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
+      {ranking && (
+        <ModalMessage
+          textMessage={t("Do you want to go to the ranking page?")}
+          onClick1={() => setRanking(false)}
+          textButton1={t("Cancel")}
+          onClick2={() => (
+            setRanking(false),
+            setTournamentStep("Teams Selection"),
+            setActiveTournament(false),
+            setSelectedTournament(null),
+            setSelectedTeams([]),
+            setMatchdayNumber(1),
+            SetDefaultStandings(),
+            setActivePage("Rankings")
           )}
           textButton2={t("Yes")}
         ></ModalMessage>
