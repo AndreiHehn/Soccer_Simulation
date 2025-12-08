@@ -233,8 +233,16 @@ export default function Tournament() {
                 />
               </div>
             )}
-            {[...Array(selectedTournament.teams - 1)].map((_, i) => {
-              const index = i + 1;
+            {[
+              ...Array(
+                selectedTournament.name === "Champions League"
+                  ? selectedTournament.teams - 1 // remove 1 porque o 1º é o campeão da EL
+                  : selectedTournament.teams
+              ),
+            ].map((_, i) => {
+              const index =
+                selectedTournament.name === "Champions League" ? i + 1 : i;
+
               const country = countrySlots[index];
               const countryTeams = teams.filter((t) => t.league === country); // Only for Champions League
 

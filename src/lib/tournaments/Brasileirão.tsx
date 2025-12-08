@@ -8,11 +8,12 @@ import Avaí_logo from "../../assets/icons/teams logos/Brazil/Avaí_logo.png";
 import Bahia_logo from "../../assets/icons/teams logos/Brazil/Bahia_logo.png";
 import Botafogo_logo from "../../assets/icons/teams logos/Brazil/Botafogo_logo.png";
 import Ceara_logo from "../../assets/icons/teams logos/Brazil/Ceara_logo.png";
+import Chapecoense_logo from "../../assets/icons/teams logos/Brazil/Chapecoense_logo.png";
 import Corinthians_logo from "../../assets/icons/teams logos/Brazil/Corinthians_logo.png";
 import Coritiba_logo from "../../assets/icons/teams logos/Brazil/Coritiba_logo.png";
 import Criciuma_logo from "../../assets/icons/teams logos/Brazil/Criciuma_logo.png";
 import Cruzeiro_logo from "../../assets/icons/teams logos/Brazil/Cruzeiro_logo.png";
-import Cuiaba_logo from "../../assets/icons/teams logos/Brazil/Cuiaba_logo.webp";
+import Cuiaba_logo from "../../assets/icons/teams logos/Brazil/Cuiaba_logo.png";
 import Flamengo_logo from "../../assets/icons/teams logos/Brazil/Flamengo_logo.png";
 import Fluminense_logo from "../../assets/icons/teams logos/Brazil/Fluminense_logo.png";
 import Fortaleza_logo from "../../assets/icons/teams logos/Brazil/Fortaleza_logo.png";
@@ -23,6 +24,7 @@ import Juventude_logo from "../../assets/icons/teams logos/Brazil/Juventude_logo
 import Mirassol_logo from "../../assets/icons/teams logos/Brazil/Mirassol_logo.png";
 import Palmeiras_logo from "../../assets/icons/teams logos/Brazil/Palmeiras_logo.png";
 import RBBragantino_logo from "../../assets/icons/teams logos/Brazil/RBBragantino_logo.png";
+import Remo_logo from "../../assets/icons/teams logos/Brazil/Remo_logo.png";
 import Santos_logo from "../../assets/icons/teams logos/Brazil/Santos_logo.png";
 import SãoPaulo_logo from "../../assets/icons/teams logos/Brazil/SãoPaulo_logo.png";
 import Sport_logo from "../../assets/icons/teams logos/Brazil/Sport_logo.png";
@@ -76,6 +78,12 @@ export const BrasileirãoList: Team[] = [
     id: "ceara",
     name: "Ceará",
     logo: Ceara_logo,
+    league: "Brazil",
+  },
+  {
+    id: "chapecoense",
+    name: "Chapecoense",
+    logo: Chapecoense_logo,
     league: "Brazil",
   },
   {
@@ -166,6 +174,12 @@ export const BrasileirãoList: Team[] = [
     id: "rb_bragantino",
     name: "RB Bragantino",
     logo: RBBragantino_logo,
+    league: "Brazil",
+  },
+  {
+    id: "remo",
+    name: "Remo",
+    logo: Remo_logo,
     league: "Brazil",
   },
   {
