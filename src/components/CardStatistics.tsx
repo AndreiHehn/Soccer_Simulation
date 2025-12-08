@@ -8,7 +8,7 @@ import TriangleUpIcon from "../assets/icons/triangleUpIcon.svg?react";
 
 interface Props {
   cardTitle: string;
-  orderBy: keyof typeof sampleTeam; // explicação abaixo
+  orderBy: keyof typeof sampleTeam;
 }
 
 const sampleTeam = {
@@ -34,9 +34,9 @@ export default function CardStatistics({ cardTitle, orderBy }: Props) {
 
     const multiplier = ordinationFlow === "High" ? -1 : 1;
 
-    return [...standings]
-      .sort((a, b) => (Number(a[orderBy]) - Number(b[orderBy])) * multiplier)
-      .slice(0, 20);
+    return [...standings].sort(
+      (a, b) => (Number(a[orderBy]) - Number(b[orderBy])) * multiplier
+    );
   }, [standings, orderBy, ordinationFlow]);
 
   return (
