@@ -31,6 +31,7 @@ import {
 } from "../lib/functions";
 import CardStatistics from "./CardStatistics";
 import { ChampionsLeagueTeams } from "../lib/tournamentsInfo";
+import QualifyingRound from "./QualifyingRound";
 
 const flags = import.meta.glob(
   "../assets/icons/country flags/europe/*_flag.png",
@@ -58,7 +59,6 @@ export default function Tournament() {
     setConfirmTeams,
     activeTournament,
     scheduleRef,
-    Q1Teams,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState("");
@@ -315,11 +315,14 @@ export default function Tournament() {
       {tournamentStep == "Qualifying Rounds" &&
         selectedTournament?.name == "Champions League" && (
           <>
-            <div>
-              {Q1Teams.map((team) => (
-                <h4>{team}</h4>
-              ))}
-            </div>
+            <QualifyingRound
+              phases={[
+                "1st Qualifying",
+                "2nd Qualifying",
+                "3rd Qualifying",
+                "Playoff",
+              ]}
+            ></QualifyingRound>
           </>
         )}
 
