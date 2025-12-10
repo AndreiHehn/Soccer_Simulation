@@ -59,6 +59,7 @@ export default function Tournament() {
     setConfirmTeams,
     activeTournament,
     scheduleRef,
+    Q1Teams,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState("");
@@ -316,12 +317,9 @@ export default function Tournament() {
         selectedTournament?.name == "Champions League" && (
           <>
             <QualifyingRound
-              phases={[
-                "1st Qualifying",
-                "2nd Qualifying",
-                "3rd Qualifying",
-                "Playoff",
-              ]}
+              phases={selectedTournament?.qualifyingPhases ?? []}
+              matchesPerPhase={[10, 15, 10, 7]}
+              twoLegs
             ></QualifyingRound>
           </>
         )}

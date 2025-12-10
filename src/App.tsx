@@ -43,6 +43,7 @@ function App() {
     setSelectedLogos,
     confirmTeams,
     setConfirmTeams,
+    activeTournament,
     setActiveTournament,
     setStandings,
     selectedTeams,
@@ -51,6 +52,8 @@ function App() {
     ranking,
     setRanking,
     setQ1Teams,
+    qualifyedTeams,
+    setQualifyedTeams,
     Q1Teams,
   } = useContext(AppContext);
   const { t } = useTranslation();
@@ -87,9 +90,22 @@ function App() {
     i18n.changeLanguage("en");
   }
 
+  function FillCLTeams() {
+    if (selectedTournament?.name == "Champions League") {
+      setQualifyedTeams(selectedTeams.slice(0, 29));
+      setQ1Teams(selectedTeams.slice(54)); // Sweden
+    }
+  }
+
   function SetDefaultStandings() {
+    let teams;
+    if (selectedTournament?.name == "Champions League") {
+      teams = qualifyedTeams;
+    } else {
+      teams = selectedTeams;
+    }
     setStandings(
-      selectedTeams.map((team, idx) => ({
+      teams.map((team, idx) => ({
         team,
         logo: selectedLogos[idx],
         points: 0,
@@ -106,11 +122,12 @@ function App() {
     setMatchResults({});
   }
 
-  function FillQ1Teams() {
-    if (selectedTournament?.name == "Champions League") {
-      setQ1Teams(selectedTeams.slice(54)); // Sweden
+  useEffect(() => {
+    if (confirmTeams === false && activeTournament === true) {
+      // somente quando selectedTeams já tiverem sido setados
+      SetDefaultStandings();
     }
-  }
+  }, [selectedTeams, qualifyedTeams]);
 
   return (
     <>
@@ -251,9 +268,8 @@ function App() {
           onClick2={() => (
             setConfirmTeams(false),
             setActiveTournament(true),
-            SetDefaultStandings(),
-            FillQ1Teams(),
-            console.log(Q1Teams)
+            FillCLTeams(),
+            SetDefaultStandings()
           )}
           textButton2={t("Yes")}
         ></ModalMessage>

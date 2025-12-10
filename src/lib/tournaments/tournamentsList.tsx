@@ -306,6 +306,12 @@ export const TournamentsList: Tournament[] = [
     teams: 82,
     relegated: 0,
     qualified: [8, 16], // Round of 16 / Round of 32
+    qualifyingPhases: [
+      "1st Qualifying",
+      "2nd Qualifying",
+      "3rd Qualifying",
+      "Playoff",
+    ],
     defaultTeams: [
       "Tottenham",
       "Arsenal",

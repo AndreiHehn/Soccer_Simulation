@@ -5,13 +5,19 @@ import ArrowLeft from "../assets/icons/arrowLeftIcon.svg?react";
 import ArrowRight from "../assets/icons/arrowRightIcon.svg?react";
 import Match from "./Match";
 import { useTranslation } from "react-i18next";
+import { Button } from "../generic/Button";
 
 interface Props {
   phases: string[];
-  twoLegs: boolean;
+  matchesPerPhase: number[];
+  twoLegs?: boolean;
 }
 
-export default function QualifyingRound({ phases, twoLegs }: Props) {
+export default function QualifyingRound({
+  phases,
+  matchesPerPhase,
+  twoLegs,
+}: Props) {
   const { selectedTournament } = useContext(AppContext);
   const [phaseIndex, setPhaseIndex] = useState<number>(0);
   const { t } = useTranslation();
@@ -34,6 +40,7 @@ export default function QualifyingRound({ phases, twoLegs }: Props) {
       tertiaryColor={selectedTournament?.tertiaryColor || "#FFFFFF"}
       backgroundColor={selectedTournament?.backgroundColor || "#FFFFFF"}
       textColor={selectedTournament?.textColor || "#FFFFFF"}
+      twoLegs={twoLegs}
     >
       <nav className="phase-selection">
         <div
@@ -54,10 +61,25 @@ export default function QualifyingRound({ phases, twoLegs }: Props) {
       </nav>
       <section className="matches">
         <h2 className="leg">{t("First Leg")}</h2>
-        <Match></Match>
+        {Array.from({ length: matchesPerPhase[phaseIndex] }).map((_, i) => (
+          <Match key={`first-${i}`} />
+        ))}
         <h2 className="leg">{t("Second Leg")}</h2>
-        <Match></Match>
+        {twoLegs &&
+          Array.from({ length: matchesPerPhase[phaseIndex] }).map((_, i) => (
+            <Match key={`second-${i}`} />
+          ))}
       </section>
+      <footer className="buttons">
+        <Button
+          color="blue"
+          width="100px"
+          borderRadius="4px"
+          onClick={() => console.log("TESTE")}
+        >
+          {t("Draw")}
+        </Button>
+      </footer>
     </Container>
   );
 }

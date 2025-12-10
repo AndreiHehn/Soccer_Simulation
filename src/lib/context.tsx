@@ -75,6 +75,8 @@ interface AppContextProps {
     >
   >;
 
+  qualifyedTeams: Array<string>;
+  setQualifyedTeams: Dispatch<SetStateAction<Array<string>>>;
   Q1Teams: Array<string>;
   setQ1Teams: Dispatch<SetStateAction<Array<string>>>;
 }
@@ -115,6 +117,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [matchResults, setMatchResults] = useState<
     Record<number, Record<number, { home: number | ""; away: number | "" }>>
   >({});
+  const [qualifyedTeams, setQualifyedTeams] = useState<string[]>([]);
   const [Q1Teams, setQ1Teams] = useState<string[]>([]);
 
   return (
@@ -169,6 +172,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setStandings,
         matchResults,
         setMatchResults,
+        qualifyedTeams,
+        setQualifyedTeams,
         Q1Teams,
         setQ1Teams,
       }}

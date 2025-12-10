@@ -11,6 +11,7 @@ export interface Tournament {
   teams: number;
   relegated?: number;
   qualified?: number[];
+  qualifyingPhases?: string[];
   defaultTeams: string[];
 }
 

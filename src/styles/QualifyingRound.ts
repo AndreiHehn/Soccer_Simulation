@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { lighten } from "polished";
+import { darken, lighten } from "polished";
 
 interface Props {
   secondaryColor: string;
   tertiaryColor: string;
   backgroundColor: string;
   textColor: string;
+  twoLegs?: boolean;
 }
 
 export const Container = styled.article<Props>`
@@ -15,6 +16,7 @@ export const Container = styled.article<Props>`
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    user-select: none;
 
     .qualifying-phase {
       display: flex;
@@ -58,12 +60,33 @@ export const Container = styled.article<Props>`
     }
   }
   .matches {
+    height: 450px;
+    overflow-y: auto;
+    padding-right: 10px;
     .leg {
       font-size: 16px;
       color: ${(props) => props.textColor};
       width: 100%;
       text-align: center;
-      margin-bottom: 10px;
+      margin: 10px 0;
+      display: ${(props) => (props.twoLegs ? "flex" : "none")};
+      justify-content: center;
+    }
+  }
+
+  .buttons {
+    position: absolute;
+    bottom: 30px;
+    width: 700px;
+    display: flex;
+    justify-content: center;
+
+    button {
+      background-color: ${(props) => props.tertiaryColor};
+
+      &:hover {
+        background-color: ${(props) => darken(0.2, props.tertiaryColor)};
+      }
     }
   }
 `;
