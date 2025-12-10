@@ -1,1 +1,2 @@
-1. Adicionar prop de numero de rebaixados e vagas para competições continentais + estilo no Standings
+1. Reordenar times classificados CL --> Todos os times classificados direto para fase de liga vem primeiro, depois os do playoff, e assim
+sucessivamente até o Q1.
