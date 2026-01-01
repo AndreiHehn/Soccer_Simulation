@@ -52,6 +52,7 @@ import IndependienteRivadavia_logo from "../../assets/icons/teams logos/South Am
 import IndependienteSantaFe_logo from "../../assets/icons/teams logos/South America/IndependienteSantaFe_logo.png";
 import JorgeWilstermann_logo from "../../assets/icons/teams logos/South America/JorgeWilstermann_logo.png";
 import JuniorBarranquilla_logo from "../../assets/icons/teams logos/South America/JuniorBarranquilla_logo.png";
+import Juventud_logo from "../../assets/icons/teams logos/South America/Juventud_logo.png";
 import Lanus_logo from "../../assets/icons/teams logos/South America/Lanus_logo.png";
 import LDU_logo from "../../assets/icons/teams logos/South America/LDU_logo.png";
 import LiverpoolURU_logo from "../../assets/icons/teams logos/South America/LiverpoolURU_logo.png";
@@ -89,6 +90,7 @@ import UnionEspanola_logo from "../../assets/icons/teams logos/South America/Uni
 import UnionSantaFe_logo from "../../assets/icons/teams logos/South America/UnionSantaFe_logo.png";
 import UniversidadCatolica_logo from "../../assets/icons/teams logos/South America/UniversidadCatolica_logo.png";
 import UniversidadCatolicaECU_logo from "../../assets/icons/teams logos/South America/UniversidadCatolicaECU_logo.png";
+import UniversidadCentral_logo from "../../assets/icons/teams logos/South America/UniversidadCentral_logo.png";
 import UniversidadDeChile_logo from "../../assets/icons/teams logos/South America/UniversidadDeChile_logo.png";
 import Universitario_logo from "../../assets/icons/teams logos/South America/Universitario_logo.png";
 import VelezSarsfield_logo from "../../assets/icons/teams logos/South America/VelezSarsfield_logo.png";
@@ -367,31 +369,31 @@ export const SouthAmericaList: Team[] = [
   },
   {
     id: "independiente_del_valle",
-    name: "Independiente del Valle",
+    name: "Ind. del Valle",
     logo: IndependienteDelValle_logo,
     league: "Ecuador",
   },
   {
     id: "independiente_medellin",
-    name: "Independiente Medellin",
+    name: "Ind. Medellín",
     logo: IndependienteMedellin_logo,
     league: "Colombia",
   },
   {
     id: "independiente_petrolero",
-    name: "Independiente Petrolero",
+    name: "Ind. Petrolero",
     logo: IndependientePetrolero_logo,
     league: "Bolivia",
   },
   {
     id: "independiente_rivadavia",
-    name: "Independiente Rivadavia",
+    name: "Ind. Rivadavia",
     logo: IndependienteRivadavia_logo,
     league: "Argentina",
   },
   {
     id: "independiente_santa_fe",
-    name: "Independiente Santa Fé",
+    name: "Ind. Santa Fé",
     logo: IndependienteSantaFe_logo,
     league: "Colombia",
   },
@@ -408,6 +410,12 @@ export const SouthAmericaList: Team[] = [
     league: "Colombia",
   },
   {
+    id: "juventud",
+    name: "Juventud",
+    logo: Juventud_logo,
+    league: "Uruguay",
+  },
+  {
     id: "lanus",
     name: "Lanús",
     logo: Lanus_logo,
@@ -415,7 +423,7 @@ export const SouthAmericaList: Team[] = [
   },
   {
     id: "ldu",
-    name: "LDU",
+    name: "LDU Quito",
     logo: LDU_logo,
     league: "Ecuador",
   },
@@ -625,9 +633,15 @@ export const SouthAmericaList: Team[] = [
   },
   {
     id: "universidad_catolica_ECU",
-    name: "U.Católica (ECU)",
+    name: "U. Católica (ECU)",
     logo: UniversidadCatolicaECU_logo,
     league: "Ecuador",
+  },
+  {
+    id: "universidad_central",
+    name: "Universidad Central",
+    logo: UniversidadCentral_logo,
+    league: "Venezuela",
   },
   {
     id: "universidad_de_chile",
