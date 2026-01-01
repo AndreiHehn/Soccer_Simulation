@@ -84,7 +84,7 @@ export default function Tournament() {
 
   const [, setSelectedTeam] = useState("");
   const selectedCount = selectedTeams.filter(Boolean).length;
-  const [navbarItems, setNavbarItems] = useState(Array<string>);
+  const [matchesPerPhase, setMatchesPerPhase] = useState([10, 15, 10, 7]);
 
   const ChampionsLeagueList = [
     ...PremierLeagueList,
@@ -131,20 +131,6 @@ export default function Tournament() {
   useEffect(() => {
     setTeams(teams);
   }, [teams, setTeams]);
-
-  useEffect(() => {
-    if (selectedTournament?.name == "Champions League") {
-      setNavbarItems([
-        "Teams Selection",
-        "Qualifying Rounds",
-        "Standings",
-        "Knockout Stage",
-        "Statistics",
-      ]);
-    } else {
-      setNavbarItems(["Teams Selection", "Matches", "Standings", "Statistics"]);
-    }
-  }, [selectedTournament]);
 
   useMemo(() => {
     setSelectedTeam("");
@@ -211,6 +197,18 @@ export default function Tournament() {
     }
   }, [activeTournament]);
 
+  useEffect(() => {
+    if (selectedTournament) {
+      if (selectedTournament.name == "Champions League") {
+        setMatchesPerPhase([10, 15, 10, 7]);
+      } else if (selectedTournament.name == "Libertadores") {
+        setMatchesPerPhase([3, 8, 4]);
+      } else {
+        setMatchesPerPhase([]);
+      }
+    }
+  }, [selectedTournament]);
+
   return (
     <Container
       tournamentName={selectedTournament?.name ?? ""}
@@ -220,7 +218,7 @@ export default function Tournament() {
       textColor={selectedTournament?.textColor ?? "#FFF"}
     >
       <nav className="steps-nav">
-        {navbarItems.map((step) => (
+        {selectedTournament?.navbarItems.map((step) => (
           <div
             key={step}
             className={`step ${tournamentStep === step ? "active" : ""} ${
@@ -308,7 +306,6 @@ export default function Tournament() {
               const country = countrySlots[index];
 
               const countryTeams = teams.filter((t) => t.league === country); // Only for Champions League
-              console.log(teams);
 
               // Flag correta mapeada dinamicamente
               const flagPath =
@@ -319,7 +316,6 @@ export default function Tournament() {
                 selectedTournament.name == "Champions League"
                   ? europeFlags[flagPath]
                   : southAmericaFlags[flagPath];
-              console.log(flagSrc);
 
               return (
                 <div key={index} className="team-slot">
@@ -384,11 +380,11 @@ export default function Tournament() {
       )}
 
       {tournamentStep == "Qualifying Rounds" &&
-        selectedTournament?.name == "Champions League" && (
+        selectedTournament?.type == "Continental" && (
           <>
             <QualifyingRound
               phases={selectedTournament?.qualifyingPhases ?? []}
-              matchesPerPhase={[10, 15, 10, 7]}
+              matchesPerPhase={matchesPerPhase}
               twoLegs
             ></QualifyingRound>
           </>

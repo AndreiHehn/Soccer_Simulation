@@ -24,6 +24,7 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#37003C",
     textColor: "#FFFFFF",
     teams: 20,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
     relegated: 3,
     qualified: [5, 2], // Champions League / Europa League
     defaultTeams: [
@@ -60,6 +61,7 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#FFFFFF",
     textColor: "#08237F",
     teams: 20,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
     relegated: 3,
     qualified: [5, 2], // Champions League / Europa League
     defaultTeams: [
@@ -96,6 +98,7 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#FFFFFF",
     textColor: "#024c8c",
     teams: 20,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
     relegated: 3,
     qualified: [4, 2], // Champions League / Europa League
     defaultTeams: [
@@ -132,6 +135,7 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#0A141A",
     textColor: "#FFFFFF",
     teams: 18,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
     relegated: 3,
     qualified: [4, 2], // Champions League / Europa League
     defaultTeams: [
@@ -166,6 +170,7 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#0d2534",
     textColor: "#FFFFFF",
     teams: 18,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
     relegated: 3,
     qualified: [3, 3], // Champions League / Europa League
     defaultTeams: [
@@ -200,6 +205,7 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#39365b",
     textColor: "#FFFFFF",
     teams: 18,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
     relegated: 3,
     qualified: [3, 3], // Champions League / Europa League
     defaultTeams: [
@@ -234,6 +240,7 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#420a0a",
     textColor: "#FFFFFF",
     teams: 18,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
     relegated: 3,
     qualified: [2, 2], // Champions League / Europa League
     defaultTeams: [
@@ -268,6 +275,7 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#150942",
     textColor: "#FFFFFF",
     teams: 20,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
     relegated: 4,
     qualified: [6, 6], // Libertadores / Sudamericana
     defaultTeams: [
@@ -304,6 +312,13 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#120d4b",
     textColor: "#FFFFFF",
     teams: 82,
+    navbarItems: [
+      "Teams Selection",
+      "Qualifying Rounds",
+      "Standings",
+      "Knockout Stage",
+      "Statistics",
+    ],
     relegated: 0,
     qualified: [8, 16], // Round of 16 / Round of 32
     qualifyingPhases: [
@@ -408,7 +423,15 @@ export const TournamentsList: Tournament[] = [
     backgroundColor: "#373737",
     textColor: "#FFFFFF",
     teams: 47,
+    navbarItems: [
+      "Teams Selection",
+      "Qualifying Rounds",
+      "Groups",
+      "Knockout Stage",
+      "Statistics",
+    ],
     relegated: 0,
+    qualifyingPhases: ["1st Qualifying", "2nd Qualifying", "3rd Qualifying"],
     defaultTeams: [
       "Flamengo",
       "Lanús",
@@ -443,7 +466,7 @@ export const TournamentsList: Tournament[] = [
       "U. Católica (ECU)",
       "Cerro Porteño",
       "Club Libertad",
-      "Guaraní",
+      "Club Guaraní",
       "2 De Mayo",
       "Cusco",
       "Universitario",

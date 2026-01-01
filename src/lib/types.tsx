@@ -9,6 +9,7 @@ export interface Tournament {
   backgroundColor: string;
   textColor: string;
   teams: number;
+  navbarItems: string[];
   relegated?: number;
   qualified?: number[];
   qualifyingPhases?: string[];
