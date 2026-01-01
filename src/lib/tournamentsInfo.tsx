@@ -54,3 +54,18 @@ export const ChampionsLeagueTeams = {
   Gibraltar: 1,
   San_Marino: 1,
 };
+
+export const LibertadoresTeams = {
+  Libertadores: 1,
+  Sudamericana: 1,
+  Argentina: 6,
+  Bolivia: 4,
+  Brazil: 7,
+  Colombia: 4,
+  Chile: 4,
+  Ecuador: 4,
+  Paraguay: 4,
+  Peru: 4,
+  Uruguay: 4,
+  Venezuela: 4,
+};

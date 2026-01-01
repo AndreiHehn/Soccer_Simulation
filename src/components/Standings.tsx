@@ -39,6 +39,7 @@ export default function Standings() {
       </tr>
 
       {activeTournament &&
+        selectedTournament?.type == "National League" &&
         standings.map((team, index) => (
           <tr key={team.team} className="standings">
             <td className="standings-detail">

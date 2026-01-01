@@ -21,8 +21,18 @@ import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
 import { EredivisieList } from "../lib/tournaments/Eredivisie";
 import { LigaPortugalList } from "../lib/tournaments/LigaPortugal";
 import { RestOfEuropeList } from "../lib/tournaments/RestOfEurope";
-import { EuropaLeagueChampionsList } from "../lib/tournaments/PossibleChampions";
+import {
+  EuropaLeagueChampionsList,
+  LibertadoresChampionsList,
+  SudamericanaChampionsList,
+} from "../lib/tournaments/PossibleChampions";
+import { SouthAmericaList } from "../lib/tournaments/SouthAmerica";
+
+// importa logos dos campeonatos
 import EuropaLeagueLogo from "../assets/icons/league logos/EuropaLeague_logo.png";
+import LibertadoresLogo from "../assets/icons/league logos/Libertadores_logo.png";
+import SudamericanaLogo from "../assets/icons/league logos/Sudamericana_logo.png";
+
 import {
   balanceHomeAway,
   generateFirstLeg,
@@ -30,11 +40,22 @@ import {
   shuffleRounds,
 } from "../lib/functions";
 import CardStatistics from "./CardStatistics";
-import { ChampionsLeagueTeams } from "../lib/tournamentsInfo";
+import {
+  ChampionsLeagueTeams,
+  LibertadoresTeams,
+} from "../lib/tournamentsInfo";
 import QualifyingRound from "./QualifyingRound";
 
-const flags = import.meta.glob(
+const europeFlags = import.meta.glob(
   "../assets/icons/country flags/europe/*_flag.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const southAmericaFlags = import.meta.glob(
+  "../assets/icons/country flags/south_america/*_flag.png",
   {
     eager: true,
     import: "default",
@@ -59,7 +80,6 @@ export default function Tournament() {
     setConfirmTeams,
     activeTournament,
     scheduleRef,
-    Q1Teams,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState("");
@@ -76,6 +96,8 @@ export default function Tournament() {
     ...LigaPortugalList,
     ...RestOfEuropeList,
   ];
+
+  const LibertadoresList = [...BrasileirãoList, ...SouthAmericaList];
 
   const teams = useMemo(() => {
     if (!selectedTournament) return [];
@@ -99,6 +121,8 @@ export default function Tournament() {
         return BrasileirãoList;
       case "uefa_champions_league":
         return ChampionsLeagueList;
+      case "libertadores":
+        return LibertadoresList;
       default:
         return [];
     }
@@ -168,7 +192,10 @@ export default function Tournament() {
     return result;
   }
 
-  const countrySlots = expandCountries(ChampionsLeagueTeams);
+  const countrySlots =
+    selectedTournament?.name == "Champions League"
+      ? expandCountries(ChampionsLeagueTeams)
+      : expandCountries(LibertadoresTeams);
 
   useEffect(() => {
     if (activeTournament && selectedTeams.length > 1) {
@@ -234,26 +261,69 @@ export default function Tournament() {
                 />
               </div>
             )}
+            {selectedTournament.name === "Libertadores" && (
+              <>
+                <div className="team-slot">
+                  <img
+                    src={LibertadoresLogo}
+                    className="team-flag"
+                    alt="libertadores-champion"
+                  />
+
+                  <TeamSelector
+                    selectedTournament={selectedTournament}
+                    selectedTeam={selectedTeams[0]}
+                    onSelectTeam={(teamId) => handleSelectTeam(0, teamId)}
+                    teams={LibertadoresChampionsList}
+                    disabledTeams={selectedTeams.filter((_, i) => i !== 0)}
+                  />
+                </div>
+                <div className="team-slot">
+                  <img
+                    src={SudamericanaLogo}
+                    className="team-flag"
+                    alt="sudamericana-champion"
+                  />
+
+                  <TeamSelector
+                    selectedTournament={selectedTournament}
+                    selectedTeam={selectedTeams[1]}
+                    onSelectTeam={(teamId) => handleSelectTeam(1, teamId)}
+                    teams={SudamericanaChampionsList}
+                    disabledTeams={selectedTeams.filter((_, i) => i !== 0)}
+                  />
+                </div>
+              </>
+            )}
             {[
               ...Array(
                 selectedTournament.name === "Champions League"
                   ? selectedTournament.teams - 1 // remove 1 porque o 1º é o campeão da EL
-                  : selectedTournament.teams
+                  : selectedTournament.teams - 2
               ),
             ].map((_, i) => {
               const index =
-                selectedTournament.name === "Champions League" ? i + 1 : i;
+                selectedTournament.name === "Champions League" ? i + 1 : i + 2;
 
               const country = countrySlots[index];
+
               const countryTeams = teams.filter((t) => t.league === country); // Only for Champions League
+              console.log(teams);
 
               // Flag correta mapeada dinamicamente
-              const flagPath = `../assets/icons/country flags/europe/${country}_flag.png`;
-              const flagSrc = flags[flagPath];
+              const flagPath =
+                selectedTournament.name == "Champions League"
+                  ? `../assets/icons/country flags/europe/${country}_flag.png`
+                  : `../assets/icons/country flags/south_america/${country}_flag.png`;
+              const flagSrc =
+                selectedTournament.name == "Champions League"
+                  ? europeFlags[flagPath]
+                  : southAmericaFlags[flagPath];
+              console.log(flagSrc);
 
               return (
                 <div key={index} className="team-slot">
-                  {selectedTournament.name == "Champions League" && (
+                  {selectedTournament.type == "Continental" && (
                     <img
                       src={flagSrc as string}
                       className="team-flag"
@@ -266,7 +336,7 @@ export default function Tournament() {
                     selectedTeam={selectedTeams[index]}
                     onSelectTeam={(teamId) => handleSelectTeam(index, teamId)}
                     teams={
-                      selectedTournament.name == "Champions League"
+                      selectedTournament.type == "Continental"
                         ? countryTeams
                         : teams
                     }

@@ -407,7 +407,7 @@ export const TournamentsList: Tournament[] = [
     tertiaryColor: "#AA7125",
     backgroundColor: "#373737",
     textColor: "#FFFFFF",
-    teams: 20,
+    teams: 47,
     relegated: 0,
     defaultTeams: ["Atlético-MG"],
   },

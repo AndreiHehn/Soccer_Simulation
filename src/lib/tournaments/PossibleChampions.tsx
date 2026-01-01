@@ -31,6 +31,35 @@ import Benfica_logo from "../../assets/icons/teams logos/Portugal/Benfica_logo.p
 import Porto_logo from "../../assets/icons/teams logos/Portugal/Porto_logo.png";
 import Sporting_logo from "../../assets/icons/teams logos/Portugal/Sporting_logo.png";
 
+import AtléticoMG_logo from "../../assets/icons/teams logos/Brazil/AtléticoMG_logo.png";
+import Botafogo_logo from "../../assets/icons/teams logos/Brazil/Botafogo_logo.png";
+import Cruzeiro_logo from "../../assets/icons/teams logos/Brazil/Cruzeiro_logo.png";
+import Flamengo_logo from "../../assets/icons/teams logos/Brazil/Flamengo_logo.png";
+import Fluminense_logo from "../../assets/icons/teams logos/Brazil/Fluminense_logo.png";
+import Palmeiras_logo from "../../assets/icons/teams logos/Brazil/Palmeiras_logo.png";
+import BocaJuniors_logo from "../../assets/icons/teams logos/South America/BocaJuniors_logo.png";
+import LDU_logo from "../../assets/icons/teams logos/South America/LDU_logo.png";
+import RacingClub_logo from "../../assets/icons/teams logos/South America/RacingClub_logo.png";
+import RiverPlate_logo from "../../assets/icons/teams logos/South America/RiverPlate_logo.png";
+
+import AtleticoNacional_logo from "../../assets/icons/teams logos/South America/AtleticoNacional_logo.png";
+import Bahia_logo from "../../assets/icons/teams logos/Brazil/Bahia_logo.png";
+import BarcelonaSC_logo from "../../assets/icons/teams logos/South America/BarcelonaSC_logo.png";
+import CerroPorteno_logo from "../../assets/icons/teams logos/South America/CerroPorteno_logo.png";
+import ClubLibertad_logo from "../../assets/icons/teams logos/South America/ClubLibertad_logo.png";
+import Corinthians_logo from "../../assets/icons/teams logos/Brazil/Corinthians_logo.png";
+import EstudiantesLP_logo from "../../assets/icons/teams logos/South America/EstudiantesLP_logo.png";
+import Grêmio_logo from "../../assets/icons/teams logos/Brazil/Grêmio_logo.png";
+import IndependienteDelValle_logo from "../../assets/icons/teams logos/South America/IndependienteDelValle_logo.png";
+import Internacional_logo from "../../assets/icons/teams logos/Brazil/Internacional_logo.png";
+import JuniorBarranquilla_logo from "../../assets/icons/teams logos/South America/JuniorBarranquilla_logo.png";
+import Lanus_logo from "../../assets/icons/teams logos/South America/Lanus_logo.png";
+import NacionalURU_logo from "../../assets/icons/teams logos/South America/NacionalURU_logo.png";
+import Olimpia_logo from "../../assets/icons/teams logos/South America/Olimpia_logo.png";
+import Penarol_logo from "../../assets/icons/teams logos/South America/Penarol_logo.png";
+import SãoPaulo_logo from "../../assets/icons/teams logos/Brazil/SãoPaulo_logo.png";
+import VelezSarsfield_logo from "../../assets/icons/teams logos/South America/VelezSarsfield_logo.png";
+
 export const EuropaLeagueChampionsList: Team[] = [
   {
     id: "arsenal",
@@ -213,5 +242,209 @@ export const EuropaLeagueChampionsList: Team[] = [
     name: "Sporting",
     logo: Sporting_logo,
     league: "Portugal",
+  },
+];
+
+export const LibertadoresChampionsList: Team[] = [
+  {
+    id: "atlético_mg",
+    name: "Atlético-MG",
+    logo: AtléticoMG_logo,
+    league: "Brazil",
+  },
+  {
+    id: "boca_juniors",
+    name: "Boca Juniors",
+    logo: BocaJuniors_logo,
+    league: "Argentina",
+  },
+  {
+    id: "botafogo",
+    name: "Botafogo",
+    logo: Botafogo_logo,
+    league: "Brazil",
+  },
+  {
+    id: "cruzeiro",
+    name: "Cruzeiro",
+    logo: Cruzeiro_logo,
+    league: "Brazil",
+  },
+  {
+    id: "flamengo",
+    name: "Flamengo",
+    logo: Flamengo_logo,
+    league: "Brazil",
+  },
+  {
+    id: "fluminense",
+    name: "Fluminense",
+    logo: Fluminense_logo,
+    league: "Brazil",
+  },
+  {
+    id: "ldu",
+    name: "LDU",
+    logo: LDU_logo,
+    league: "Ecuador",
+  },
+  {
+    id: "palmeiras",
+    name: "Palmeiras",
+    logo: Palmeiras_logo,
+    league: "Brazil",
+  },
+  {
+    id: "racing_club",
+    name: "Racing Club",
+    logo: RacingClub_logo,
+    league: "Argentina",
+  },
+  {
+    id: "river_plate",
+    name: "River Plate",
+    logo: RiverPlate_logo,
+    league: "Argentina",
+  },
+];
+
+export const SudamericanaChampionsList: Team[] = [
+  {
+    id: "atletico_nacional",
+    name: "Atlético Nacional",
+    logo: AtleticoNacional_logo,
+    league: "Colombia",
+  },
+  {
+    id: "atlético_mg",
+    name: "Atlético-MG",
+    logo: AtléticoMG_logo,
+    league: "Brazil",
+  },
+  {
+    id: "bahia",
+    name: "Bahia",
+    logo: Bahia_logo,
+    league: "Brazil",
+  },
+  {
+    id: "barcelona_sc",
+    name: "Barcelona SC",
+    logo: BarcelonaSC_logo,
+    league: "Ecuador",
+  },
+  {
+    id: "boca_juniors",
+    name: "Boca Juniors",
+    logo: BocaJuniors_logo,
+    league: "Argentina",
+  },
+  {
+    id: "cerro_porteno",
+    name: "Cerro Porteño",
+    logo: CerroPorteno_logo,
+    league: "Paraguay",
+  },
+  {
+    id: "club_libertad",
+    name: "Club Libertad",
+    logo: ClubLibertad_logo,
+    league: "Paraguay",
+  },
+  {
+    id: "corinthians",
+    name: "Corinthians",
+    logo: Corinthians_logo,
+    league: "Brazil",
+  },
+  {
+    id: "cruzeiro",
+    name: "Cruzeiro",
+    logo: Cruzeiro_logo,
+    league: "Brazil",
+  },
+  {
+    id: "estudiantes_lp",
+    name: "Estudiantes LP",
+    logo: EstudiantesLP_logo,
+    league: "Argentina",
+  },
+  {
+    id: "grêmio",
+    name: "Grêmio",
+    logo: Grêmio_logo,
+    league: "Brazil",
+  },
+  {
+    id: "independiente_del_valle",
+    name: "Independiente del Valle",
+    logo: IndependienteDelValle_logo,
+    league: "Ecuador",
+  },
+  {
+    id: "internacional",
+    name: "Internacional",
+    logo: Internacional_logo,
+    league: "Brazil",
+  },
+  {
+    id: "junior_barranquilla",
+    name: "Junior Barranquilla",
+    logo: JuniorBarranquilla_logo,
+    league: "Colombia",
+  },
+  {
+    id: "lanus",
+    name: "Lanús",
+    logo: Lanus_logo,
+    league: "Argentina",
+  },
+  {
+    id: "ldu",
+    name: "LDU",
+    logo: LDU_logo,
+    league: "Ecuador",
+  },
+  {
+    id: "nacional_URU",
+    name: "Nacional",
+    logo: NacionalURU_logo,
+    league: "Uruguay",
+  },
+  {
+    id: "olimpia",
+    name: "Olimpia",
+    logo: Olimpia_logo,
+    league: "Paraguay",
+  },
+  {
+    id: "penarol",
+    name: "Peñarol",
+    logo: Penarol_logo,
+    league: "Uruguay",
+  },
+  {
+    id: "racing_club",
+    name: "Racing Club",
+    logo: RacingClub_logo,
+    league: "Argentina",
+  },
+  {
+    id: "river_plate",
+    name: "River Plate",
+    logo: RiverPlate_logo,
+    league: "Argentina",
+  },
+  {
+    id: "são_paulo",
+    name: "São Paulo",
+    logo: SãoPaulo_logo,
+    league: "Brazil",
+  },
+  {
+    id: "velez_sarsfield",
+    name: "Vélez Sarsfield",
+    logo: VelezSarsfield_logo,
+    league: "Argentina",
   },
 ];

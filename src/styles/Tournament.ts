@@ -87,7 +87,10 @@ export const Container = styled.main<Props>`
     gap: 10px 16px;
     max-height: 400px;
     overflow-y: ${(props) =>
-      props.tournamentName == "Champions League" ? "auto" : "hidden"};
+      props.tournamentName == "Champions League" ||
+      props.tournamentName == "Libertadores"
+        ? "auto"
+        : "hidden"};
     padding-right: 10px;
   }
 
