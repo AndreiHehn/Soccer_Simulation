@@ -61,6 +61,7 @@ import Metropolitanos_logo from "../../assets/icons/teams logos/South America/Me
 import Millonarios_logo from "../../assets/icons/teams logos/South America/Millonarios_logo.png";
 import Monagas_logo from "../../assets/icons/teams logos/South America/Monagas_logo.png";
 import MontevideoCity_logo from "../../assets/icons/teams logos/South America/MontevideoCity_logo.png";
+import MontevideoWanderers_logo from "../../assets/icons/teams logos/South America/MontevideoWanderers_logo.png";
 import MushucRuna_logo from "../../assets/icons/teams logos/South America/MushucRuna_logo.png";
 import NacionalPAR_logo from "../../assets/icons/teams logos/South America/NacionalPAR_logo.png";
 import NacionalPotosí_logo from "../../assets/icons/teams logos/South America/NacionalPotosí_logo.png";
@@ -87,6 +88,7 @@ import SportivoTrinidense_logo from "../../assets/icons/teams logos/South Americ
 import Talleres_logo from "../../assets/icons/teams logos/South America/Talleres_logo.png";
 import TheStrongest_logo from "../../assets/icons/teams logos/South America/TheStrongest_logo.png";
 import UnionEspanola_logo from "../../assets/icons/teams logos/South America/UnionEspanola_logo.png";
+import UnionLaCalera_logo from "../../assets/icons/teams logos/South America/UnionLaCalera_logo.png";
 import UnionSantaFe_logo from "../../assets/icons/teams logos/South America/UnionSantaFe_logo.png";
 import UniversidadCatolica_logo from "../../assets/icons/teams logos/South America/UniversidadCatolica_logo.png";
 import UniversidadCatolicaECU_logo from "../../assets/icons/teams logos/South America/UniversidadCatolicaECU_logo.png";
@@ -345,7 +347,7 @@ export const SouthAmericaList: Team[] = [
   },
   {
     id: "guaraní",
-    name: "Guaraní",
+    name: "Club Guaraní",
     logo: Guarani_logo,
     league: "Paraguay",
   },
@@ -461,6 +463,12 @@ export const SouthAmericaList: Team[] = [
     id: "montevideo_city",
     name: "Montevideo City",
     logo: MontevideoCity_logo,
+    league: "Uruguay",
+  },
+  {
+    id: "montevideo_wanderers",
+    name: "Montevideo Wanderers",
+    logo: MontevideoWanderers_logo,
     league: "Uruguay",
   },
   {
@@ -617,6 +625,12 @@ export const SouthAmericaList: Team[] = [
     id: "union_espanola",
     name: "Unión Española",
     logo: UnionEspanola_logo,
+    league: "Chile",
+  },
+  {
+    id: "union_la_calera",
+    name: "Unión La Calera",
+    logo: UnionLaCalera_logo,
     league: "Chile",
   },
   {

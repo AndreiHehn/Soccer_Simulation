@@ -12,10 +12,21 @@ import { Ligue1List } from "../lib/tournaments/Ligue1";
 import { EredivisieList } from "../lib/tournaments/Eredivisie";
 import { LigaPortugalList } from "../lib/tournaments/LigaPortugal";
 import { RestOfEuropeList } from "../lib/tournaments/RestOfEurope";
+import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
+import { SouthAmericaList } from "../lib/tournaments/SouthAmerica";
 import type { Team } from "../lib/types";
+import { CONMEBOL_Ranking } from "../lib/rankings/conmebol_ranking";
 
-const flags = import.meta.glob(
+const europeFlags = import.meta.glob(
   "../assets/icons/country flags/europe/*_flag.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const southAmericaFlags = import.meta.glob(
+  "../assets/icons/country flags/south_america/*_flag.png",
   {
     eager: true,
     import: "default",
@@ -33,6 +44,7 @@ export default function Rankings() {
     ...LigaPortugalList,
     ...RestOfEuropeList,
   ];
+  const CONMEBOL_TeamsList = [...BrasileirãoList, ...SouthAmericaList];
   const { t } = useTranslation();
   const { selectedTournament, theme } = useContext(AppContext);
   const navbarItems = ["UEFA", "CONMEBOL"];
@@ -44,9 +56,10 @@ export default function Rankings() {
     if (localRanking == "UEFA") {
       setActiveList(Uefa_TeamsList);
       setActiveRanking(UEFA_Ranking);
-    } else {
-      setActiveList([]);
-      setActiveRanking([]);
+    }
+    if (localRanking == "CONMEBOL") {
+      setActiveList(CONMEBOL_TeamsList);
+      setActiveRanking(CONMEBOL_Ranking);
     }
   }, [localRanking]);
 
@@ -83,8 +96,14 @@ export default function Rankings() {
       <div className="ranking">
         {activeRanking.map((teamName, index) => {
           const teamData = activeList.find((team) => team.name === teamName);
-          const flagPath = `../assets/icons/country flags/europe/${teamData?.league}_flag.png`;
-          const flagSrc = flags[flagPath];
+          const flagPath =
+            localRanking == "UEFA"
+              ? `../assets/icons/country flags/europe/${teamData?.league}_flag.png`
+              : `../assets/icons/country flags/south_america/${teamData?.league}_flag.png`;
+          const flagSrc =
+            localRanking == "UEFA"
+              ? europeFlags[flagPath]
+              : southAmericaFlags[flagPath];
           const logoSrc = teamData?.logo ?? "";
 
           return (
