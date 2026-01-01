@@ -178,10 +178,41 @@ export default function Tournament() {
     return result;
   }
 
-  const countrySlots =
-    selectedTournament?.name == "Champions League"
-      ? expandCountries(ChampionsLeagueTeams)
-      : expandCountries(LibertadoresTeams);
+  function expandPhasedCountries(
+    phasedTeams: Record<string, Record<string, number>>,
+    phaseOrder: string[]
+  ) {
+    const result: string[] = [];
+
+    phaseOrder.forEach((phase) => {
+      const countries = phasedTeams[phase];
+      if (!countries) return;
+
+      Object.entries(countries).forEach(([country, qty]) => {
+        for (let i = 0; i < qty; i++) result.push(country);
+      });
+    });
+
+    return result;
+  }
+
+  const countrySlots = useMemo(() => {
+    if (!selectedTournament) return [];
+
+    if (selectedTournament.name === "Champions League") {
+      return expandCountries(ChampionsLeagueTeams);
+    }
+
+    if (selectedTournament.name === "Libertadores") {
+      return expandPhasedCountries(LibertadoresTeams, [
+        "FinalStage",
+        "Q2",
+        "Q1",
+      ]);
+    }
+
+    return [];
+  }, [selectedTournament]);
 
   useEffect(() => {
     if (activeTournament && selectedTeams.length > 1) {
@@ -208,6 +239,86 @@ export default function Tournament() {
       }
     }
   }, [selectedTournament]);
+
+  function renderSlots(start: number, end: number) {
+    return countrySlots.slice(start, end).map((country, i) => {
+      const index = start + i;
+
+      const countryTeams = teams.filter((t) => t.league === country);
+
+      const flagPath =
+        selectedTournament?.name === "Champions League"
+          ? `../assets/icons/country flags/europe/${country}_flag.png`
+          : `../assets/icons/country flags/south_america/${country}_flag.png`;
+
+      const flagSrc =
+        selectedTournament?.name === "Champions League"
+          ? europeFlags[flagPath]
+          : southAmericaFlags[flagPath];
+
+      return (
+        <div key={index} className="team-slot">
+          {selectedTournament?.type === "Continental" && (
+            <img src={flagSrc as string} className="team-flag" alt={country} />
+          )}
+
+          <TeamSelector
+            selectedTournament={selectedTournament}
+            selectedTeam={selectedTeams[index]}
+            onSelectTeam={(teamId) => handleSelectTeam(index, teamId)}
+            teams={countryTeams}
+            disabledTeams={selectedTeams.filter((_, i) => i !== index)}
+          />
+        </div>
+      );
+    });
+  }
+
+  const phaseRanges = useMemo(() => {
+    if (!selectedTournament) return [];
+
+    if (selectedTournament.name === "Champions League") {
+      return [
+        {
+          label: t("League Phase"),
+          start: 1,
+          end: 1 + 36,
+        },
+        {
+          label: t("2nd Qualifying Round"),
+          start: 37,
+          end: 37 + 10,
+        },
+        {
+          label: t("1st Qualifying Round"),
+          start: 47,
+          end: countrySlots.length,
+        },
+      ];
+    }
+
+    if (selectedTournament.name === "Libertadores") {
+      return [
+        {
+          label: t("Group Stage"),
+          start: 2,
+          end: 28,
+        },
+        {
+          label: t("2nd Qualifying Round"),
+          start: 28,
+          end: 41,
+        },
+        {
+          label: t("1st Qualifying Round"),
+          start: 41,
+          end: countrySlots.length,
+        },
+      ];
+    }
+
+    return [];
+  }, [selectedTournament, countrySlots, t]);
 
   return (
     <Container
@@ -259,88 +370,79 @@ export default function Tournament() {
                 />
               </div>
             )}
-            {selectedTournament.name === "Libertadores" && (
-              <>
-                <div className="team-slot">
-                  <img
-                    src={LibertadoresLogo}
-                    className="team-flag"
-                    alt="libertadores-champion"
-                  />
 
-                  <TeamSelector
-                    selectedTournament={selectedTournament}
-                    selectedTeam={selectedTeams[0]}
-                    onSelectTeam={(teamId) => handleSelectTeam(0, teamId)}
-                    teams={LibertadoresChampionsList}
-                    disabledTeams={selectedTeams.filter((_, i) => i !== 0)}
-                  />
-                </div>
-                <div className="team-slot">
-                  <img
-                    src={SudamericanaLogo}
-                    className="team-flag"
-                    alt="sudamericana-champion"
-                  />
+            {selectedTournament.type === "Continental" ? (
+              phaseRanges.map((phase) => (
+                <>
+                  <h3 className="phase-title">{phase.label}</h3>
+                  <section key={phase.label} className="phase-block">
+                    {phase.label === "Group Stage" &&
+                      selectedTournament.name === "Libertadores" && (
+                        <>
+                          <div className="team-slot">
+                            <img
+                              src={LibertadoresLogo}
+                              className="team-flag"
+                              alt="libertadores-champion"
+                            />
 
-                  <TeamSelector
-                    selectedTournament={selectedTournament}
-                    selectedTeam={selectedTeams[1]}
-                    onSelectTeam={(teamId) => handleSelectTeam(1, teamId)}
-                    teams={SudamericanaChampionsList}
-                    disabledTeams={selectedTeams.filter((_, i) => i !== 0)}
-                  />
-                </div>
-              </>
-            )}
-            {[
-              ...Array(
-                selectedTournament.name === "Champions League"
-                  ? selectedTournament.teams - 1 // remove 1 porque o 1º é o campeão da EL
-                  : selectedTournament.teams - 2
-              ),
-            ].map((_, i) => {
-              const index =
-                selectedTournament.name === "Champions League" ? i + 1 : i + 2;
+                            <TeamSelector
+                              selectedTournament={selectedTournament}
+                              selectedTeam={selectedTeams[0]}
+                              onSelectTeam={(teamId) =>
+                                handleSelectTeam(0, teamId)
+                              }
+                              teams={LibertadoresChampionsList}
+                              disabledTeams={selectedTeams.filter(
+                                (_, i) => i !== 0
+                              )}
+                            />
+                          </div>
 
-              const country = countrySlots[index];
+                          <div className="team-slot">
+                            <img
+                              src={SudamericanaLogo}
+                              className="team-flag"
+                              alt="sudamericana-champion"
+                            />
 
-              const countryTeams = teams.filter((t) => t.league === country); // Only for Champions League
+                            <TeamSelector
+                              selectedTournament={selectedTournament}
+                              selectedTeam={selectedTeams[1]}
+                              onSelectTeam={(teamId) =>
+                                handleSelectTeam(1, teamId)
+                              }
+                              teams={SudamericanaChampionsList}
+                              disabledTeams={selectedTeams.filter(
+                                (_, i) => i !== 1
+                              )}
+                            />
+                          </div>
+                        </>
+                      )}
 
-              // Flag correta mapeada dinamicamente
-              const flagPath =
-                selectedTournament.name == "Champions League"
-                  ? `../assets/icons/country flags/europe/${country}_flag.png`
-                  : `../assets/icons/country flags/south_america/${country}_flag.png`;
-              const flagSrc =
-                selectedTournament.name == "Champions League"
-                  ? europeFlags[flagPath]
-                  : southAmericaFlags[flagPath];
-
-              return (
-                <div key={index} className="team-slot">
-                  {selectedTournament.type == "Continental" && (
-                    <img
-                      src={flagSrc as string}
-                      className="team-flag"
-                      alt={country}
+                    {renderSlots(phase.start, phase.end)}
+                  </section>
+                </>
+              ))
+            ) : (
+              // 🔽 LIGAS NACIONAIS
+              <section className="phase-block">
+                {[...Array(selectedTournament.teams)].map((_, index) => (
+                  <div key={index} className="team-slot">
+                    <TeamSelector
+                      selectedTournament={selectedTournament}
+                      selectedTeam={selectedTeams[index]}
+                      onSelectTeam={(teamId) => handleSelectTeam(index, teamId)}
+                      teams={teams}
+                      disabledTeams={selectedTeams.filter(
+                        (_, i) => i !== index
+                      )}
                     />
-                  )}
-
-                  <TeamSelector
-                    selectedTournament={selectedTournament}
-                    selectedTeam={selectedTeams[index]}
-                    onSelectTeam={(teamId) => handleSelectTeam(index, teamId)}
-                    teams={
-                      selectedTournament.type == "Continental"
-                        ? countryTeams
-                        : teams
-                    }
-                    disabledTeams={selectedTeams.filter((_, i) => i !== index)}
-                  />
-                </div>
-              );
-            })}
+                  </div>
+                ))}
+              </section>
+            )}
           </section>
 
           <footer className="footer-buttons">

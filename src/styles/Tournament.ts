@@ -82,16 +82,25 @@ export const Container = styled.main<Props>`
 
   // Teams Selection
   .teams-selection {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px 16px;
     max-height: 400px;
     overflow-y: ${(props) =>
       props.tournamentName == "Champions League" ||
       props.tournamentName == "Libertadores"
         ? "auto"
-        : "hidden"};
+        : "auto"};
     padding-right: 10px;
+  }
+
+  .phase-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px 16px;
+  }
+
+  .phase-title {
+    color: ${(props) => props.textColor};
+    margin: 20px 0;
+    border-bottom: 2px solid ${(props) => props.textColor};
   }
 
   .team-slot {
