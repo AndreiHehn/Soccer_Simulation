@@ -168,16 +168,6 @@ export default function Tournament() {
     }
   }
 
-  function expandCountries(countryTeams: Record<string, number>) {
-    const result: string[] = [];
-
-    Object.entries(countryTeams).forEach(([country, qty]) => {
-      for (let i = 0; i < qty; i++) result.push(country);
-    });
-
-    return result;
-  }
-
   function expandPhasedCountries(
     phasedTeams: Record<string, Record<string, number>>,
     phaseOrder: string[]
@@ -200,7 +190,13 @@ export default function Tournament() {
     if (!selectedTournament) return [];
 
     if (selectedTournament.name === "Champions League") {
-      return expandCountries(ChampionsLeagueTeams);
+      return expandPhasedCountries(ChampionsLeagueTeams, [
+        "FinalStage",
+        "Playoff",
+        "Q3",
+        "Q2",
+        "Q1",
+      ]);
     }
 
     if (selectedTournament.name === "Libertadores") {
@@ -282,16 +278,26 @@ export default function Tournament() {
         {
           label: t("League Phase"),
           start: 1,
-          end: 1 + 36,
+          end: 29,
         },
         {
-          label: t("2nd Qualifying Round"),
-          start: 37,
-          end: 37 + 10,
+          label: t("Playoff"),
+          start: 29,
+          end: 33,
         },
         {
-          label: t("1st Qualifying Round"),
-          start: 47,
+          label: t("3rd Qualifying"),
+          start: 33,
+          end: 38,
+        },
+        {
+          label: t("2nd Qualifying"),
+          start: 38,
+          end: 54,
+        },
+        {
+          label: t("1st Qualifying"),
+          start: 54,
           end: countrySlots.length,
         },
       ];
@@ -305,12 +311,12 @@ export default function Tournament() {
           end: 28,
         },
         {
-          label: t("2nd Qualifying Round"),
+          label: t("2nd Qualifying"),
           start: 28,
           end: 41,
         },
         {
-          label: t("1st Qualifying Round"),
+          label: t("1st Qualifying"),
           start: 41,
           end: countrySlots.length,
         },
@@ -353,24 +359,6 @@ export default function Tournament() {
       {tournamentStep === "Teams Selection" && selectedTournament && (
         <>
           <section className="teams-selection">
-            {selectedTournament.name === "Champions League" && (
-              <div className="team-slot">
-                <img
-                  src={EuropaLeagueLogo}
-                  className="team-flag"
-                  alt="europa-league-champion"
-                />
-
-                <TeamSelector
-                  selectedTournament={selectedTournament}
-                  selectedTeam={selectedTeams[0]}
-                  onSelectTeam={(teamId) => handleSelectTeam(0, teamId)}
-                  teams={EuropaLeagueChampionsList}
-                  disabledTeams={selectedTeams.filter((_, i) => i !== 0)}
-                />
-              </div>
-            )}
-
             {selectedTournament.type === "Continental" ? (
               phaseRanges.map((phase) => (
                 <>
@@ -419,6 +407,28 @@ export default function Tournament() {
                             />
                           </div>
                         </>
+                      )}
+                    {selectedTournament.name === "Champions League" &&
+                      phase.label == "League Phase" && (
+                        <div className="team-slot">
+                          <img
+                            src={EuropaLeagueLogo}
+                            className="team-flag"
+                            alt="europa-league-champion"
+                          />
+
+                          <TeamSelector
+                            selectedTournament={selectedTournament}
+                            selectedTeam={selectedTeams[0]}
+                            onSelectTeam={(teamId) =>
+                              handleSelectTeam(0, teamId)
+                            }
+                            teams={EuropaLeagueChampionsList}
+                            disabledTeams={selectedTeams.filter(
+                              (_, i) => i !== 0
+                            )}
+                          />
+                        </div>
                       )}
 
                     {renderSlots(phase.start, phase.end)}
