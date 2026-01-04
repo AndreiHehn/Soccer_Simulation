@@ -148,12 +148,12 @@ export default function QualifyingRound({
       <footer className="buttons">
         <Button
           color="blue"
-          width="100px"
+          width="auto"
           borderRadius="4px"
           functionButton={() => DrawQ1(Q1Teams)}
           disabled={Q1Matches.length != 0}
         >
-          {t("Draw")}
+          {t("Draw") + " " + t(phases[phaseIndex])}
         </Button>
       </footer>
     </Container>
