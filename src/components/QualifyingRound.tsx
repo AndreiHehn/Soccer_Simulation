@@ -49,7 +49,7 @@ export default function QualifyingRound({
         >
           <ArrowLeft />
         </div>
-        <h2 className="current-phase">{phases[phaseIndex]}</h2>
+        <h2 className="current-phase">{t(phases[phaseIndex])}</h2>
         <div
           className={`qualifying-phase ${
             phaseIndex === phases.length - 1 ? "inactive" : ""
