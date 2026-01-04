@@ -85,7 +85,7 @@ export default function Tournament() {
 
   const [, setSelectedTeam] = useState("");
   const selectedCount = selectedTeams.filter(Boolean).length;
-  const [matchesPerPhase, setMatchesPerPhase] = useState([10, 15, 10, 7]);
+  const [matchesPerPhase, setMatchesPerPhase] = useState([14, 15, 10, 7]);
 
   const ChampionsLeagueList = [
     ...PremierLeagueList,
@@ -230,7 +230,7 @@ export default function Tournament() {
   useEffect(() => {
     if (selectedTournament) {
       if (selectedTournament.name == "Champions League") {
-        setMatchesPerPhase([10, 15, 10, 7]);
+        setMatchesPerPhase([14, 15, 10, 7]);
       } else if (selectedTournament.name == "Libertadores") {
         setMatchesPerPhase([3, 8, 4]);
       } else {
