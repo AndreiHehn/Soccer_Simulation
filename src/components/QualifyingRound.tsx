@@ -28,7 +28,6 @@ export default function QualifyingRound({
   const [results, setResults] = useState<Record<number, MatchResult>>({});
   const [phaseIndex, setPhaseIndex] = useState<number>(0);
   const { t } = useTranslation();
-  const totalMatches = matchesPerPhase[phaseIndex];
 
   const [Q1Matches, setQ1Matches] = useState<Array<string>>([]);
 

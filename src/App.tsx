@@ -54,7 +54,6 @@ function App() {
     setQ1Teams,
     qualifyedTeams,
     setQualifyedTeams,
-    Q1Teams,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
