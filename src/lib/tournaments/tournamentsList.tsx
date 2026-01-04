@@ -453,7 +453,7 @@ export const TournamentsList: Tournament[] = [
     name: "Libertadores",
     logo: Libertadores_logo,
     type: "Continental",
-    primaryColor: "#AA7125",
+    primaryColor: "#ef8f12",
     secondaryColor: "#AA7125",
     tertiaryColor: "#AA7125",
     backgroundColor: "#373737",
