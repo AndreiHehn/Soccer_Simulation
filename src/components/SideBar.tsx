@@ -108,15 +108,14 @@ export default function SideBar() {
           logo={SettingsIcon}
           functionButton={() => setShowModalSettings(true)}
         ></SideBarButton>
-        {activePage == "Tournament" ||
-          (activePage == "Rankings" && (
-            <SideBarButton
-              name={t("Back to Menu")}
-              color="#265643"
-              logo={HomeIcon}
-              functionButton={() => setBackToMenu(true)}
-            ></SideBarButton>
-          ))}
+        {activePage != "Home" && (
+          <SideBarButton
+            name={t("Back to Menu")}
+            color="#265643"
+            logo={HomeIcon}
+            functionButton={() => setBackToMenu(true)}
+          ></SideBarButton>
+        )}
       </footer>
     </Container>
   );
