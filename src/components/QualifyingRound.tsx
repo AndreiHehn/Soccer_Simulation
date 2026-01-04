@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container } from "../styles/QualifyingRound";
 import { AppContext } from "../lib/context";
 import ArrowLeft from "../assets/icons/arrowLeftIcon.svg?react";
@@ -30,6 +30,7 @@ export default function QualifyingRound({
   const { t } = useTranslation();
 
   const [Q1Matches, setQ1Matches] = useState<Array<string>>([]);
+  const [Q1Winners, setQ1Winners] = useState<Record<number, string | null>>({});
 
   function NextPhase() {
     if (phaseIndex < phases.length - 1) {
@@ -75,6 +76,74 @@ export default function QualifyingRound({
     setQ1Matches(result);
   }
 
+  function calculateWinner(matchIndex: number) {
+    const offset = matchesPerPhase[phaseIndex];
+
+    const firstLeg = results[matchIndex]; // ida
+    const secondLeg = results[matchIndex + offset]; // volta
+
+    if (!firstLeg || !secondLeg) return;
+
+    if (
+      firstLeg.home == null ||
+      firstLeg.away == null ||
+      secondLeg.home == null ||
+      secondLeg.away == null
+    ) {
+      return;
+    }
+
+    const homeTeam = Q1Matches[matchIndex];
+    const awayTeam = Q1Matches[matchIndex + Q1Matches.length / 2];
+
+    // 🔹 GOLS AGREGADOS
+    const homeAggregate = firstLeg.home + secondLeg.away;
+    const awayAggregate = firstLeg.away + secondLeg.home;
+
+    let winner: string | null = null;
+
+    // 1️⃣ Vitória direta no agregado
+    if (homeAggregate > awayAggregate) {
+      winner = homeTeam;
+    } else if (awayAggregate > homeAggregate) {
+      winner = awayTeam;
+    } else {
+      // 2️⃣ REGRA DO GOL FORA
+      const homeAwayGoals = secondLeg.away; // Time da ida jogando fora na volta
+      const awayAwayGoals = firstLeg.away; // Time da volta jogando fora na ida
+
+      if (homeAwayGoals > awayAwayGoals) {
+        winner = homeTeam;
+      } else if (awayAwayGoals > homeAwayGoals) {
+        winner = awayTeam;
+      }
+    }
+
+    // 3️⃣ Empate total → pênaltis (não define ainda)
+    if (!winner) {
+      setQ1Winners((prev) => ({
+        ...prev,
+        [matchIndex]: null,
+      }));
+      return;
+    }
+
+    setQ1Winners((prev) => ({
+      ...prev,
+      [matchIndex]: winner,
+    }));
+  }
+
+  useEffect(() => {
+    for (let i = 0; i < matchesPerPhase[phaseIndex]; i++) {
+      calculateWinner(i);
+    }
+  }, [results, phaseIndex]);
+
+  const allTiesResolved =
+    Object.keys(Q1Winners).length === matchesPerPhase[phaseIndex] &&
+    Object.values(Q1Winners).every((winner) => winner !== null);
+
   return (
     <Container
       secondaryColor={selectedTournament?.secondaryColor || "#FFFFFF"}
@@ -93,9 +162,13 @@ export default function QualifyingRound({
         <h2 className="current-phase">{t(phases[phaseIndex])}</h2>
         <div
           className={`qualifying-phase ${
-            phaseIndex === phases.length - 1 ? "inactive" : ""
+            phaseIndex === phases.length - 1 || !allTiesResolved
+              ? "inactive"
+              : ""
           }`}
-          onClick={NextPhase}
+          onClick={() => {
+            if (allTiesResolved) NextPhase();
+          }}
         >
           <ArrowRight />
         </div>
