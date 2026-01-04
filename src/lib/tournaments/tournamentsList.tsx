@@ -8,6 +8,7 @@ import Ligue1_logo from "../../assets/icons/league logos/Ligue1_logo.png";
 import Brasileirão_logo from "../../assets/icons/league logos/Brasileirão_logo.png";
 import Eredivisie_logo from "../../assets/icons/league logos/Eredivisie_logo.png";
 import LigaPortugal_logo from "../../assets/icons/league logos/LigaPortugal_logo.png";
+import SaudiProLeague_logo from "../../assets/icons/league logos/SaudiProLeague_logo.png";
 
 import UefaChampionsLeague_logo from "../../assets/icons/league logos/UefaChampionsLeague_logo.png";
 import Libertadores_logo from "../../assets/icons/league logos/Libertadores_logo.png";
@@ -299,6 +300,41 @@ export const TournamentsList: Tournament[] = [
       "São Paulo",
       "Vasco",
       "Vitória",
+    ],
+  },
+  {
+    id: "saudi_league",
+    name: "Saudi Pro League",
+    logo: SaudiProLeague_logo,
+    type: "National League",
+    primaryColor: "#154f36",
+    secondaryColor: "#11077d",
+    tertiaryColor: "#0f0623",
+    backgroundColor: "#cbcbcb",
+    textColor: "#0d9f60",
+    teams: 18,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
+    relegated: 3,
+    qualified: [3, 0], // AFC Champions League
+    defaultTeams: [
+      "Al-Ahli",
+      "Al-Ettifaq",
+      "Al-Fateh",
+      "Al-Fayha",
+      "Al-Hazem",
+      "Al-Hilal",
+      "Al-Ittihad",
+      "Al-Khaleej",
+      "Al-Kholood",
+      "Al-Najma",
+      "Al-Nassr",
+      "Al-Okhdood",
+      "Al-Qadsiah",
+      "Al-Riyadh",
+      "Al-Shabab",
+      "Al-Taawoun",
+      "Damac",
+      "Neom SC",
     ],
   },
   {
