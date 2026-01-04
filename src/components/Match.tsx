@@ -8,6 +8,17 @@ interface MatchProps {
   awayTeam: string;
   awayLogo: string;
   index: number;
+
+  // opcionais (Qualifying)
+  result?: {
+    home?: number;
+    away?: number;
+  };
+  onResultChange?: (
+    index: number,
+    team: "home" | "away",
+    value: number | undefined
+  ) => void;
 }
 
 export default function Match({
@@ -16,28 +27,48 @@ export default function Match({
   awayTeam,
   awayLogo,
   index,
+  result,
+  onResultChange,
 }: MatchProps) {
   const { selectedTournament, matchResults, setMatchResults, matchdayNumber } =
     useContext(AppContext);
 
-  const homeGoals = matchResults?.[matchdayNumber]?.[index]?.home ?? "";
-  const awayGoals = matchResults?.[matchdayNumber]?.[index]?.away ?? "";
+  // 🔹 Fonte de verdade
+  const homeGoals = onResultChange
+    ? result?.home ?? ""
+    : matchResults?.[matchdayNumber]?.[index]?.home ?? "";
 
-  function handleResultChange(
-    matchIndex: number,
-    team: "home" | "away",
-    value: string
-  ) {
+  const awayGoals = onResultChange
+    ? result?.away ?? ""
+    : matchResults?.[matchdayNumber]?.[index]?.away ?? "";
+
+  function updateFromContext(team: "home" | "away", value: string) {
     setMatchResults((prev) => ({
       ...prev,
       [matchdayNumber]: {
         ...prev?.[matchdayNumber],
-        [matchIndex]: {
-          ...prev?.[matchdayNumber]?.[matchIndex],
+        [index]: {
+          ...prev?.[matchdayNumber]?.[index],
           [team]: value,
         },
       },
     }));
+  }
+
+  function handleChange(team: "home" | "away", value: string) {
+    if (!onResultChange) {
+      updateFromContext(team, value);
+      return;
+    }
+
+    if (value === "") {
+      onResultChange(index, team, undefined);
+      return;
+    }
+
+    if (/^\d+$/.test(value)) {
+      onResultChange(index, team, Number(value));
+    }
   }
 
   return (
@@ -57,67 +88,16 @@ export default function Match({
           type="text"
           className="home-goals"
           value={homeGoals}
-          onChange={(e) => {
-            const value = e.target.value;
-
-            // permite vazio
-            if (value === "") {
-              handleResultChange(index, "home", "");
-              return;
-            }
-
-            // aceita apenas números 0–9
-            if (/^\d+$/.test(value)) {
-              handleResultChange(index, "home", value);
-            }
-          }}
-          onKeyDown={(e) => {
-            // bloqueia tudo que não for número, backspace ou delete
-            if (
-              !/^[0-9]$/.test(e.key) &&
-              e.key !== "Backspace" &&
-              e.key !== "Delete" &&
-              e.key !== "Tab" &&
-              e.key !== "ArrowLeft" &&
-              e.key !== "ArrowRight"
-            ) {
-              e.preventDefault();
-            }
-          }}
+          onChange={(e) => handleChange("home", e.target.value)}
         />
 
         <div className="separator">-</div>
+
         <input
           type="text"
           className="away-goals"
           value={awayGoals}
-          onChange={(e) => {
-            const value = e.target.value;
-
-            // permite vazio
-            if (value === "") {
-              handleResultChange(index, "away", "");
-              return;
-            }
-
-            // aceita apenas números 0–9
-            if (/^\d+$/.test(value)) {
-              handleResultChange(index, "away", value);
-            }
-          }}
-          onKeyDown={(e) => {
-            // bloqueia tudo que não for número, backspace ou delete
-            if (
-              !/^[0-9]$/.test(e.key) &&
-              e.key !== "Backspace" &&
-              e.key !== "Delete" &&
-              e.key !== "Tab" &&
-              e.key !== "ArrowLeft" &&
-              e.key !== "ArrowRight"
-            ) {
-              e.preventDefault();
-            }
-          }}
+          onChange={(e) => handleChange("away", e.target.value)}
         />
       </div>
 

@@ -90,10 +90,14 @@ function App() {
     i18n.changeLanguage("en");
   }
 
-  function FillCLTeams() {
+  function FillTeams() {
     if (selectedTournament?.name == "Champions League") {
       setQualifyedTeams(selectedTeams.slice(0, 29));
       setQ1Teams(selectedTeams.slice(54)); // Sweden
+    }
+    if (selectedTournament?.name == "Libertadores") {
+      setQualifyedTeams(selectedTeams.slice(0, 25));
+      setQ1Teams(selectedTeams.slice(41)); // Bolivia 4
     }
   }
 
@@ -268,7 +272,7 @@ function App() {
           onClick2={() => (
             setConfirmTeams(false),
             setActiveTournament(true),
-            FillCLTeams(),
+            FillTeams(),
             SetDefaultStandings()
           )}
           textButton2={t("Yes")}
