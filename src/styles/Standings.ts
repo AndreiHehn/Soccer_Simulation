@@ -75,6 +75,7 @@ export const Container = styled.table<Props>`
     width: 20px;
     height: 20px;
     margin-right: 6px;
+    color: #ffffff;
   }
 
   .result-W {
