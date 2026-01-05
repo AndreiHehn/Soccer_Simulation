@@ -19,7 +19,6 @@ export default function Matchday() {
     : [];
 
   function recalculateStandings() {
-    // base zerada
     const table = selectedTeams.map((team, i) => ({
       team,
       logo: selectedLogos[i] ?? "",
@@ -31,7 +30,7 @@ export default function Matchday() {
       goalsAgainst: 0,
       goalDifference: 0,
       points: 0,
-      history: [] as string[], // armazenar TODOS os resultados
+      history: [] as string[],
       lastFive: [] as string[],
     }));
 

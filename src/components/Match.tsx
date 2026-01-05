@@ -9,7 +9,6 @@ interface MatchProps {
   awayLogo: string;
   index: number;
 
-  // opcionais (Qualifying)
   result?: {
     home?: number;
     away?: number;
@@ -33,7 +32,6 @@ export default function Match({
   const { selectedTournament, matchResults, setMatchResults, matchdayNumber } =
     useContext(AppContext);
 
-  // 🔹 Fonte de verdade
   const homeGoals = onResultChange
     ? result?.home ?? ""
     : matchResults?.[matchdayNumber]?.[index]?.home ?? "";
@@ -80,7 +78,7 @@ export default function Match({
     >
       <div className="home-team">
         <h2 className="home-team-name">{homeTeam}</h2>
-        <img src={homeLogo} className="home-team-logo" />
+        {homeLogo && <img src={homeLogo} className="home-team-logo" />}
       </div>
 
       <div className="results-container">
@@ -102,7 +100,7 @@ export default function Match({
       </div>
 
       <div className="away-team">
-        <img src={awayLogo} className="away-team-logo" />
+        {awayLogo && <img src={awayLogo} className="away-team-logo" />}
         <h2 className="away-team-name">{awayTeam}</h2>
       </div>
     </Container>

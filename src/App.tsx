@@ -52,6 +52,7 @@ function App() {
     ranking,
     setRanking,
     setQ1Teams,
+    setQ2Teams,
     qualifyedTeams,
     setQualifyedTeams,
   } = useContext(AppContext);
@@ -89,16 +90,27 @@ function App() {
     i18n.changeLanguage("en");
   }
 
-  function FillTeams() {
-    if (selectedTournament?.name == "Champions League") {
+  useEffect(() => {
+    if (!activeTournament || selectedTeams.length === 0) return;
+
+    if (selectedTournament?.name === "Champions League") {
       setQualifyedTeams(selectedTeams.slice(0, 29));
-      setQ1Teams(selectedTeams.slice(54)); // Sweden
+      setQ2Teams(selectedTeams.slice(38, 54));
+      setQ1Teams(selectedTeams.slice(54, 82));
     }
-    if (selectedTournament?.name == "Libertadores") {
-      setQualifyedTeams(selectedTeams.slice(0, 25));
-      setQ1Teams(selectedTeams.slice(41)); // Bolivia 4
+
+    if (selectedTournament?.name === "Libertadores") {
+      setQualifyedTeams(selectedTeams.slice(0, 28));
+      setQ2Teams(selectedTeams.slice(28, 41));
+      setQ1Teams(selectedTeams.slice(41, 47));
     }
-  }
+  }, [activeTournament, selectedTeams, selectedTournament]);
+
+  useEffect(() => {
+    if (!activeTournament) return;
+
+    SetDefaultStandings();
+  }, [qualifyedTeams]);
 
   function SetDefaultStandings() {
     let teams;
@@ -271,7 +283,6 @@ function App() {
           onClick2={() => (
             setConfirmTeams(false),
             setActiveTournament(true),
-            FillTeams(),
             SetDefaultStandings()
           )}
           textButton2={t("Yes")}

@@ -63,7 +63,7 @@ export const Container = styled.article<Props>`
     height: 450px;
     overflow-y: auto;
     padding-right: 10px;
-    .leg {
+    .match-title {
       font-size: 16px;
       color: ${(props) => props.textColor};
       width: 100%;

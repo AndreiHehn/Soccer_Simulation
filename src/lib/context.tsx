@@ -79,6 +79,8 @@ interface AppContextProps {
   setQualifyedTeams: Dispatch<SetStateAction<Array<string>>>;
   Q1Teams: Array<string>;
   setQ1Teams: Dispatch<SetStateAction<Array<string>>>;
+  Q2Teams: Array<string>;
+  setQ2Teams: Dispatch<SetStateAction<Array<string>>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -119,6 +121,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   >({});
   const [qualifyedTeams, setQualifyedTeams] = useState<string[]>([]);
   const [Q1Teams, setQ1Teams] = useState<string[]>([]);
+  const [Q2Teams, setQ2Teams] = useState<string[]>([]);
 
   return (
     <AppContext.Provider
@@ -176,6 +179,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setQualifyedTeams,
         Q1Teams,
         setQ1Teams,
+        Q2Teams,
+        setQ2Teams,
       }}
     >
       {children}
