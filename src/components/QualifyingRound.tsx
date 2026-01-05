@@ -303,33 +303,55 @@ export default function QualifyingRound({
           const awayTeam =
             currentPhase.matches[i + currentPhase.matches.length / 2];
 
+          const isChampionsQ2 =
+            selectedTournament?.name === "Champions League" &&
+            phases[phaseIndex] === "2nd Qualifying";
+
           return (
-            <div key={`tie-${i}`} className="match-block">
-              <h3 className="match-title">
-                {t("Match")} {String(i + 1).padStart(2, "0")}
-              </h3>
+            <div key={`tie-${i}`}>
+              {isChampionsQ2 && i === 0 && (
+                <h3 className="path-title">{t("Champions Path")}</h3>
+              )}
 
-              <Match
-                index={i}
-                homeTeam={homeTeam}
-                awayTeam={awayTeam}
-                homeLogo={getTeamLogo(homeTeam, selectedTeams, selectedLogos)}
-                awayLogo={getTeamLogo(awayTeam, selectedTeams, selectedLogos)}
-                result={currentPhase.results[i]}
-                onResultChange={updateResult}
-              />
+              {isChampionsQ2 && i === 12 && (
+                <h3 className="path-title">{t("League Path")}</h3>
+              )}
 
-              {twoLegs && (
+              <div className="match-block">
+                <h3 className="match-title">
+                  {t("Match")} {String(i + 1).padStart(2, "0")}
+                </h3>
+
                 <Match
-                  index={i + offset}
-                  homeTeam={awayTeam}
-                  awayTeam={homeTeam}
-                  homeLogo={getTeamLogo(awayTeam, selectedTeams, selectedLogos)}
-                  awayLogo={getTeamLogo(homeTeam, selectedTeams, selectedLogos)}
-                  result={currentPhase.results[i + offset]}
+                  index={i}
+                  homeTeam={homeTeam}
+                  awayTeam={awayTeam}
+                  homeLogo={getTeamLogo(homeTeam, selectedTeams, selectedLogos)}
+                  awayLogo={getTeamLogo(awayTeam, selectedTeams, selectedLogos)}
+                  result={currentPhase.results[i]}
                   onResultChange={updateResult}
                 />
-              )}
+
+                {twoLegs && (
+                  <Match
+                    index={i + offset}
+                    homeTeam={awayTeam}
+                    awayTeam={homeTeam}
+                    homeLogo={getTeamLogo(
+                      awayTeam,
+                      selectedTeams,
+                      selectedLogos
+                    )}
+                    awayLogo={getTeamLogo(
+                      homeTeam,
+                      selectedTeams,
+                      selectedLogos
+                    )}
+                    result={currentPhase.results[i + offset]}
+                    onResultChange={updateResult}
+                  />
+                )}
+              </div>
             </div>
           );
         })}

@@ -72,6 +72,13 @@ export const Container = styled.article<Props>`
       display: ${(props) => (props.twoLegs ? "flex" : "none")};
       justify-content: center;
     }
+
+    .path-title {
+      color: ${(props) => props.textColor};
+      text-align: center;
+      border-bottom: 1px solid ${(props) => props.textColor};
+      margin: 10px 0;
+    }
   }
 
   .buttons {
