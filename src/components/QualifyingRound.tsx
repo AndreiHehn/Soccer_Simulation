@@ -8,6 +8,19 @@ import { useTranslation } from "react-i18next";
 import { Button } from "../generic/Button";
 import { CONMEBOL_Ranking } from "../lib/rankings/conmebol_ranking";
 
+// importa listas de times
+import { PremierLeagueList } from "../lib/tournaments/PremierLeague";
+import { LaLigaList } from "../lib/tournaments/LaLiga";
+import { SerieAList } from "../lib/tournaments/SerieA";
+import { BundesligaList } from "../lib/tournaments/Bundesliga";
+import { Ligue1List } from "../lib/tournaments/Ligue1";
+import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
+
+import { EredivisieList } from "../lib/tournaments/Eredivisie";
+import { LigaPortugalList } from "../lib/tournaments/LigaPortugal";
+import { RestOfEuropeList } from "../lib/tournaments/RestOfEurope";
+import { SouthAmericaList } from "../lib/tournaments/SouthAmerica";
+
 interface Props {
   phases: string[];
   matchesPerPhase: number[];
@@ -39,6 +52,19 @@ export default function QualifyingRound({
     Q2Teams,
   } = useContext(AppContext);
 
+  const ChampionsLeagueList = [
+    ...PremierLeagueList,
+    ...LaLigaList,
+    ...SerieAList,
+    ...BundesligaList,
+    ...Ligue1List,
+    ...EredivisieList,
+    ...LigaPortugalList,
+    ...RestOfEuropeList,
+  ];
+
+  const LibertadoresList = [...BrasileirãoList, ...SouthAmericaList];
+
   const { t } = useTranslation();
   const [phaseIndex, setPhaseIndex] = useState(0);
 
@@ -51,6 +77,40 @@ export default function QualifyingRound({
   };
 
   const [q1Promoted, setQ1Promoted] = useState(false); // Garante que os times do Q1 foram adicionados ao Q2
+
+  const teamCountryMap = new Map<string, string>();
+
+  [...LibertadoresList, ...ChampionsLeagueList].forEach((team) => {
+    teamCountryMap.set(team.name, team.league);
+  });
+
+  const sameCountry = (a: string, b: string) =>
+    teamCountryMap.get(a) === teamCountryMap.get(b); // Verifica se dois times são do mesmo país
+
+  function buildMatchesAvoidingSameCountry(teams: string[]) {
+    const pool = [...teams];
+    const homes: string[] = [];
+    const aways: string[] = [];
+
+    while (pool.length > 0) {
+      const home = pool.shift()!;
+
+      const opponentIndex = pool.findIndex((team) => !sameCountry(home, team));
+
+      if (opponentIndex === -1) {
+        throw new Error(
+          `Sorteio impossível: todos os adversários restantes são do mesmo país de ${home}`
+        );
+      }
+
+      const away = pool.splice(opponentIndex, 1)[0];
+
+      homes.push(home);
+      aways.push(away);
+    }
+
+    return [...homes, ...aways];
+  }
 
   function NextPhase() {
     if (phaseIndex < phases.length - 1) {
@@ -127,10 +187,13 @@ export default function QualifyingRound({
       pot1 = shuffle(pot1);
       pot2 = shuffle(pot2);
 
+      const merged = pot1.flatMap((team, i) => [team, pot2[i]]);
+      const matches = buildMatchesAvoidingSameCountry(merged);
+
       setPhaseState((prev) => ({
         ...prev,
         [phaseIndex]: {
-          matches: [...pot1, ...pot2],
+          matches,
           results: {},
           winners: {},
         },
@@ -187,6 +250,8 @@ export default function QualifyingRound({
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
+
+    console.log(LibertadoresList);
 
     setPhaseState((prev) => ({
       ...prev,
@@ -363,7 +428,7 @@ export default function QualifyingRound({
           width="auto"
           borderRadius="4px"
           functionButton={() => Draw()}
-          disabled={currentPhase.matches.length !== 0}
+          // disabled={currentPhase.matches.length !== 0}
         >
           {t("Draw") + " " + t(phases[phaseIndex])}
         </Button>
