@@ -56,6 +56,10 @@ export default function QualifyingRound({
     startDraw,
     setStartDraw,
     setQualifyedTeams,
+    qualifyingState,
+    setQualifyingState,
+    qualifyingDone,
+    setQualifyingDone,
   } = useContext(AppContext);
 
   const ChampionsLeagueList = [
@@ -74,9 +78,9 @@ export default function QualifyingRound({
   const { t } = useTranslation();
   const [phaseIndex, setPhaseIndex] = useState(0);
 
-  const [phaseState, setPhaseState] = useState<Record<number, PhaseState>>({});
-
-  const currentPhase: PhaseState = phaseState[phaseIndex] ?? {
+  const currentPhase: PhaseState = (
+    qualifyingState as Record<number, PhaseState>
+  )[phaseIndex] ?? {
     matches: [],
     results: {},
     winners: {},
@@ -131,7 +135,7 @@ export default function QualifyingRound({
   }
 
   function updateResult(index: number, team: "home" | "away", value?: number) {
-    setPhaseState((prev) => ({
+    setQualifyingState((prev) => ({
       ...prev,
       [phaseIndex]: {
         ...currentPhase,
@@ -202,7 +206,7 @@ export default function QualifyingRound({
       // evita confrontos do mesmo país
       const matches = buildMatchesAvoidingSameCountry(merged);
 
-      setPhaseState((prev) => ({
+      setQualifyingState((prev) => ({
         ...prev,
         [phaseIndex]: {
           matches,
@@ -240,7 +244,7 @@ export default function QualifyingRound({
       const chHalf = shuffledChampions.length / 2;
       const lgHalf = shuffledLeague.length / 2;
 
-      setPhaseState((prev) => ({
+      setQualifyingState((prev) => ({
         ...prev,
         [phaseIndex]: {
           matches: [
@@ -267,7 +271,7 @@ export default function QualifyingRound({
 
       const away = [ordered[7], ordered[6], ordered[5], ordered[4]];
 
-      setPhaseState((prev) => ({
+      setQualifyingState((prev) => ({
         ...prev,
         [phaseIndex]: {
           matches: [...home, ...away],
@@ -288,7 +292,7 @@ export default function QualifyingRound({
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
 
-    setPhaseState((prev) => ({
+    setQualifyingState((prev) => ({
       ...prev,
       [phaseIndex]: {
         matches: shuffled,
@@ -332,7 +336,7 @@ export default function QualifyingRound({
       else if (awayAwayGoals > homeAwayGoals) winner = awayTeam;
     }
 
-    setPhaseState((prev) => ({
+    setQualifyingState((prev) => ({
       ...prev,
       [phaseIndex]: {
         ...currentPhase,
@@ -372,8 +376,14 @@ export default function QualifyingRound({
       setQ3Teams(winners);
     }
 
-    if (phaseIndex === 2 && selectedTournament?.name == "Libertadores") {
+    // Q3 → Group Stage (Libertadores)
+    if (
+      phaseIndex === 2 &&
+      selectedTournament?.name == "Libertadores" &&
+      !qualifyingDone
+    ) {
       setQualifyedTeams((prev) => [...prev, ...winners]);
+      setQualifyingDone(true);
     }
 
     // marca fase como já promovida

@@ -55,6 +55,7 @@ function App() {
     setQ2Teams,
     qualifyedTeams,
     setQualifyedTeams,
+    setQualifyingState,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -210,7 +211,8 @@ function App() {
             setSelectedTeams([]),
             setMatchdayNumber(1),
             setActiveTournament(false),
-            SetDefaultStandings()
+            SetDefaultStandings(),
+            setQualifyingState({})
           )}
           textButton2={t("Yes")}
         ></ModalMessage>
