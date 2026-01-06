@@ -82,7 +82,6 @@ export default function Tournament() {
     setConfirmTeams,
     activeTournament,
     scheduleRef,
-    qualifyedTeams,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState("");
@@ -354,7 +353,7 @@ export default function Tournament() {
             }`}
             onClick={() =>
               selectedCount === selectedTournament?.teams &&
-              (setTournamentStep(step), console.log(qualifyedTeams))
+              setTournamentStep(step)
             }
           >
             <h3 className="step-name">{t(step)}</h3>
