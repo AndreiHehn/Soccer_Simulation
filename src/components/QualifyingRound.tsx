@@ -55,6 +55,7 @@ export default function QualifyingRound({
     Q3Teams,
     startDraw,
     setStartDraw,
+    setQualifyedTeams,
   } = useContext(AppContext);
 
   const ChampionsLeagueList = [
@@ -260,11 +261,6 @@ export default function QualifyingRound({
     // 🔹 LIBERTADORES – Q3 (SEM SORTEIO | 1×8, 2×7, 3×6, 4×5)
     // ======================================================
     if (isLibertadores && isQ3) {
-      if (Q3Teams.length !== 8) {
-        console.warn("Q3 da Libertadores precisa de exatamente 8 times");
-        return;
-      }
-
       const ordered = [...Q3Teams];
 
       const home = [ordered[0], ordered[1], ordered[2], ordered[3]];
@@ -366,14 +362,18 @@ export default function QualifyingRound({
 
     const winners = Object.values(currentPhase.winners) as string[];
 
-    // 🔹 Q1 → Q2
+    // Q1 → Q2
     if (phaseIndex === 0) {
       setQ2Teams((prev) => [...prev, ...winners]);
     }
 
-    // 🔹 Q2 → Q3
+    // Q2 → Q3
     if (phaseIndex === 1) {
       setQ3Teams(winners);
+    }
+
+    if (phaseIndex === 2 && selectedTournament?.name == "Libertadores") {
+      setQualifyedTeams((prev) => [...prev, ...winners]);
     }
 
     // marca fase como já promovida
