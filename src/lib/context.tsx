@@ -60,6 +60,8 @@ interface AppContextProps {
   setConfirmTeams: Dispatch<SetStateAction<boolean>>;
   activeTournament: boolean;
   setActiveTournament: Dispatch<SetStateAction<boolean>>;
+  startDraw: boolean;
+  setStartDraw: Dispatch<SetStateAction<boolean>>;
   scheduleRef: React.MutableRefObject<
     { home: string; away: string }[][] | null
   >;
@@ -81,6 +83,8 @@ interface AppContextProps {
   setQ1Teams: Dispatch<SetStateAction<Array<string>>>;
   Q2Teams: Array<string>;
   setQ2Teams: Dispatch<SetStateAction<Array<string>>>;
+  Q3Teams: Array<string>;
+  setQ3Teams: Dispatch<SetStateAction<Array<string>>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -113,6 +117,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [matchdayNumber, setMatchdayNumber] = useState<number>(1);
   const [teams, setTeams] = useState<Team[]>([]);
   const [confirmTeams, setConfirmTeams] = useState<boolean>(false);
+  const [startDraw, setStartDraw] = useState<boolean>(false);
   const [activeTournament, setActiveTournament] = useState<boolean>(false);
   const scheduleRef = useRef(null);
   const [standings, setStandings] = useState<TeamStats[]>([]);
@@ -122,6 +127,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [qualifyedTeams, setQualifyedTeams] = useState<string[]>([]);
   const [Q1Teams, setQ1Teams] = useState<string[]>([]);
   const [Q2Teams, setQ2Teams] = useState<string[]>([]);
+  const [Q3Teams, setQ3Teams] = useState<string[]>([]);
 
   return (
     <AppContext.Provider
@@ -168,6 +174,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setTeams,
         confirmTeams,
         setConfirmTeams,
+        startDraw,
+        setStartDraw,
         activeTournament,
         setActiveTournament,
         scheduleRef,
@@ -181,6 +189,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setQ1Teams,
         Q2Teams,
         setQ2Teams,
+        Q3Teams,
+        setQ3Teams,
       }}
     >
       {children}

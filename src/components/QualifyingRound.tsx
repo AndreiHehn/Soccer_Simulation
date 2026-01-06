@@ -20,6 +20,7 @@ import { EredivisieList } from "../lib/tournaments/Eredivisie";
 import { LigaPortugalList } from "../lib/tournaments/LigaPortugal";
 import { RestOfEuropeList } from "../lib/tournaments/RestOfEurope";
 import { SouthAmericaList } from "../lib/tournaments/SouthAmerica";
+import { ModalMessage } from "../generic/ModalMessage";
 
 interface Props {
   phases: string[];
@@ -50,6 +51,10 @@ export default function QualifyingRound({
     selectedTeams,
     setQ2Teams,
     Q2Teams,
+    setQ3Teams,
+    Q3Teams,
+    startDraw,
+    setStartDraw,
   } = useContext(AppContext);
 
   const ChampionsLeagueList = [
@@ -76,7 +81,7 @@ export default function QualifyingRound({
     winners: {},
   };
 
-  const [q1Promoted, setQ1Promoted] = useState(false); // Garante que os times do Q1 foram adicionados ao Q2
+  const [promotedPhases, setPromotedPhases] = useState<number[]>([]);
 
   const teamCountryMap = new Map<string, string>();
 
@@ -153,28 +158,31 @@ export default function QualifyingRound({
   function Draw() {
     const isLibertadores = selectedTournament?.name === "Libertadores";
     const isChampions = selectedTournament?.name === "Champions League";
-    const isQ2 = phases[phaseIndex] === "2nd Qualifying";
+
+    const phaseName = phases[phaseIndex];
+    const isQ2 = phaseName === "2nd Qualifying";
+    const isQ3 = phaseName === "3rd Qualifying";
 
     let teamsArray: string[] = [];
 
-    if (phases[phaseIndex] === "1st Qualifying") {
+    if (phaseName === "1st Qualifying") {
       teamsArray = Q1Teams;
-    } else if (phases[phaseIndex] === "2nd Qualifying") {
+    } else if (phaseName === "2nd Qualifying") {
       teamsArray = Q2Teams;
     }
 
-    // 🔹 CASO ESPECIAL: LIBERTADORES Q2 COM POTES
+    // ======================================================
+    // 🔹 LIBERTADORES – Q2 (potes + ranking + país)
+    // ======================================================
     if (isLibertadores && isQ2) {
-      const sortedByRanking = [...teamsArray].sort((a, b) => {
-        return CONMEBOL_Ranking.indexOf(a) - CONMEBOL_Ranking.indexOf(b);
-      });
+      const sortedByRanking = [...teamsArray].sort(
+        (a, b) => CONMEBOL_Ranking.indexOf(a) - CONMEBOL_Ranking.indexOf(b)
+      );
 
       const half = sortedByRanking.length / 2;
-
       let pot1 = sortedByRanking.slice(0, half);
       let pot2 = sortedByRanking.slice(half);
 
-      // 🔀 Embaralha cada pote
       const shuffle = (array: string[]) => {
         const copy = [...array];
         for (let i = copy.length - 1; i > 0; i--) {
@@ -187,7 +195,10 @@ export default function QualifyingRound({
       pot1 = shuffle(pot1);
       pot2 = shuffle(pot2);
 
+      // interleia (1º do pote A x 1º do pote B)
       const merged = pot1.flatMap((team, i) => [team, pot2[i]]);
+
+      // evita confrontos do mesmo país
       const matches = buildMatchesAvoidingSameCountry(merged);
 
       setPhaseState((prev) => ({
@@ -202,10 +213,13 @@ export default function QualifyingRound({
       return;
     }
 
+    // ======================================================
+    // 🔹 CHAMPIONS LEAGUE – Q2 (Champions Path + League Path)
+    // ======================================================
     if (isChampions && isQ2) {
       const championsPath = [
-        ...teamsArray.slice(0, 10), // Campeões diretos
-        ...teamsArray.slice(16), // Vindos do Q1
+        ...teamsArray.slice(0, 10), // campeões diretos
+        ...teamsArray.slice(16), // vindos do Q1
       ];
 
       const leaguePath = teamsArray.slice(10, 16);
@@ -222,20 +236,18 @@ export default function QualifyingRound({
       const shuffledChampions = shuffle(championsPath);
       const shuffledLeague = shuffle(leaguePath);
 
-      // Campeões
       const chHalf = shuffledChampions.length / 2;
-      const chHome = shuffledChampions.slice(0, chHalf);
-      const chAway = shuffledChampions.slice(chHalf);
-
-      // Liga
       const lgHalf = shuffledLeague.length / 2;
-      const lgHome = shuffledLeague.slice(0, lgHalf);
-      const lgAway = shuffledLeague.slice(lgHalf);
 
       setPhaseState((prev) => ({
         ...prev,
         [phaseIndex]: {
-          matches: [...chHome, ...lgHome, ...chAway, ...lgAway],
+          matches: [
+            ...shuffledChampions.slice(0, chHalf),
+            ...shuffledLeague.slice(0, lgHalf),
+            ...shuffledChampions.slice(chHalf),
+            ...shuffledLeague.slice(lgHalf),
+          ],
           results: {},
           winners: {},
         },
@@ -244,14 +256,41 @@ export default function QualifyingRound({
       return;
     }
 
-    // 🔹 SORTEIO NORMAL (Q1 ou outros casos)
+    // ======================================================
+    // 🔹 LIBERTADORES – Q3 (SEM SORTEIO | 1×8, 2×7, 3×6, 4×5)
+    // ======================================================
+    if (isLibertadores && isQ3) {
+      if (Q3Teams.length !== 8) {
+        console.warn("Q3 da Libertadores precisa de exatamente 8 times");
+        return;
+      }
+
+      const ordered = [...Q3Teams];
+
+      const home = [ordered[0], ordered[1], ordered[2], ordered[3]];
+
+      const away = [ordered[7], ordered[6], ordered[5], ordered[4]];
+
+      setPhaseState((prev) => ({
+        ...prev,
+        [phaseIndex]: {
+          matches: [...home, ...away],
+          results: {},
+          winners: {},
+        },
+      }));
+
+      return;
+    }
+
+    // ======================================================
+    // 🔹 SORTEIO PADRÃO (Q1 e demais casos)
+    // ======================================================
     const shuffled = [...teamsArray];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-
-    console.log(LibertadoresList);
 
     setPhaseState((prev) => ({
       ...prev,
@@ -321,14 +360,25 @@ export default function QualifyingRound({
 
   useEffect(() => {
     if (!allTiesResolved) return;
-    if (phaseIndex !== 0) return;
-    if (q1Promoted) return;
+
+    // evita promover a mesma fase mais de uma vez
+    if (promotedPhases.includes(phaseIndex)) return;
 
     const winners = Object.values(currentPhase.winners) as string[];
 
-    setQ2Teams((prev) => [...prev, ...winners]);
-    setQ1Promoted(true);
-  }, [allTiesResolved, phaseIndex, q1Promoted]);
+    // 🔹 Q1 → Q2
+    if (phaseIndex === 0) {
+      setQ2Teams((prev) => [...prev, ...winners]);
+    }
+
+    // 🔹 Q2 → Q3
+    if (phaseIndex === 1) {
+      setQ3Teams(winners);
+    }
+
+    // marca fase como já promovida
+    setPromotedPhases((prev) => [...prev, phaseIndex]);
+  }, [allTiesResolved, phaseIndex, promotedPhases]);
 
   return (
     <Container
@@ -354,7 +404,7 @@ export default function QualifyingRound({
               ? "inactive"
               : ""
           }`}
-          onClick={() => allTiesResolved && (NextPhase(), console.log(Q2Teams))}
+          onClick={() => allTiesResolved && NextPhase()}
         >
           <ArrowRight />
         </div>
@@ -427,12 +477,20 @@ export default function QualifyingRound({
           color="blue"
           width="auto"
           borderRadius="4px"
-          functionButton={() => Draw()}
-          // disabled={currentPhase.matches.length !== 0}
+          functionButton={() => setStartDraw(true)}
         >
           {t("Draw") + " " + t(phases[phaseIndex])}
         </Button>
       </footer>
+      {startDraw && (
+        <ModalMessage
+          textMessage={t("Do you want to draw the current phase?")}
+          onClick1={() => setStartDraw(false)}
+          textButton1={t("Cancel")}
+          onClick2={() => (Draw(), setStartDraw(false))}
+          textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
     </Container>
   );
 }
