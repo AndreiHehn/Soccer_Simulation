@@ -18,6 +18,7 @@ import { SerieAList } from "../lib/tournaments/SerieA";
 import { BundesligaList } from "../lib/tournaments/Bundesliga";
 import { Ligue1List } from "../lib/tournaments/Ligue1";
 import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
+import { LigaMXList } from "../lib/tournaments/LigaMX";
 import { SaudiProLeagueList } from "../lib/tournaments/SaudiProLeague";
 import { EredivisieList } from "../lib/tournaments/Eredivisie";
 import { LigaPortugalList } from "../lib/tournaments/LigaPortugal";
@@ -120,6 +121,8 @@ export default function Tournament() {
         return LigaPortugalList;
       case "brasileirao":
         return BrasileirãoList;
+      case "liga_mx":
+        return LigaMXList;
       case "saudi_league":
         return SaudiProLeagueList;
       case "uefa_champions_league":

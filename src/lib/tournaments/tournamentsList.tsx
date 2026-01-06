@@ -9,6 +9,7 @@ import Brasileirão_logo from "../../assets/icons/league logos/Brasileirão_logo
 import Eredivisie_logo from "../../assets/icons/league logos/Eredivisie_logo.png";
 import LigaPortugal_logo from "../../assets/icons/league logos/LigaPortugal_logo.png";
 import SaudiProLeague_logo from "../../assets/icons/league logos/SaudiProLeague_logo.png";
+import LigaMX_logo from "../../assets/icons/league logos/LigaMX_logo.png";
 
 import UefaChampionsLeague_logo from "../../assets/icons/league logos/UefaChampionsLeague_logo.png";
 import Libertadores_logo from "../../assets/icons/league logos/Libertadores_logo.png";
@@ -300,6 +301,41 @@ export const TournamentsList: Tournament[] = [
       "São Paulo",
       "Vasco",
       "Vitória",
+    ],
+  },
+  {
+    id: "liga_mx",
+    name: "Liga MX",
+    logo: LigaMX_logo,
+    type: "National League",
+    primaryColor: "#ad0c0c",
+    secondaryColor: "#5d5d5d",
+    tertiaryColor: "#0f7e3f",
+    backgroundColor: "#6f0606",
+    textColor: "#FFFFFF",
+    teams: 18,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
+    relegated: 0,
+    qualified: [8, 0],
+    defaultTeams: [
+      "Atlas FC",
+      "Atlético San Luis",
+      "CD Guadalajara",
+      "CD Toluca",
+      "CF Monterrey",
+      "CF Pachuca",
+      "Club América",
+      "Club León",
+      "Club Puebla",
+      "Cruz Azul",
+      "FC Juárez",
+      "Mazatlán FC",
+      "Necaxa",
+      "Pumas UNAM",
+      "Querétaro FC",
+      "Santos Laguna",
+      "Tigres UANL",
+      "Tijuana",
     ],
   },
   {
