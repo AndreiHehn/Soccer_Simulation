@@ -7,6 +7,7 @@ interface Props {
   backgroundColor: string;
   textColor: string;
   twoLegs?: boolean;
+  tournamentName?: string;
 }
 
 export const Container = styled.article<Props>`
@@ -98,6 +99,35 @@ export const Container = styled.article<Props>`
       &:disabled {
         background-color: ${(props) => lighten(0.15, props.secondaryColor)};
       }
+    }
+  }
+
+  .second-leg-wrapper {
+    display: flex;
+    position: relative;
+
+    .winner-away,
+    .winner-home {
+      font-size: 1px;
+      height: 40px;
+      width: 5px;
+      background-color: ${(props) =>
+        props.tournamentName == "Champions League"
+          ? "#98119d"
+          : props.tournamentName == "Libertadores"
+          ? "#ffe600"
+          : ""};
+      position: absolute;
+      color: ${(props) =>
+        props.tournamentName == "Champions League"
+          ? "#98119d"
+          : props.tournamentName == "Libertadores"
+          ? "#ffe600"
+          : ""};
+    }
+
+    .winner-home {
+      right: 0;
     }
   }
 `;

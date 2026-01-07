@@ -410,6 +410,7 @@ export default function QualifyingRound({
       tertiaryColor={selectedTournament?.tertiaryColor || "#FFF"}
       backgroundColor={selectedTournament?.backgroundColor || "#FFF"}
       textColor={selectedTournament?.textColor || "#FFF"}
+      tournamentName={selectedTournament?.name || ""}
       twoLegs={twoLegs}
     >
       <nav className="phase-selection">
@@ -480,23 +481,36 @@ export default function QualifyingRound({
                 />
 
                 {twoLegs && (
-                  <Match
-                    index={i + offset}
-                    homeTeam={awayTeam}
-                    awayTeam={homeTeam}
-                    homeLogo={getTeamLogo(
-                      awayTeam,
-                      selectedTeams,
-                      selectedLogos
+                  <div className="second-leg-wrapper">
+                    <Match
+                      index={i + offset}
+                      homeTeam={awayTeam}
+                      awayTeam={homeTeam}
+                      homeLogo={getTeamLogo(
+                        awayTeam,
+                        selectedTeams,
+                        selectedLogos
+                      )}
+                      awayLogo={getTeamLogo(
+                        homeTeam,
+                        selectedTeams,
+                        selectedLogos
+                      )}
+                      result={currentPhase.results[i + offset]}
+                      onResultChange={updateResult}
+                    />
+                    {currentPhase.winners[i] && (
+                      <div
+                        className={`tie-winner-indicator ${
+                          currentPhase.winners[i] === awayTeam
+                            ? "winner-away"
+                            : "winner-home"
+                        }`}
+                      >
+                        {currentPhase.winners[i]}
+                      </div>
                     )}
-                    awayLogo={getTeamLogo(
-                      homeTeam,
-                      selectedTeams,
-                      selectedLogos
-                    )}
-                    result={currentPhase.results[i + offset]}
-                    onResultChange={updateResult}
-                  />
+                  </div>
                 )}
               </div>
             </div>
