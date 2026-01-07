@@ -278,7 +278,7 @@ function App() {
       {confirmTeams && (
         <ModalMessage
           textMessage={t(
-            "Do you want create the tournament with the selected teams?"
+            "Do you want to create the tournament with the selected teams?"
           )}
           onClick1={() => setConfirmTeams(false)}
           textButton1={t("Cancel")}
