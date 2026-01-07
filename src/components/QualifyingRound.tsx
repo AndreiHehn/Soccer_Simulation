@@ -174,6 +174,9 @@ export default function QualifyingRound({
       teamsArray = Q1Teams;
     } else if (phaseName === "2nd Qualifying") {
       teamsArray = Q2Teams;
+    } else if (phaseName === "3rd Qualifying") {
+      teamsArray = Q3Teams;
+      console.log("AAAAAAAAAAAAAAAAAAAAAaa");
     }
 
     // ======================================================
@@ -221,13 +224,24 @@ export default function QualifyingRound({
     // ======================================================
     // 🔹 CHAMPIONS LEAGUE – Q2 (Champions Path + League Path)
     // ======================================================
-    if (isChampions && isQ2) {
-      const championsPath = [
-        ...teamsArray.slice(0, 10), // campeões diretos
-        ...teamsArray.slice(16), // vindos do Q1
-      ];
+    if (isChampions && (isQ2 || isQ3)) {
+      let championsPath: string[] = [];
+      let leaguePath: string[] = [];
 
-      const leaguePath = teamsArray.slice(10, 16);
+      if (isQ2) {
+        championsPath = [
+          ...teamsArray.slice(0, 10), // campeões diretos
+          ...teamsArray.slice(16), // vindos do Q1
+        ];
+        leaguePath = teamsArray.slice(10, 16);
+      }
+      if (isQ3) {
+        console.log(teamsArray);
+        championsPath = [
+          ...teamsArray.slice(5, 17), // vindos do Q2
+        ];
+        leaguePath = [...teamsArray.slice(0, 5), ...teamsArray.slice(17, 20)];
+      }
 
       const shuffle = (array: string[]) => {
         const copy = [...array];
@@ -373,7 +387,7 @@ export default function QualifyingRound({
 
     // Q2 → Q3
     if (phaseIndex === 1) {
-      setQ3Teams(winners);
+      setQ3Teams((prev) => [...prev, ...winners]);
     }
 
     // Q3 → Group Stage (Libertadores)
@@ -432,13 +446,21 @@ export default function QualifyingRound({
             selectedTournament?.name === "Champions League" &&
             phases[phaseIndex] === "2nd Qualifying";
 
+          const isChampionsQ3 =
+            selectedTournament?.name === "Champions League" &&
+            phases[phaseIndex] === "3rd Qualifying";
+
           return (
             <div key={`tie-${i}`}>
-              {isChampionsQ2 && i === 0 && (
+              {(isChampionsQ2 || isChampionsQ3) && i === 0 && (
                 <h3 className="path-title">{t("Champions Path")}</h3>
               )}
 
               {isChampionsQ2 && i === 12 && (
+                <h3 className="path-title">{t("League Path")}</h3>
+              )}
+
+              {isChampionsQ3 && i === 6 && (
                 <h3 className="path-title">{t("League Path")}</h3>
               )}
 

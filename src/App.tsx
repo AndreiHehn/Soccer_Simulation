@@ -53,6 +53,7 @@ function App() {
     setRanking,
     setQ1Teams,
     setQ2Teams,
+    setQ3Teams,
     qualifyedTeams,
     setQualifyedTeams,
     setQualifyingState,
@@ -96,6 +97,7 @@ function App() {
 
     if (selectedTournament?.name === "Champions League") {
       setQualifyedTeams(selectedTeams.slice(0, 29));
+      setQ3Teams(selectedTeams.slice(33, 38));
       setQ2Teams(selectedTeams.slice(38, 54));
       setQ1Teams(selectedTeams.slice(54, 82));
     }
@@ -212,7 +214,10 @@ function App() {
             setMatchdayNumber(1),
             setActiveTournament(false),
             SetDefaultStandings(),
-            setQualifyingState({})
+            setQualifyingState({}),
+            setQ1Teams([]),
+            setQ2Teams([]),
+            setQ3Teams([])
           )}
           textButton2={t("Yes")}
         ></ModalMessage>
