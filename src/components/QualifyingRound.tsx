@@ -488,6 +488,7 @@ export default function QualifyingRound({
           width="auto"
           borderRadius="4px"
           functionButton={() => setStartDraw(true)}
+          disabled={currentPhase.matches.length !== 0}
         >
           {t("Draw") + " " + t(phases[phaseIndex])}
         </Button>

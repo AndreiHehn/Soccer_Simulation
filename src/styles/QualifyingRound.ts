@@ -94,6 +94,10 @@ export const Container = styled.article<Props>`
       &:hover {
         background-color: ${(props) => darken(0.2, props.tertiaryColor)};
       }
+
+      &:disabled {
+        background-color: ${(props) => lighten(0.15, props.secondaryColor)};
+      }
     }
   }
 `;
