@@ -53,6 +53,8 @@ export default function QualifyingRound({
     Q2Teams,
     setQ3Teams,
     Q3Teams,
+    setUCLPlayoffsTeams,
+    UCLPlayoffsTeams,
     startDraw,
     setStartDraw,
     setQualifyedTeams,
@@ -60,6 +62,7 @@ export default function QualifyingRound({
     setQualifyingState,
     qualifyingDone,
     setQualifyingDone,
+    qualifyedTeams,
   } = useContext(AppContext);
 
   const ChampionsLeagueList = [
@@ -167,6 +170,7 @@ export default function QualifyingRound({
     const phaseName = phases[phaseIndex];
     const isQ2 = phaseName === "2nd Qualifying";
     const isQ3 = phaseName === "3rd Qualifying";
+    const isPlayoffs = phaseName === "Playoffs";
 
     let teamsArray: string[] = [];
 
@@ -176,7 +180,8 @@ export default function QualifyingRound({
       teamsArray = Q2Teams;
     } else if (phaseName === "3rd Qualifying") {
       teamsArray = Q3Teams;
-      console.log("AAAAAAAAAAAAAAAAAAAAAaa");
+    } else if (phaseName === "Playoffs") {
+      teamsArray = UCLPlayoffsTeams;
     }
 
     // ======================================================
@@ -224,7 +229,7 @@ export default function QualifyingRound({
     // ======================================================
     // 🔹 CHAMPIONS LEAGUE – Q2 (Champions Path + League Path)
     // ======================================================
-    if (isChampions && (isQ2 || isQ3)) {
+    if (isChampions && (isQ2 || isQ3 || isPlayoffs)) {
       let championsPath: string[] = [];
       let leaguePath: string[] = [];
 
@@ -236,11 +241,16 @@ export default function QualifyingRound({
         leaguePath = teamsArray.slice(10, 16);
       }
       if (isQ3) {
-        console.log(teamsArray);
         championsPath = [
           ...teamsArray.slice(5, 17), // vindos do Q2
         ];
         leaguePath = [...teamsArray.slice(0, 5), ...teamsArray.slice(17, 20)];
+      }
+      if (isPlayoffs) {
+        championsPath = [
+          ...teamsArray.slice(0, 10), // vindos do Q2
+        ];
+        leaguePath = [...teamsArray.slice(10)];
       }
 
       const shuffle = (array: string[]) => {
@@ -375,34 +385,67 @@ export default function QualifyingRound({
   useEffect(() => {
     if (!allTiesResolved) return;
 
-    // evita promover a mesma fase mais de uma vez
-    if (promotedPhases.includes(phaseIndex)) return;
-
     const winners = Object.values(currentPhase.winners) as string[];
 
-    // Q1 → Q2
-    if (phaseIndex === 0) {
+    // 🔹 Q1 → Q2
+    if (phaseIndex === 0 && !promotedPhases.includes(0)) {
       setQ2Teams((prev) => [...prev, ...winners]);
+      setPromotedPhases((prev) => [...prev, 0]);
+      return;
     }
 
-    // Q2 → Q3
-    if (phaseIndex === 1) {
+    // 🔹 Q2 → Q3
+    if (phaseIndex === 1 && !promotedPhases.includes(1)) {
       setQ3Teams((prev) => [...prev, ...winners]);
+      setPromotedPhases((prev) => [...prev, 1]);
+      return;
     }
 
-    // Q3 → Group Stage (Libertadores)
+    // 🔹 Q3 → Playoffs (Champions League)
     if (
       phaseIndex === 2 &&
-      selectedTournament?.name == "Libertadores" &&
+      selectedTournament?.name === "Champions League" &&
+      !promotedPhases.includes(2)
+    ) {
+      setUCLPlayoffsTeams((prev) => [...prev, ...winners]);
+      setPromotedPhases((prev) => [...prev, 2]);
+      return;
+    }
+
+    // 🔹 Q3 → Group Stage (Libertadores)
+    if (
+      phaseIndex === 2 &&
+      selectedTournament?.name === "Libertadores" &&
       !qualifyingDone
     ) {
       setQualifyedTeams((prev) => [...prev, ...winners]);
       setQualifyingDone(true);
+      return;
     }
 
-    // marca fase como já promovida
-    setPromotedPhases((prev) => [...prev, phaseIndex]);
-  }, [allTiesResolved, phaseIndex, promotedPhases]);
+    // 🔹 Playoffs → Group Stage (Champions League) ✅ AQUI ESTAVA O BUG
+    if (
+      phaseIndex === 3 &&
+      selectedTournament?.name === "Champions League" &&
+      !qualifyingDone
+    ) {
+      setQualifyedTeams((prev) => [...prev, ...winners]);
+      setQualifyingDone(true);
+      console.log("AAAAAAAAAAAAA");
+    }
+  }, [
+    allTiesResolved,
+    phaseIndex,
+    promotedPhases,
+    qualifyingDone,
+    selectedTournament,
+  ]);
+
+  useEffect(() => {
+    if (qualifyedTeams.length > 0) {
+      console.log("qualifyiedTeams atualizado:", qualifyedTeams);
+    }
+  }, [qualifyedTeams]);
 
   return (
     <Container
@@ -451,17 +494,26 @@ export default function QualifyingRound({
             selectedTournament?.name === "Champions League" &&
             phases[phaseIndex] === "3rd Qualifying";
 
+          const isChampionsPlayoffs =
+            selectedTournament?.name === "Champions League" &&
+            phases[phaseIndex] === "Playoffs";
+
           return (
             <div key={`tie-${i}`}>
-              {(isChampionsQ2 || isChampionsQ3) && i === 0 && (
-                <h3 className="path-title">{t("Champions Path")}</h3>
-              )}
+              {(isChampionsQ2 || isChampionsQ3 || isChampionsPlayoffs) &&
+                i === 0 && (
+                  <h3 className="path-title">{t("Champions Path")}</h3>
+                )}
 
               {isChampionsQ2 && i === 12 && (
                 <h3 className="path-title">{t("League Path")}</h3>
               )}
 
               {isChampionsQ3 && i === 6 && (
+                <h3 className="path-title">{t("League Path")}</h3>
+              )}
+
+              {isChampionsPlayoffs && i === 5 && (
                 <h3 className="path-title">{t("League Path")}</h3>
               )}
 

@@ -397,7 +397,7 @@ export const TournamentsList: Tournament[] = [
       "1st Qualifying",
       "2nd Qualifying",
       "3rd Qualifying",
-      "Playoff",
+      "Playoffs",
     ],
     defaultTeams: [
       "Tottenham",

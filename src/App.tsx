@@ -54,9 +54,11 @@ function App() {
     setQ1Teams,
     setQ2Teams,
     setQ3Teams,
+    setUCLPlayoffsTeams,
     qualifyedTeams,
     setQualifyedTeams,
     setQualifyingState,
+    setQualifyingDone,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -97,6 +99,7 @@ function App() {
 
     if (selectedTournament?.name === "Champions League") {
       setQualifyedTeams(selectedTeams.slice(0, 29));
+      setUCLPlayoffsTeams(selectedTeams.slice(29, 33));
       setQ3Teams(selectedTeams.slice(33, 38));
       setQ2Teams(selectedTeams.slice(38, 54));
       setQ1Teams(selectedTeams.slice(54, 82));
@@ -217,7 +220,9 @@ function App() {
             setQualifyingState({}),
             setQ1Teams([]),
             setQ2Teams([]),
-            setQ3Teams([])
+            setQ3Teams([]),
+            setUCLPlayoffsTeams([]),
+            setQualifyingDone(false)
           )}
           textButton2={t("Yes")}
         ></ModalMessage>

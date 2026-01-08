@@ -107,6 +107,8 @@ interface AppContextProps {
   setQ2Teams: Dispatch<SetStateAction<string[]>>;
   Q3Teams: string[];
   setQ3Teams: Dispatch<SetStateAction<string[]>>;
+  UCLPlayoffsTeams: string[];
+  setUCLPlayoffsTeams: Dispatch<SetStateAction<string[]>>;
 
   qualifyingState: QualifyingState;
   setQualifyingState: Dispatch<SetStateAction<QualifyingState>>;
@@ -150,6 +152,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [Q1Teams, setQ1Teams] = useState<string[]>([]);
   const [Q2Teams, setQ2Teams] = useState<string[]>([]);
   const [Q3Teams, setQ3Teams] = useState<string[]>([]);
+  const [UCLPlayoffsTeams, setUCLPlayoffsTeams] = useState<string[]>([]);
   const [qualifyingDone, setQualifyingDone] = useState(false);
 
   /* 🔹 QUALIFYING STATE GLOBAL */
@@ -217,6 +220,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setQ2Teams,
         Q3Teams,
         setQ3Teams,
+        UCLPlayoffsTeams,
+        setUCLPlayoffsTeams,
         qualifyingState,
         setQualifyingState,
         qualifyingDone,
