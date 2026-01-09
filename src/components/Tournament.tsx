@@ -17,6 +17,7 @@ import { EFLChampionshipList } from "../lib/tournaments/EFLChampionship";
 import { LaLigaList } from "../lib/tournaments/LaLiga";
 import { SerieAList } from "../lib/tournaments/SerieA";
 import { BundesligaList } from "../lib/tournaments/Bundesliga";
+import { ZweiteBundesligaList } from "../lib/tournaments/Bundesliga2";
 import { Ligue1List } from "../lib/tournaments/Ligue1";
 import { BrasileirãoList } from "../lib/tournaments/Brasileirão";
 import { LigaMXList } from "../lib/tournaments/LigaMX";
@@ -116,6 +117,8 @@ export default function Tournament() {
         return SerieAList;
       case "bundesliga":
         return BundesligaList;
+      case "2_bundesliga":
+        return ZweiteBundesligaList;
       case "ligue_1":
         return Ligue1List;
       case "eredivisie":

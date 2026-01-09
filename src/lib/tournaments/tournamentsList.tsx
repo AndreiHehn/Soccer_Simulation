@@ -5,6 +5,7 @@ import EFLChampionship_logo from "../../assets/icons/league logos/EFLChampionshi
 import LaLiga_logo from "../../assets/icons/league logos/LaLiga_logo.png";
 import SerieA_logo from "../../assets/icons/league logos/SerieA_logo.png";
 import Bundesliga_logo from "../../assets/icons/league logos/Bundesliga_logo.png";
+import ZweiteBundesliga_logo from "../../assets/icons/league logos/2Bundesliga_logo.png";
 import Ligue1_logo from "../../assets/icons/league logos/Ligue1_logo.png";
 import Brasileirão_logo from "../../assets/icons/league logos/Brasileirão_logo.png";
 import Eredivisie_logo from "../../assets/icons/league logos/Eredivisie_logo.png";
@@ -201,6 +202,41 @@ export const TournamentsList: Tournament[] = [
       "Union Berlin",
       "Werder Bremen",
       "Wolfsburg",
+    ],
+  },
+  {
+    id: "2_bundesliga",
+    name: "2. Bundesliga",
+    logo: ZweiteBundesliga_logo,
+    type: "National League",
+    primaryColor: "#D10214",
+    secondaryColor: "#D10214",
+    tertiaryColor: "#1c2429",
+    backgroundColor: "#0A141A",
+    textColor: "#FFFFFF",
+    teams: 18,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
+    relegated: 3,
+    qualified: [2, 1], // Champions League / Europa League
+    defaultTeams: [
+      "Arminia Bielefeld",
+      "Bochum",
+      "Darmstadt",
+      "Dynamo Dresden",
+      "E. Braunschweig",
+      "Elversberg",
+      "Fortuna Düsseldorf",
+      "Greuther Fürth",
+      "Hannover 96",
+      "Hertha Berlin",
+      "Holstein Kiel",
+      "Kaiserslautern",
+      "Karlsruhe SC",
+      "FC Magdeburg",
+      "FC Nürnberg",
+      "Paderborn",
+      "Preußen Munster",
+      "Schalke 04",
     ],
   },
   {
