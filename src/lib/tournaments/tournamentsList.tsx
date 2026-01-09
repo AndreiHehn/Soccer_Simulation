@@ -1,6 +1,7 @@
 import type { Tournament } from "../types";
 
 import PremierLeague_logo from "../../assets/icons/league logos/Premier_League_logo.png";
+import EFLChampionship_logo from "../../assets/icons/league logos/EFLChampionship_logo.png";
 import LaLiga_logo from "../../assets/icons/league logos/LaLiga_logo.png";
 import SerieA_logo from "../../assets/icons/league logos/SerieA_logo.png";
 import Bundesliga_logo from "../../assets/icons/league logos/Bundesliga_logo.png";
@@ -50,6 +51,47 @@ export const TournamentsList: Tournament[] = [
       "Tottenham",
       "West Ham United",
       "Wolves",
+    ],
+  },
+  {
+    id: "efl_championship",
+    name: "EFL Championship",
+    logo: EFLChampionship_logo,
+    type: "National League",
+    primaryColor: "#1e19ba",
+    secondaryColor: "#c1c1c1",
+    tertiaryColor: "#c1c1c1",
+    backgroundColor: "#070649",
+    textColor: "#94870f",
+    teams: 24,
+    navbarItems: ["Teams Selection", "Matches", "Standings", "Statistics"],
+    relegated: 3,
+    qualified: [2, 4],
+    defaultTeams: [
+      "Blackburn Rovers",
+      "Birmingham City",
+      "Bristol City",
+      "Charlton Athletic",
+      "Coventry City",
+      "Derby County",
+      "Hull City",
+      "Ipswich Town",
+      "Leicester City",
+      "Middlesbrough",
+      "Millwall",
+      "Norwich City",
+      "Oxford United",
+      "Portsmouth",
+      "Preston North End",
+      "Queens Park Rangers",
+      "Sheffield United",
+      "Sheffield Wednesday",
+      "Southampton",
+      "Stoke City",
+      "Swansea City",
+      "Watford",
+      "West Bromwich",
+      "Wrexham",
     ],
   },
   {

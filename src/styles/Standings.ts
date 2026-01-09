@@ -7,11 +7,17 @@ interface Props {
   textColor: string;
 }
 
+interface ScrollProps {
+  backgroundColor: string;
+  teamsAmount: number;
+}
+
 export const Container = styled.table<Props>`
   color: ${(props) => props.textColor};
   background-color: ${(props) => props.backgroundColor};
   border-spacing: 0 2px;
   margin-top: 40px;
+  padding-right: 10px;
 
   .standings-header {
     border-radius: 15px 5px 0 0;
@@ -116,5 +122,27 @@ export const Container = styled.table<Props>`
 
   #detail-column {
     width: 5px;
+  }
+`;
+
+export const ScrollWrapper = styled.div<ScrollProps>`
+  max-height: ${(props) => (props.teamsAmount > 20 ? "600px" : "640px")};
+  overflow-y: ${(props) => (props.teamsAmount > 20 ? "auto" : "")};
+  background-color: ${(props) => props.backgroundColor};
+
+  /* Scroll */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 1px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #eee;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 8px;
   }
 `;

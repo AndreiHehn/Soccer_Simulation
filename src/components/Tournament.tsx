@@ -13,6 +13,7 @@ import DoubleArrowRight from "../assets/icons/doubleArrowRightIcon.svg?react";
 
 // importa listas de times
 import { PremierLeagueList } from "../lib/tournaments/PremierLeague";
+import { EFLChampionshipList } from "../lib/tournaments/EFLChampionship";
 import { LaLigaList } from "../lib/tournaments/LaLiga";
 import { SerieAList } from "../lib/tournaments/SerieA";
 import { BundesligaList } from "../lib/tournaments/Bundesliga";
@@ -82,7 +83,6 @@ export default function Tournament() {
     setConfirmTeams,
     activeTournament,
     scheduleRef,
-    qualifyedTeams,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState("");
@@ -108,6 +108,8 @@ export default function Tournament() {
     switch (selectedTournament.id) {
       case "premier_league":
         return PremierLeagueList;
+      case "efl_championship":
+        return EFLChampionshipList;
       case "la_liga":
         return LaLigaList;
       case "serie_a":
@@ -354,7 +356,7 @@ export default function Tournament() {
             }`}
             onClick={() =>
               selectedCount === selectedTournament?.teams &&
-              (setTournamentStep(step), console.log(qualifyedTeams))
+              setTournamentStep(step)
             }
           >
             <h3 className="step-name">{t(step)}</h3>
