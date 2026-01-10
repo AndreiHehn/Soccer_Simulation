@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 export function generateFirstLeg(teams: string[]) {
   const numTimes = teams.length;
 

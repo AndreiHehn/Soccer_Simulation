@@ -90,10 +90,10 @@ export const Container = styled.article<Props>`
     justify-content: center;
 
     button {
-      background-color: ${(props) => props.tertiaryColor};
+      background-color: ${(props) => props.secondaryColor};
 
       &:hover {
-        background-color: ${(props) => darken(0.2, props.tertiaryColor)};
+        background-color: ${(props) => darken(0.2, props.secondaryColor)};
       }
 
       &:disabled {

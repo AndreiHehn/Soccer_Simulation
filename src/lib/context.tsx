@@ -82,6 +82,8 @@ interface AppContextProps {
   setActiveTournament: Dispatch<SetStateAction<boolean>>;
   startDraw: boolean;
   setStartDraw: Dispatch<SetStateAction<boolean>>;
+  drawGroups: boolean;
+  setDrawGroups: Dispatch<SetStateAction<boolean>>;
   qualifyingDone: boolean;
   setQualifyingDone: Dispatch<SetStateAction<boolean>>;
   scheduleRef: React.MutableRefObject<
@@ -144,6 +146,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [teams, setTeams] = useState<Team[]>([]);
   const [confirmTeams, setConfirmTeams] = useState(false);
   const [startDraw, setStartDraw] = useState(false);
+  const [drawGroups, setDrawGroups] = useState(false);
   const [activeTournament, setActiveTournament] = useState(false);
   const scheduleRef = useRef(null);
   const [standings, setStandings] = useState<TeamStats[]>([]);
@@ -226,6 +229,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setQualifyingState,
         qualifyingDone,
         setQualifyingDone,
+        drawGroups,
+        setDrawGroups,
       }}
     >
       {children}

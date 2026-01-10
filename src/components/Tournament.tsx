@@ -49,6 +49,7 @@ import {
   LibertadoresTeams,
 } from "../lib/tournamentsInfo";
 import QualifyingRound from "./QualifyingRound";
+import Pots from "./Pots";
 
 const europeFlags = import.meta.glob(
   "../assets/icons/country flags/europe/*_flag.png",
@@ -84,11 +85,14 @@ export default function Tournament() {
     setConfirmTeams,
     activeTournament,
     scheduleRef,
+    qualifyingDone,
   } = useContext(AppContext);
 
   const [, setSelectedTeam] = useState("");
   const selectedCount = selectedTeams.filter(Boolean).length;
   const [matchesPerPhase, setMatchesPerPhase] = useState([14, 15, 10, 7]);
+  const [numberOfPots, setNumberOfPots] = useState<number>(4);
+  const [teamsPerPot, setTeamsPerPot] = useState<number>(8);
 
   const ChampionsLeagueList = [
     ...PremierLeagueList,
@@ -147,6 +151,17 @@ export default function Tournament() {
   useMemo(() => {
     setSelectedTeam("");
   }, []);
+
+  useEffect(() => {
+    if (selectedTournament?.name == "Libertadores") {
+      setTeamsPerPot(8);
+      setNumberOfPots(4);
+    }
+    if (selectedTournament?.name == "Champions League") {
+      setTeamsPerPot(9);
+      setNumberOfPots(4);
+    }
+  }, [selectedTournament]);
 
   function handleSelectTeam(index: number, teamId: string) {
     const selected = teams.find((t) => t.id === teamId);
@@ -338,6 +353,35 @@ export default function Tournament() {
     return [];
   }, [selectedTournament, countrySlots, t]);
 
+  const isStepDisabled = (step: string) => {
+    if (!selectedTournament) return true;
+
+    switch (step) {
+      case "Teams Selection":
+        return false;
+
+      case "Pots":
+        return !qualifyingDone;
+
+      case "Group Stage":
+        return true;
+
+      case "Knockout Stage":
+        return true;
+
+      default:
+        return !activeTournament;
+    }
+  };
+
+  const handleStepClick = (step: string) => {
+    if (isStepDisabled(step)) return;
+
+    if (selectedCount === selectedTournament?.teams) {
+      setTournamentStep(step);
+    }
+  };
+
   return (
     <Container
       tournamentName={selectedTournament?.name ?? ""}
@@ -347,25 +391,23 @@ export default function Tournament() {
       textColor={selectedTournament?.textColor ?? "#FFF"}
     >
       <nav className="steps-nav">
-        {selectedTournament?.navbarItems.map((step) => (
-          <div
-            key={step}
-            className={`step ${tournamentStep === step ? "active" : ""} ${
-              selectedTournament &&
-              step !== "Teams Selection" &&
-              !activeTournament
-                ? "disabled"
-                : ""
-            }`}
-            onClick={() =>
-              selectedCount === selectedTournament?.teams &&
-              setTournamentStep(step)
-            }
-          >
-            <h3 className="step-name">{t(step)}</h3>
-            <hr className="selected-step" />
-          </div>
-        ))}
+        {selectedTournament?.navbarItems.map((step) => {
+          const disabled = isStepDisabled(step);
+          const active = tournamentStep === step;
+
+          return (
+            <div
+              key={step}
+              className={`step ${active ? "active" : ""} ${
+                disabled ? "disabled" : ""
+              }`}
+              onClick={() => handleStepClick(step)}
+            >
+              <h3 className="step-name">{t(step)}</h3>
+              <hr className="selected-step" />
+            </div>
+          );
+        })}
       </nav>
 
       {tournamentStep === "Teams Selection" && selectedTournament && (
@@ -512,6 +554,11 @@ export default function Tournament() {
               twoLegs
             ></QualifyingRound>
           </>
+        )}
+
+      {tournamentStep == "Pots" &&
+        selectedTournament?.type == "Continental" && (
+          <Pots teamsPerPot={teamsPerPot} numberOfPots={numberOfPots}></Pots>
         )}
 
       {tournamentStep === "Matches" && selectedTournament && (
